@@ -28,10 +28,11 @@
 #############################################################################
 
 # Default branch
-PVER=0.151012
+RELVER=151006
+PVER=0.$RELVER
 
 # Which server to fetch files from
-MIRROR=scott.mathematik.uni-ulm.de/src
+MIRROR=pkg.qutic.net/src
 
 # Default prefix for packages (may be overridden)
 PREFIX=/usr/local
@@ -82,8 +83,8 @@ PERL_MAKE_TEST=1
 #############################################################################
 # Python
 #############################################################################
-PYTHONPATH=/opt/python27
-PYTHON=$PYTHONPATH/bin/python2.7
+PYTHONPATH=/usr
+PYTHON=$PYTHONPATH/bin/python2.6
 PYTHONLIB=$PYTHONPATH/lib
 
 
@@ -127,8 +128,8 @@ ISAPART=i386
 ISAPART64=amd64
 
 # For OmniOS we (almost) always want GCC
-CC=/opt/gcc-4.8.1/bin/gcc
-CXX=/opt/gcc-4.8.1/bin/g++
+CC=/opt/gcc-4.4.4/bin/gcc
+CXX=/opt/gcc-4.4.4/bin/g++
 
 # CFLAGS applies to both builds, 32/64 only gets applied to the respective
 # build

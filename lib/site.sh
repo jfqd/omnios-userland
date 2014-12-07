@@ -1,6 +1,6 @@
 # Package server URL and publisher
-PKGPUBLISHER=uulm.mawi
-PKGSRVR=http://localhost:10000/
+PKGPUBLISHER=r151006.qutic
+PKGSRVR=http://localhost:10001/
 
 # Uncommenting this line will create a on-disk repo in
 # the top level of your checkout and publish there instead
