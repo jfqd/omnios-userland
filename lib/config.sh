@@ -32,7 +32,7 @@ RELVER=151006
 PVER=0.$RELVER
 
 # Which server to fetch files from
-MIRROR=pkg.qutic.net/src
+MIRROR=pkg.qutic.com/src
 
 # Default prefix for packages (may be overridden)
 PREFIX=/usr/local
