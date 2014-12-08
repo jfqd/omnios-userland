@@ -28,8 +28,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.22.tar.gz
 PROG=mysql
-VER=5.6.21
+VER=5.6.22
 VERHUMAN=$VER
 
 BUILD_DEPENDS_IPS="developer/build/cmake system/library/g++-4-runtime system/library/gcc-4-runtime"
