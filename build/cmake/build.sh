@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz
 PROG=cmake
-VER=2.8.11.2
+VER=2.8.12.2
 VERHUMAN=$VER
 PKG="developer/build/cmake"
 SUMMARY="cmake"
