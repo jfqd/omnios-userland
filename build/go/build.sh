@@ -29,7 +29,7 @@
 
 # https://storage.googleapis.com/golang/go1.3.3.src.tar.gz
 PROG=go
-VER=1.3.3
+VER=1.3.1
 VERHUMAN=$VER   # Human-readable version
 #PVER=          # Branch (set in config.sh, override here if needed)
 PKG=runtime/go
