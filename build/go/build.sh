@@ -36,7 +36,9 @@ PKG=runtime/go
 SUMMARY="An open source programming language."
 DESC="$SUMMARY ($VER)"
 
-TAR=gtar
+BUILD_DEPENDS_IPS="archiver/gnu-tar"
+
+TAR=/usr/sfw/bin/gtar
 BUILDDIR=$PROG
 BUILDARCH=64
 
