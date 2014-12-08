@@ -32,7 +32,7 @@ VER=0.7.0
 VERHUMAN=$VER
 PKG=library/security/libsodium
 SUMMARY="The Sodium crypto library (libsodium)"
-DESC="Sodium is a new, easy-to-use software library for encryption, decryption, signatures, password hashing and more.  It is a portable, cross-compilable, installable, packageable fork of NaCl, with a compatible API, and an extended API to improve usability even further.  Its goal is to provide all of the core operations needed to build higher-level cryptographic tools.  Sodium supports a variety of compilers and operating systems, including Windows (with MingW or Visual Studio, x86 and x64), iOS and Android.  The design choices emphasize security, and magic constants have clear rationales.  The same cannot be said of NIST curves, where the specific origins of certain constants are not described by the standards.  And despite the emphasis on higher security, primitives are faster across-the-board than most implementations of the NIST standards." 
+DESC="Sodium is a new, easy-to-use software library for encryption, decryption, signatures, password hashing and more." 
 
 CONFIGURE_OPTS="--enable-static=yes --enable-shared=no"
 
