@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# ftp://ftp.netclusive.de/pub/postfix//postfix-release/official/postfix-2.11.3.tar.gz
 PROG=postfix
-VER=2.11.1
+VER=2.11.3
 VERHUMAN=$VER
 PKG=service/network/smtp/postfix
 SUMMARY="Postfix Mail Transport Agent"
