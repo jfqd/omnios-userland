@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libffi
-VER=3.1
+VER=3.2.1
 VERHUMAN=$VER
 PKG=custom/library/libffi
 SUMMARY="A Portable Foreign Function Interface Library"
