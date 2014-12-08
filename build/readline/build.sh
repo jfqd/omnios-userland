@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://ftp.gnu.org/gnu/readline/readline-6.3.tar.gz
 PROG=readline
 VER=6.3
 VERHUMAN=$VER   # Human-readable version
