@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# ftp://ftp.cyrusimap.org/cyrus-sasl/cyrus-sasl-2.1.26.tar.gz
 PROG=cyrus-sasl2
 VER=2.1.26
 VERHUMAN=$VER
@@ -39,17 +40,29 @@ DEPENDS_IPS="system/library/gcc-4-runtime"
 ARCHIVENAME=cyrus-sasl
 BUILDDIR=$ARCHIVENAME-$VER
 
+BUILDARCH=32
+
+CPPFLAGS="-I/usr/local/include/mysql"
+LDFLAGS="-L/usr/local/lib"
+
 CONFIGURE_OPTS="--prefix=$PREFIX
     --includedir=$PREFIX/include
     --sysconfdir=/etc/sasl2
+    --with-mysql=/usr/local
     --enable-shared=yes
     --enable-static=no
-    --enable-sql=no
     --enable-java=no
     --enable-gssapi=no
     --enable-ldapdb=no
     --without-saslauthd
-    --without-libdb"
+    --without-libdb
+    --enable-plain
+    --enable-anon=no
+    --enable-sql
+    --disable-cram
+    --disable-digest
+    --disable-otp
+    --disable-krb4"
 CONFIGURE_OPTS_32="--includedir=$PREFIX/include
     --bindir=$PREFIX/bin/$ISAPART
     --sbindir=$PREFIX/sbin/$ISAPART
