@@ -31,7 +31,7 @@ PROG=ruby
 VER=2.1.5
 MAIN_VER=2.1
 VERHUMAN=$VER
-PKG="runtime/ruby-2.1"
+PKG=runtime/ruby-2.1
 SUMMARY="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write."
 DESC="$SUMMARY ($VER)"
 

@@ -32,7 +32,7 @@ PATCH_LEVEL=374
 VER=1.8.7.374
 VERHUMAN=1.8.7
 MAIN_VER=1.8
-PKG="runtime/ruby-1.8"
+PKG=runtime/ruby-1.8
 SUMMARY="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write."
 DESC="$SUMMARY ($VER)"
 
