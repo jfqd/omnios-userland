@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p374.tar.gz
 PROG=ruby
 PATCH_LEVEL=374
 VER=1.8.7.374

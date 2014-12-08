@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz
 PROG=ruby
 VER=2.1.5
 MAIN_VER=2.1
