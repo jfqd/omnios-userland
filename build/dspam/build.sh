@@ -36,7 +36,7 @@ DESC="$SUMMARY ($VER)"
 
 BUILDARCH=32
 BUILD_DEPENDS_IPS=""
-DEPENDS_IPS="system/library/gcc-4-runtime database/bdb library/libpq5"
+DEPENDS_IPS="system/library/gcc-4-runtime database/bdb"
 
 CONFIGURE_OPTS="--sysconfdir=/etc/dspam
     --localstatedir=/var/$PROG
@@ -53,7 +53,7 @@ CONFIGURE_OPTS="--sysconfdir=/etc/dspam
     --with-dspam-home-owner=dspam
     --with-dspam-home-group=dspam
     --with-logdir=/var/log/$PROG
-    --with-storage-driver=hash_drv,pgsql_drv"
+    --with-storage-driver=hash_drv"
 
 service_configs() {
     logmsg "Installing SMF"
