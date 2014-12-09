@@ -27,26 +27,30 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://dovecot.org/releases/2.2/dovecot-2.2.15.tar.gz
 PROG=dovecot
-VER=2.2.12
+VER=2.2.15
 VERHUMAN=$VER
-PKG=service/network/imap/dovecot
+PKG=service/network/dovecot
 SUMMARY="Dovecot is an open source IMAP and POP3 email server."
 DESC="$SUMMARY ($VER)"
 
 BUILDARCH=32
 BUILD_DEPENDS_IPS=""
-DEPENDS_IPS="system/library/gcc-4-runtime database/bdb library/libpq5
-             library/libldap library/security/cyrus-sasl"
+DEPENDS_IPS="system/library/gcc-4-runtime database/bdb library/libmysqlclient18
+             library/security/cyrus-sasl"
+
+CPPFLAGS="-I/usr/local/include/mysql"
+LDFLAGS="-L/usr/local/lib -R/usr/local/lib"
 
 CONFIGURE_OPTS="--sysconfdir=/etc
     --localstatedir=/var
     --mandir=$PREFIX/man
     --enable-static=no
-    --with-gssapi=plugin
-    --with-ldap=plugin
+    --with-gssapi=no
+    --with-ldap=no
     --with-sql=plugin
-    --with-pgsql
+    --with-mysql
     --with-zlib
     --with-bzlib
     --with-libwrap
