@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://prdownloads.sourceforge.net/libpng/zlib-1.2.8.tar.gz?download
 PROG=zlib
 VER=1.2.8
 PKG=local/library/zlib
