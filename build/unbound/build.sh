@@ -36,9 +36,12 @@ DESC="$SUMMARY ($VER)"
 
 DEPENDS_IPS="system/library/gcc-4-runtime"
 
-BUILDARCH=64
+BUILDARCH=32
+
 USER=unbound
 GROUP=unbound
+
+MAKE=/usr/bin/make
 
 service_configs() {
     logmsg "Installing SMF"
@@ -47,13 +50,20 @@ service_configs() {
         $DESTDIR/lib/svc/manifest/network/unbound.xml
 }
 
+default_config() {
+    logmsg "Copying default configuration files"
+    logcmd cp $SRCDIR/files/root.hints $DESTDIR/etc/unbound/root.hints
+    logcmd mkdir -p $DESTDIR/etc/unbound/keys
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
 make_isa_stub
-install_license
+service_configs
+default_config
 make_package
 clean_up
 
