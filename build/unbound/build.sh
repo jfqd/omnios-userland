@@ -50,8 +50,9 @@ service_configs() {
 
 default_config() {
     logmsg "Copying default configuration files from ${SRCDIR} to ${DESTDIR}"
-    logcmd /usr/bin/cp $SRCDIR/files/root.hints $DESTDIR/usr/local/etc/unbound/root.hints
+    logcmd cp $SRCDIR/files/root.hints $DESTDIR/usr/local/etc/unbound/root.hints
     logcmd mkdir -p $DESTDIR/usr/local/etc/unbound/keys
+    logcmd touch $DESTDIR/usr/local/etc/unbound/unbound.log
 }
 
 init
