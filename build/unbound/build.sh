@@ -36,8 +36,6 @@ DESC="$SUMMARY ($VER)"
 
 DEPENDS_IPS="system/library/gcc-4-runtime"
 
-BUILDARCH=32
-
 USER=unbound
 GROUP=unbound
 
@@ -51,9 +49,9 @@ service_configs() {
 }
 
 default_config() {
-    logmsg "Copying default configuration files"
-    logcmd cp $SRCDIR/files/root.hints $DESTDIR/etc/unbound/root.hints
-    logcmd mkdir -p $DESTDIR/etc/unbound/keys
+    logmsg "Copying default configuration files from ${SRCDIR} to ${DESTDIR}"
+    logcmd /usr/bin/cp $SRCDIR/files/root.hints $DESTDIR/usr/local/etc/unbound/root.hints
+    logcmd mkdir -p $DESTDIR/usr/local/etc/unbound/keys
 }
 
 init
