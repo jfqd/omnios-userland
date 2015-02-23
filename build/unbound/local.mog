@@ -1,2 +1,2 @@
-group gid=101 groupname=unbound
-user ftpuser=false gcos-field="Unbound Reserved UID" group=unbound password=NP uid=101 username=unbound home-dir=/
+group gid=200 groupname=unbound
+user ftpuser=false gcos-field="Unbound Reserved UID" group=unbound password=NP uid=200 username=unbound home-dir=/
