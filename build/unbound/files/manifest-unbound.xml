@@ -22,7 +22,7 @@
         </property_group>
 
         <property_group name="application" type="application">
-            <propval name="config_file" type="astring" value="/etc/unbound/unbound.conf"/>
+            <propval name="config_file" type="astring" value="/usr/local/etc/unbound/unbound.conf"/>
         </property_group>
         
         <stability value="Evolving"/>
