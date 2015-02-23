@@ -1,2 +1,6 @@
 group gid=200 groupname=unbound
 user ftpuser=false gcos-field="Unbound Reserved UID" group=unbound password=NP uid=200 username=unbound home-dir=/
+<transform dir path=usr/local/etc/unbound/unbound.log -> set owner unbound>
+<transform dir path=usr/local/etc/unbound/unbound.log -> set group unbound>
+<transform dir path=usr/local/etc/unbound/keys/ -> set owner unbound>
+<transform dir path=usr/local/etc/unbound/keys/ -> set group unbound>
