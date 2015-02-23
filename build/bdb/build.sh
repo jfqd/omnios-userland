@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://download.oracle.com/otn/berkeley-db/db-6.0.30.tar.gz
 PROG=bdb
 VER=6.0.30
 VERHUMAN=$VER
