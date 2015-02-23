@@ -48,7 +48,7 @@ LDFLAGS="-L/usr/local/lib"
 CONFIGURE_OPTS="--prefix=$PREFIX
     --includedir=$PREFIX/include
     --sysconfdir=/etc/sasl2
-    --with-mysql=/usr/local
+    --with-mysql
     --enable-shared=yes
     --enable-static=no
     --enable-java=no
