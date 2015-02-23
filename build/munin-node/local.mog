@@ -1,5 +1,5 @@
-group gid=98 groupname=munin
-user ftpuser=false gcos-field="Munin Reserved UID" group=munin password=NP uid=98 username=munin home-dir=/
+group gid=99 groupname=munin
+user ftpuser=false gcos-field="Munin Reserved UID" group=munin password=NP uid=99 username=munin home-dir=/
 license COPYING license="GNU General Public License Version 2"
 <transform dir path=var/log/munin.* -> set owner munin>
 <transform dir path=var/log/munin.* -> set group munin>
