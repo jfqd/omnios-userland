@@ -28,9 +28,9 @@
 . ../../lib/functions.sh
 
 # http://curl.haxx.se/download/curl-7.39.0.tar.gz
-PROG=curl       # App name
-VER=7.39.0      # App version
-PKG=local/web/curl    # Package name (without prefix)
+PROG=curl
+VER=7.41.0
+PKG=local/web/curl
 SUMMARY="$PROG - command line tool for transferring data with URL syntax"
 DESC="$SUMMARY"
 
