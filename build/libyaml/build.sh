@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=yaml
-VER=0.1.5
+VER=0.1.6
 VERHUMAN=$VER
 PKG=library/yaml
 SUMMARY="LibYAML is a YAML 1.1 parser and emitter written in C."
