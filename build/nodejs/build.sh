@@ -58,7 +58,7 @@ CONFIGURE_OPTS_64="--dest-cpu=x64"
 # see: https://github.com/joyent/node/issues/6439
 fix_configure() {
   logmsg "Fix configure file for solaris"
-  logcmd sed -i -e "s#['node_use_mdb'] = 'true'#['node_use_mdb'] = 'false'#g" $TMPDIR/$BUILDDIR/.configure
+  logcmd sed -i -e "s#['node_use_mdb'] = 'true'#['node_use_mdb'] = 'false'#g" $TMPDIR/$BUILDDIR/configure
 }
 
 init
