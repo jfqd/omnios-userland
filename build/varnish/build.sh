@@ -29,13 +29,13 @@
 
 # https://repo.varnish-cache.org/source/varnish-4.0.3.tar.gz
 PROG=varnish
-VER=4.0.3
+VER=3.0.6
 VERHUMAN=$VER
 PKG=service/network/varnish
 SUMMARY="Fast Web HTTP Cache Proxy"
 DESC="Varnish Cache is a web application accelerator also known as a caching HTTP reverse proxy"
 
-DEPENDS_IPS="library/pcre"
+DEPENDS_IPS="library/pcre library/pkgconf"
 
 BUILDARCH=64
 CFLAGS="-m64"
