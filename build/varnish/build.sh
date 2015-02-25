@@ -38,9 +38,9 @@ DESC="Varnish Cache is a web application accelerator also known as a caching HTT
 DEPENDS_IPS="library/pcre library/pkgconf"
 
 BUILDARCH=64
-CFLAGS="-m64"
-PCRE_LIBS="-L/usr/lib -lpcre"
-PCRE_CFLAGS="-I/usr/include/pcre"
+#CFLAGS="-m64"
+export PCRE_LIBS="-L/usr/lib/amd64 -lpcre"
+export PCRE_CFLAGS="-I/usr/include/pcre"
 
 init
 download_source $PROG $PROG $VER
