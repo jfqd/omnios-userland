@@ -36,10 +36,9 @@ DESC="$SUMMARY ($VER)"
 
 TAR=/usr/gnu/bin/tar
 
-DEPENDS_IPS="system/network/tuntap
-             library/lzo
-             archiver/gnu-tar
-             developer/build/automake"
+BUILD_DEPENDS_IPS="archiver/gnu-tar developer/build/automake"
+
+DEPENDS_IPS="system/network/tuntap library/lzo"
 
 CONFIGURE_OPTS="--sysconfdir=/etc/openvpn
     --localstatedir=/var/openvpn"
