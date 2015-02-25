@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://downloads.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz
 PROG=libmcrypt
 VER=2.5.8
 PKG=library/libmcrypt
