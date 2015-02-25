@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://downloads.sourceforge.net/project/libpng/libpng16/1.6.16/libpng-1.6.16.tar.gz
 PROG=libpng
-VER=1.6.10
+VER=1.6.16
 VERHUMAN=$VER
 PKG=library/libpng
 SUMMARY="$PROG - Portable Network Graphics Library"
