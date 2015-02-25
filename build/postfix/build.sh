@@ -35,7 +35,7 @@ PKG=service/network/smtp/postfix
 SUMMARY="Postfix Mail Transport Agent"
 DESC="Postfix is a Mail Transport Agent (MTA), this is a very basic configuration only supporting Berkeley DB based configuration"
 
-DEPENDS_IPS="database/bdb library/libmysqlclient18 library/security/cyrus-sasl"
+DEPENDS_IPS="database/bdb48 library/libmysqlclient18 library/security/cyrus-sasl"
 
 BUILDARCH=32
 USER=postfix
@@ -60,10 +60,10 @@ create_makefiles() {
         -DUSE_SASL_AUTH \
         -DUSE_CYRUS_SASL \
         -DUSE_TLS \
-        -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/include/mysql'
+        -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/include/mysql -L/usr/local/bdb48/include'
     
     AUXLIBS="-L/usr/local/lib -R/usr/local/lib -lmysqlclient -lz -lm \
-             -ldb -lsasl2 -lldap -llber \
+             -L/usr/local/bdb48/lib -R/usr/local/bdb48/lib -ldb-4.8 -lsasl2 -lldap -llber \
              -R/usr/lib -L/usr/lib -lssl -lcrypto"
     
     logmsg "--- creating postfix makefiles"
