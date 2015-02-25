@@ -28,13 +28,19 @@
 . ../../lib/functions.sh
 
 PROG=openvpn
-VER=2.3.4
+VER=2.3.6
 VERHUMAN=$VER
 PKG=service/network/openvpn
 SUMMARY="Secure IP tunnel daemon"
 DESC="$SUMMARY ($VER)"
 
-DEPENDS_IPS="system/network/tuntap library/lzo"
+TAR=/usr/gnu/bin/tar
+
+DEPENDS_IPS="system/network/tuntap
+             library/lzo
+             archiver/gnu-tar
+             developer/build/automake"
+
 CONFIGURE_OPTS="--sysconfdir=/etc/openvpn
     --localstatedir=/var/openvpn"
 
@@ -55,10 +61,16 @@ copy_samples() {
     logcmd rm $DESTDIR/etc/openvpn/Makefile*
 }
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logcmd cd $TMPDIR/$BUILDDIR ; autoreconf -vi
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 service_configs
