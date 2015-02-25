@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://downloads.sourceforge.net/project/smartmontools/smartmontools/6.3/smartmontools-6.3.tar.gz
 PROG=smartmontools
 VER=6.3
 VERHUMAN=$VER
