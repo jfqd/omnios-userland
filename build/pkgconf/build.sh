@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# 
 PROG=pkgconf
-VER=0.9.3
+VER=0.9.7
 PKG=library/pkgconf
 SUMMARY="pkgconf is a modern replacement for pkg-config"
 DESC="pkgconf is a program which helps to configure compiler and linker flags for development frameworks. It is similar to pkg-config, but was written from scratch in the summer of 2011 to replace pkg-config, which now needs itself to build itself (or you can set a bunch of environment variables, both are pretty ugly)."
