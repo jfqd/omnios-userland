@@ -60,10 +60,10 @@ create_makefiles() {
         -DUSE_SASL_AUTH \
         -DUSE_CYRUS_SASL \
         -DUSE_TLS \
-        -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/mysql/include'
+        -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/include/mysql'
     
-    AUXLIBS="-L/usr/local/mysql/lib -R/usr/local/mysql/lib -lmysqlclient -lz -lm \
-             -R/usr/local/lib -L/usr/local/lib -ldb -lsasl2 -lldap -llber -lpq \
+    AUXLIBS="-L/usr/local/lib -R/usr/local/lib -lmysqlclient -lz -lm \
+             -ldb -lsasl2 -lldap -llber -lpq \
              -R/usr/lib -L/usr/lib -lssl -lcrypto"
     
     logmsg "--- creating postfix makefiles"
