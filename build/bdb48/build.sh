@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz
 PROG=bdb48
 VER=4.8.30
 VERHUMAN=$VER
