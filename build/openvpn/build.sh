@@ -63,7 +63,7 @@ copy_samples() {
 
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
-  logcmd cd $TMPDIR/$BUILDDIR ; autoreconf -vi
+  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
 }
 
 init
