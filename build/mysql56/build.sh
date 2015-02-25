@@ -28,6 +28,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# ./build.sh -f server
+# ./build.sh -f libs
+# ./build.sh -f client
+
 # http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.23.tar.gz
 PROG=mysql
 VER=5.6.23
