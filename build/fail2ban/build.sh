@@ -37,7 +37,7 @@ DESC="Fail2ban scans log files like /var/log/pwdfail or \
 /var/log/apache/error_log and bans IP that makes too many password \
 failures. It updates firewall rules to reject the IP address."
 
-BUILD_DEPENDS_IPS="runtime/python-26"
+BUILD_DEPENDS_IPS="runtime/python-26 archiver/gnu-tar"
 DEPENDS_IPS="runtime/python-26"
 
 LDFLAGS64="-L$PYTHONLIB -R$PYTHONLIB -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
@@ -45,6 +45,8 @@ LDFLAGS64="-L$PYTHONLIB -R$PYTHONLIB -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/
 # omniti-ms python is 64-bit only
 # BUILDARCH=64
 PYTHON=/usr/bin/python
+
+TAR=/usr/gnu/bin/tar
 
 init
 download_source $PROG $PROG $VER
