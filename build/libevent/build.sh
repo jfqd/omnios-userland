@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libevent
-VER=2.0.21
+VER=2.0.22
 VERHUMAN=$VER
 PKG=library/libevent
 SUMMARY="$PROG - an event notification library"
