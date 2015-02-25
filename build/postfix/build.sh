@@ -63,7 +63,7 @@ create_makefiles() {
         -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/include/mysql'
     
     AUXLIBS="-L/usr/local/lib -R/usr/local/lib -lmysqlclient -lz -lm \
-             -ldb -lsasl2 -lldap -llber -lpq \
+             -ldb -lsasl2 -lldap -llber \
              -R/usr/lib -L/usr/lib -lssl -lcrypto"
     
     logmsg "--- creating postfix makefiles"
