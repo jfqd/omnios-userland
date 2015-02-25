@@ -33,7 +33,7 @@ export PATH
 
 PROG=nodejs
 ARCHIVENAME=node
-VER=0.10.32
+VER=0.12.0
 VERHUMAN=$VER
 PKG=runtime/nodejs
 SUMMARY="evented I/O for v8 javascript"
@@ -48,17 +48,24 @@ BUILDDIR=$ARCHIVENAME-v$VER
 
 MAKE=gmake
 BUILDARCH=64
-CC=gcc
-CXX=g++
+CC=/opt/gcc-4.8.1/bin/gcc
+CXX=/opt/gcc-4.8.1/bin/g++
 CFLAGS="-m64"
 export CC CXX CFLAGS
 CONFIGURE_OPTS="--shared-zlib --prefix=$PREFIX"
 CONFIGURE_OPTS_64="--dest-cpu=x64"
 
+# see: https://github.com/joyent/node/issues/6439
+fix_configure() {
+  logmsg "Fix configure file for solaris"
+  logcmd sed -i -e "s#['node_use_mdb'] = 'true'#['node_use_mdb'] = 'false'#g" $TMPDIR/$BUILDDIR/.configure
+}
+
 init
 download_source $PROG $ARCHIVENAME v$VER
 patch_source
 prep_build
+fix_configure
 build
 make_isa_stub
 make_package
