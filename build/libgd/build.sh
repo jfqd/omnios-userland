@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# 
 PROG=libgd
-VER=2.1.0
+VER=2.1.1
 PKG=library/libgd
 SUMMARY="$PROG - GD Graphics Library"
 DESC="$SUMMARY ($VER)"
