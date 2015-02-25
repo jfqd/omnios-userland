@@ -42,10 +42,16 @@ symlink_pkg_config() {
     logcmd /bin/ln -sf ${PREFIX}/bin/pkgconf ${DESTDIR}${PREFIX}/bin/pkg-config
 }
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 symlink_pkg_config
