@@ -33,7 +33,7 @@ VERHUMAN=$VER
 PKG=network/openfire
 SUMMARY="Openfire XMPP/Jabber Server"
 DESC="$SUMMARY ($VER)"
-BUILDDIR=openfire
+BUILDDIR=openfire_src
 
 DEPENDS_IPS="runtime/java"
 
@@ -41,7 +41,7 @@ init
 download_source $PROG $PROG $VER
 prep_build
 logcmd mkdir -p $DESTDIR/opt || logerr "cannot make /opt"
-logcmd mv $TMPDIR/$BUILDDIR $DESTDIR/opt/ \
+logcmd mv $TMPDIR/$BUILDDIR/src $DESTDIR/opt/openfire \
     || logerr "cannot move distribution into place"
 logcmd cp $SRCDIR/openfire.xml $DESTDIR/opt/openfire/conf/ \
     || logerr "cannot install config"
