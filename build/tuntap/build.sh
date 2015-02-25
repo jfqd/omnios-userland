@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/kaizawa/tuntap/archive/v1.3.3.tar.gz
 PROG=tuntap
 VER=1.3.3
 VERHUMAN=$VER
@@ -36,7 +37,7 @@ DESC="tuntap is a TAP driver for Solaris that can be used for OpenVPN, OpenConne
 
 CONFIGURE_OPTS_32="--disable-64bit"
 
-TAR=gtar
+#TAR=gtar
 MAKE_JOBS=""
 export PREFIX=$DESTDIR
 
