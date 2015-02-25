@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# ftp://mirror.switch.ch/mirror/OpenLDAP/openldap-release/openldap-2.4.40.tgz
 PROG=openldap
-VER=2.4.35
+VER=2.4.40
 VERHUMAN=$VER
 PKG=library/libldap
 SUMMARY="OpenLDAP - Tools and Libraries"
