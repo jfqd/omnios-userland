@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
 PROG=libevent
 VER=2.0.22
 VERHUMAN=$VER
