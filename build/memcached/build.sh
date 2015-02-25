@@ -37,9 +37,9 @@ DESC="$SUMMARY"
 DEPENDS_IPS="library/libevent =library/libevent@2.0
              system/library/gcc-4-runtime"
 
-CONFIGURE_OPTS="$CONFIGURE_OPTS --with-libevent=/opt/omni"
-LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
-LDFLAGS64="$LDFLAGS64 -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
+# CONFIGURE_OPTS="$CONFIGURE_OPTS --with-libevent=/opt/omni"
+# LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
+# LDFLAGS64="$LDFLAGS64 -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
 
 init
 download_source $PROG $PROG $VER
