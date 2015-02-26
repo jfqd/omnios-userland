@@ -66,9 +66,10 @@ create_makefiles() {
         -I/usr/local/include/mysql \
         -I/usr/local/db4.8/include'
     
+    # add -lstdc++ see http://stackoverflow.com/questions/203548/undefined-symbol-gxx-personality-v0-on-link/203550#203550
     AUXLIBS="-L/usr/local/lib -R/usr/local/lib -lmysqlclient -lz -lm \
              -L/usr/local/db4.8/lib -R/usr/local/db4.8/lib -ldb-4.8 -lsasl2 -lldap -llber \
-             -R/usr/lib -L/usr/lib -lssl -lcrypto"
+             -R/usr/lib -L/usr/lib -lssl -lcrypto -lstdc++"
     
     logmsg "--- creating postfix makefiles"
     $MAKE -f Makefile.init makefiles CCARGS="$CCARGS $CONFIGURE_OPTS" AUXLIBS="$AUXLIBS"
