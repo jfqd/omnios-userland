@@ -1,0 +1,2 @@
+group gid=201 groupname=varnish
+user ftpuser=false gcos-field="Varnish UID" group=varnish password=NP uid=201 username=varnish home-dir=/
