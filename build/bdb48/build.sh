@@ -37,22 +37,23 @@ DESC="$SUMMARY"
 
 PREFIX="/usr/local/db4.8"
 BUILDDIR=db-$VER/build_unix
+BUILDARCH=32
 CONFIGURE_CMD="../dist/configure"
 CONFIGURE_OPTS="--enable-compat185
     --prefix=$PREFIX
     --bindir=$PREFIX/bin
     --libdir=$PREFIX/lib
     --includedir=$PREFIX/include"
-LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
-LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
+# LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
+# LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/amd64 -R/usr/local/lib/amd64"
 
 export EXTLIBS=-lm
 
-save_function build64 build64_orig
-build64() {
-  export DLDFLAGS="-L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
-  build64_orig
-}
+# save_function build64 build64_orig
+# build64() {
+#   export DLDFLAGS="-L/usr/local/lib/amd64 -R/usr/local/lib/amd64"
+#   build64_orig
+# }
 
 init
 download_source bdb db $VER
