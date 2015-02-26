@@ -60,7 +60,11 @@ create_makefiles() {
         -DUSE_SASL_AUTH \
         -DUSE_CYRUS_SASL \
         -DUSE_TLS \
-        -I/usr/local/include -I/usr/local/include/sasl -I/usr/include -I/usr/local/include/mysql -L/usr/local/db4.8/include'
+        -I/usr/local/include \
+        -I/usr/local/include/sasl \
+        -I/usr/include \
+        -I/usr/local/include/mysql \
+        -I/usr/local/db4.8/include'
     
     AUXLIBS="-L/usr/local/lib -R/usr/local/lib -lmysqlclient -lz -lm \
              -L/usr/local/db4.8/lib -R/usr/local/db4.8/lib -ldb-4.8 -lsasl2 -lldap -llber \
