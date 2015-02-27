@@ -36,7 +36,7 @@ SUMMARY="A program to ping hosts in parallel"
 DESC="$SUMMARY"
 
 init
-download_source $PROG $PROG
+download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
