@@ -30,6 +30,7 @@
 PROG=top
 VER=3.7
 VERHUMAN=$VER
+PKG=monitoring/top
 SUMMARY="Provides a rolling display of top cpu using processes"
 DESC="Top is a Unix utility that provides a rolling display of top cpu using processes."
 
