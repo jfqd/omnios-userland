@@ -41,7 +41,7 @@ DEPENDS_IPS="library/libmysqlclient18 network/fping runtime/perl incorporation/p
 # reset_configure_opts
 
 # Trusted path for executables called by scripts
-TRUSTED_PATH="/bin:/sbin:/usr/bin:/usr/sbin:/opt/omni/bin:/opt/omni/sbin"
+TRUSTED_PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/opt/omni/bin:/opt/omni/sbin"
 
 #CFLAGS="-I/opt/omni/include"
 #LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
@@ -54,8 +54,8 @@ CONFIGURE_OPTS="--with-nagios-user=$USER
     --without-apt-get-command
     --with-trusted-path=$TRUSTED_PATH
     --without-gnutls
-    --with-perl=/opt/OMNIperl/bin/perl
-    --with-mysql=/opt/omni"
+    --with-perl=/usr/bin/perl
+    --with-mysql=/usr/local"
 
 # We need to set our own 32 bit configure opts to put the libexec stuff under
 # $PREFIX/libexec/i386
