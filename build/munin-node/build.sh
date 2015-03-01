@@ -27,7 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# 
+# http://downloads.sourceforge.net/project/munin/stable/2.0.25/munin-2.0.25.tar.gz
 PROG=munin
 VER=2.0.25
 PKG=monitoring/munin-node
