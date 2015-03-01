@@ -35,6 +35,7 @@ SUMMARY="DNS Authoritative Server"
 DESC="PowerDNS is a fast Authoritative DNS Server with a lot of backend and lua support"
 
 BUILDARCH=32
+BUILDDIR="pdns-$VER"
 
 DEPENDS_IPS="library/libmysqlclient18"
 
