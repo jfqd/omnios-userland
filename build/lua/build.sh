@@ -28,11 +28,18 @@
 . ../../lib/functions.sh
 
 PROG=lua
-VER=5.3
+VER=5.3.0
 VERHUMAN=$VER
 PKG=runtime/lua
 SUMMARY="Scripting language"
 DESC="Lua is a powerful, fast, lightweight, embeddable scripting language."
+
+build() {
+    make_clean
+    logcmd cd $TMPDIR/$BUILDDIR && $MAKE solaris local
+    logcmd mkdir -p $DESTDIR/usr/local
+    logcmd cd $TMPDIR/$BUILDDIR && mv $TMPDIR/$BUILDDIR/install/* $DESTDIR/usr/local
+}
 
 init
 download_source $PROG $PROG $VER
