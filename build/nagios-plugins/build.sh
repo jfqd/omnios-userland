@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=nagios-plugins
-VER=1.5.0
+VER=1.5
 VERHUMAN=$VER
 PKG=omniti/monitoring/nagios/nagios-plugins
 SUMMARY="Plugins for running checks under Nagios"
