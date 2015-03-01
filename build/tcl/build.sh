@@ -5,7 +5,7 @@
 
 # 
 PROG=tcl
-VER=8.5.10
+VER=8.8.3
 PKG=runtime/tcl-8
 SUMMARY="$PROG - a very powerful but easy to learn dynamic programming language"
 DESC="$SUMMARY"
@@ -31,7 +31,7 @@ move_man_to_share(){
 }
 
 init
-download_source $PROG "${PROG}${PROG$VER}-src"
+download_source $PROG $PROG$VER-src
 patch_source
 prep_build
 build
