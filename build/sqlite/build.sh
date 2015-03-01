@@ -35,6 +35,8 @@ PKG=database/sqlite3
 SUMMARY="SQLite is an embedded SQL database engine"
 DESC="SQLite is an in-process library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. The code for SQLite is in the public domain and is thus free for use for any purpose, commercial or private. SQLite is currently found in more applications than we can count, including several high-profile projects."
 
+DEPENDS_IPS="runtime/tcl-8"
+
 BUILDDIR=sqlite-src-$TARVER
 
 init
