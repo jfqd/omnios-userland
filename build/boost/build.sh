@@ -35,7 +35,7 @@ PKG=library/boost
 SUMMARY="Free portable C++ libraries"
 DESC="Boost provides free portable peer-reviewed C++ libraries. The emphasis is on portable libraries which work well with the C++ Standard Library."
 
-BUILDDIR=boost_1_49_0_$TARVER
+BUILDDIR=boost_$TARVER
 
 init
 download_source $PROG $PROG $TARVER
