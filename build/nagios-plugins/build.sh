@@ -52,7 +52,6 @@ CONFIGURE_OPTS="--with-nagios-user=$USER
     --with-fping-command=/usr/local/sbin/fping
     --without-ipv6
     --without-apt-get-command
-    --with-cgi-url=/cgi-bin
     --with-trusted-path=$TRUSTED_PATH
     --without-gnutls
     --with-perl=/opt/OMNIperl/bin/perl
