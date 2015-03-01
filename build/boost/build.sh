@@ -37,10 +37,16 @@ DESC="Boost provides free portable peer-reviewed C++ libraries. The emphasis is 
 
 BUILDDIR=boost_$TARVER
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
+}
+
 init
 download_source $PROG $PROG $TARVER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 make_package
