@@ -1,3 +1,5 @@
-<transform dir path=opt/nagios/share.* -> set user nagios>
-<transform dir path=opt/nagios/share.* -> set group nagios>
+group gid=6004 groupname=nagios
+user ftpuser=false gcos-field="Nagios User" group=nagios login-shell=/bin/sh password=NP uid=10098 username=nagios home-dir=/home/nagios
+<transform dir path=usr/local/nagios/share.* -> set user nagios>
+<transform dir path=usr/local/nagios/share.* -> set group nagios>
 license COPYING license=GPLv2
