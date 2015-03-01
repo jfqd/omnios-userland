@@ -29,13 +29,16 @@
 
 PROG=boost
 VER=1.49.0
+TARVER=1_49_0
 VERHUMAN=$VER
 PKG=library/boost
 SUMMARY="Free portable C++ libraries"
 DESC="Boost provides free portable peer-reviewed C++ libraries. The emphasis is on portable libraries which work well with the C++ Standard Library."
 
+BUILDDIR=boost_1_49_0_$TARVER
+
 init
-download_source $PROG $PROG $VER
+download_source $PROG $PROG $TARVER
 patch_source
 prep_build
 build
