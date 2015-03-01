@@ -5,7 +5,7 @@
 
 # 
 PROG=tcl
-VER=8.8.3
+VER=8.6.3
 PKG=runtime/tcl-8
 SUMMARY="$PROG - a very powerful but easy to learn dynamic programming language"
 DESC="$SUMMARY"
