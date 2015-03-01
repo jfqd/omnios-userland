@@ -27,18 +27,18 @@
 # Load support functions
 . ../../lib/functions.sh
 
-PROG=sqlite
-VER=3.8.5
-TARVER=3080500
+PROG=sqlite3
+VER=3.8.8.3
+TARVER=3080803
 VERHUMAN=$VER
-PKG=mawi/database/sqlite
+PKG=database/sqlite3
 SUMMARY="SQLite is an embedded SQL database engine"
 DESC="SQLite is an in-process library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. The code for SQLite is in the public domain and is thus free for use for any purpose, commercial or private. SQLite is currently found in more applications than we can count, including several high-profile projects."
 
-BUILDDIR=$PROG-autoconf-$TARVER
+BUILDDIR=$PROG-src-$TARVER
 
 init
-download_source $PROG $PROG-autoconf $TARVER
+download_source $PROG $PROG-src $TARVER
 patch_source
 prep_build
 build
