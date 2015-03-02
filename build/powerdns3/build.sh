@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://downloads.powerdns.com/releases/pdns-3.4.2.tar.bz2
 PROG=powerdns
 VER=3.4.2
 VERHUMAN=$VER
@@ -39,6 +40,7 @@ BUILDDIR="pdns-$VER"
 
 DEPENDS_IPS="library/libmysqlclient18 runtime/lua"
 
+# https://github.com/PowerDNS/pdns/issues/1876
 AR=/usr/bin/gar
 CC=/opt/gcc-4.8.1/bin/gcc
 CXX=/opt/gcc-4.8.1/bin/g++
