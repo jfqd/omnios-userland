@@ -1,5 +1,5 @@
---- tree-1.7.0/Makefile.orig	Fri Jun 24 14:25:27 2011
-+++ tree-1.7.0/Makefile	Fri Jan  4 18:37:05 2013
+--- tree-1.7.0/Makefile.orig
++++ tree-1.7.0/Makefile
 @@ -16,7 +16,7 @@
  # along with this program; if not, write to the Free Software
  # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -9,25 +9,25 @@
  
  CC=gcc
  
-@@ -31,8 +31,8 @@
+@@ -30,7 +30,7 @@ OBJS=tree.o unix.o html.o xml.o json.o hash.o color.o
+ # Uncomment options below for your particular OS:
  
  # Linux defaults:
- #CFLAGS=-ggdb -Wall -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
--CFLAGS=-O4 -Wall  -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
--LDFLAGS=-s
-+#CFLAGS=-O4 -Wall  -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
-+#LDFLAGS=-s
+-CFLAGS=-ggdb -Wall -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
++#CFLAGS=-ggdb -Wall -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+ #CFLAGS=-O4 -Wall  -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+ #LDFLAGS=-s
  
- # Uncomment for FreeBSD:
- #CFLAGS=-O2 -Wall -fomit-frame-pointer
-@@ -41,10 +41,10 @@
+@@ -40,11 +40,11 @@ CFLAGS=-ggdb -Wall -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+ #OBJS+=strverscmp.o
  
  # Uncomment for Solaris:
- #CC=cc
+-#CC=cc
 -#CFLAGS=-xO0 -v
 -#LDFLAGS=
 -#OBJS+=strverscmp.o
 -#MANDIR=${prefix}/share/man/man1
++# CC=cc
 +CFLAGS=-O4 -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
 +LDFLAGS=
 +OBJS+=strverscmp.o
@@ -35,7 +35,7 @@
  
  # Uncomment for Cygwin:
  #CFLAGS=-O2 -Wall -fomit-frame-pointer -DCYGWIN
-@@ -94,12 +94,12 @@
+@@ -95,12 +95,12 @@ clean:
  	rm -f *~
  
  install: tree
@@ -44,7 +44,7 @@
 +	install -d $(DESTDIR)$(BINDIR)
 +	install -d $(DESTDIR)$(MANDIR)
  	if [ -e $(TREE_DEST) ]; then \
--		install -s $(TREE_DEST) $(BINDIR)/$(TREE_DEST); \
+-		install $(TREE_DEST) $(BINDIR)/$(TREE_DEST); \
 +		install -s $(TREE_DEST) $(DESTDIR)$(BINDIR)/$(TREE_DEST); \
  	fi
 -	install doc/$(MAN) $(MANDIR)/$(MAN)
