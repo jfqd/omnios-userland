@@ -54,7 +54,7 @@ bindir=`getproparg mysql_56/bin`
 sbindir=$bindir
 libexecdir=$bindir
 datadir=`getproparg mysql_56/data`
-myconf=`getproparg mysql_56/mycnf`
+mycnf=`getproparg mysql_56/mycnf`
 socket=`getproparg mysql_56/socket`
 mysql_pid=`getproparg mysql_56/pidfile`
 
