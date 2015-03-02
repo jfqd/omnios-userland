@@ -37,8 +37,6 @@ DESC="Boost provides free portable peer-reviewed C++ libraries. The emphasis is 
 
 BUILDDIR=boost_$TARVER
 
-BUILD_DEPENDS_IPS="developer/build/automake"
-
 create_makefile() {
     logmsg "Create Makefile file in $TMPDIR/$BUILDDIR"
     logcmd cd $TMPDIR/$BUILDDIR ; ./bootstrap.sh --prefix=$DESTDIR --with-toolset=gcc
