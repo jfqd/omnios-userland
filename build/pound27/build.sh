@@ -42,7 +42,8 @@ BUILDDIR=pound-$TARVER
 CONFIGURE_OPTS="--with-owner=${USER} \
     --with-group=${USER} \
     --prefix=${PREFIX} \
-    --exec-prefix=${PREFIX} \
+    --bindir=${PREFIX}/bin/i386 \
+    --sbindir=${PREFIX}/sbin/i386 \
     --sysconfdir=/etc/pound27"
 
 CXXFLAGS="-I/usr/include/pcre"
