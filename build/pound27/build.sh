@@ -55,6 +55,8 @@ service_configs() {
     logcmd mkdir -p $DESTDIR/etc/pound27
     logcmd mkdir -p $DESTDIR/etc/pound27/certs
     logcmd touch $DESTDIR/etc/pound27/pound.cfg
+    logcmd mv $DESTDIR/usr/local/pound27/sbin/i386 \
+        $DESTDIR/usr/local/pound27/sbin/amd64
     logcmd cp $SRCDIR/files/manifest-pound.xml \
         $DESTDIR/lib/svc/manifest/network/pound.xml
 }
