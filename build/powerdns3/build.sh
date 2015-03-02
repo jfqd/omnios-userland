@@ -30,20 +30,25 @@
 PROG=powerdns
 VER=3.4.2
 VERHUMAN=$VER
-PKG=service/network/powerdns3
+PKG=service/network/dns/powerdns3
 SUMMARY="DNS Authoritative Server"
 DESC="PowerDNS is a fast Authoritative DNS Server with a MySQL backend-, DNSSEC- and lua-support"
 
 BUILDARCH=32
 BUILDDIR="pdns-$VER"
 
-DEPENDS_IPS="library/libmysqlclient18"
+DEPENDS_IPS="library/libmysqlclient18 runtime/lua"
 
 AR=/usr/bin/gar
+CC=/opt/gcc-4.8.1/bin/gcc
+CXX=/opt/gcc-4.8.1/bin/g++
+CPP=/opt/gcc-4.8.1/bin/cpp
+CXXFLAGS="-I/include -I/usr/local/include/mysql"
+LDFLAGS="-L/include -R/include -L/usr/local/lib -R/usr/local/lib"
 
 CONFIGURE_OPTS="\
     --with-modules='gmysql' \
-    --with-dynmodules='' \
+    --with-dynmodules='pipe' \
     --localstatedir=/var/run \
     --enable-shared \
     --with-mysql-includes=/usr/local/include/mysql \
@@ -58,3 +63,6 @@ build
 make_isa_stub
 make_package
 clean_up
+
+# Vim hints
+# vim:ts=4:sw=4:et:
