@@ -35,7 +35,18 @@ PKG=network/pound27
 SUMMARY="Reverse proxy, load balancer and HTTPS front-end"
 DESC="The Pound program is a reverse proxy, load balancer and HTTPS front-end for Web server(s)"
 
+PREFIX=/usr/local/pound27
 BUILDDIR=pound-$TARVER
+
+USER=`/usr/bin/whoami`
+CONFIGURE_OPTS="--with-owner=${USER} --with-group=${USER}"
+
+service_configs() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+    logcmd cp $SRCDIR/files/manifest-pound.xml \
+        $DESTDIR/lib/svc/manifest/network/pound.xml
+}
 
 init
 download_source $PROG $PROG $TARVER
@@ -43,6 +54,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+service_configs
 make_package
 clean_up
 
