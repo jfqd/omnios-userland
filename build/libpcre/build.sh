@@ -27,10 +27,11 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://downloads.sourceforge.net/project/pcre/pcre/8.36/pcre-8.36.zip
 PROG=pcre
-VER=8.34
-VERHUMAN=$VER   # Human-readable version
-PKG=mawi/library/pcre
+VER=8.36
+VERHUMAN=$VER
+PKG=library/pcre
 SUMMARY="Perl Compatible Regular Expressions"
 DESC="The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5."
 
