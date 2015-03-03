@@ -27,14 +27,15 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://de1.php.net/get/php-5.6.6.tar.gz/from/this/mirror
 PROG=php
-VER=5.6.2
+VER=5.6.6
 PKG=runtime/php56
 SUMMARY="PHP Server 5.6"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
 
 BUILD_DEPENDS_IPS="compress/bzip2
-    mawi/database/sqlite
+    database/sqlite
     database/bdb
     library/libtool/libltdl
     library/libxml2
@@ -51,7 +52,6 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/libjpeg
     library/libmcrypt
     library/libpng
-    library/libpq5
     library/libssh2
     library/libtiff
     library/security/cyrus-sasl
@@ -65,7 +65,10 @@ reset_configure_opts
 
 #CFLAGS="-O2 -DZLIB_INTERNAL=1 -std=c99"
 CFLAGS="-O2 -DZLIB_INTERNAL=1 -std=gnu99"
-CPPFLAGS=""
+CPPFLAGS="-I/usr/local/include"
+LDFLAGS="-L/usr/local/lib -R/usr/local/lib \
+    -L$PREFIX/lib -R$PREFIX/lib"
+
 CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl \
     -I/usr/local/include"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 \
