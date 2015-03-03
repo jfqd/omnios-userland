@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/goochjj/pound/archive/stage_for_upstream/v2.8a.zip
 PROG=pound
 VER=2.7
 TARVER=2.8.a
