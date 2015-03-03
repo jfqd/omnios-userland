@@ -52,13 +52,20 @@ LDFLAGS="-L/usr/include/pcre -R/usr/include/pcre"
 service_configs() {
     logmsg "Installing SMF"
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+    logcmd cp $SRCDIR/files/manifest-pound.xml \
+        $DESTDIR/lib/svc/manifest/network/pound.xml
+    logmsg "Create etc and certs folder"
     logcmd mkdir -p $DESTDIR/etc/pound27
     logcmd mkdir -p $DESTDIR/etc/pound27/certs
     logcmd touch $DESTDIR/etc/pound27/pound.cfg
+    logmsg "fix isa-stub after build"
     logcmd mv $DESTDIR/usr/local/pound27/sbin/i386 \
         $DESTDIR/usr/local/pound27/sbin/amd64
-    logcmd cp $SRCDIR/files/manifest-pound.xml \
-        $DESTDIR/lib/svc/manifest/network/pound.xml
+    logcmd mkdir -p $DESTDIR/usr/local/pound27/sbin/i386
+    logcmd cp $DESTDIR/usr/local/pound27/sbin/pound \
+        $DESTDIR/usr/local/pound27/sbin/i386
+    logcmd cp $DESTDIR/usr/local/pound27/sbin/poundctl \
+        $DESTDIR/usr/local/pound27/sbin/i386
 }
 
 init
