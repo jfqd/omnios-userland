@@ -94,26 +94,22 @@ CONFIGURE_OPTS="
         --enable-cgi
         --enable-fpm
         --enable-zip=shared
-        --with-zlib=shared,/usr/local
+        --with-zlib=shared
         --with-zlib-dir=/usr/local
-        --with-sqlite3=shared,/usr/local
-        --with-db4=/usr/local
+        --with-sqlite3=shared
         --enable-pdo=shared
-        --with-pgsql=shared,/usr/local
-        --with-pdo-pgsql=shared,/usr/local
         --with-pdo-sqlite=shared
         --with-mysql=shared,mysqlnd
         --with-mysqli=shared,mysqlnd
         --with-pdo-mysql=shared,mysqlnd
         --enable-mbstring=shared
-        --with-mhash=/usr/local
-        --with-mcrypt=shared,/usr/local
-        --with-gd=shared,/usr/local
-        --with-jpeg-dir=/usr/local
-        --with-png-dir=/usr/local
-        --with-tiff-dir=/usr/local
-        --with-freetype-dir=/usr/local
-        --with-xpm=no
+        --with-mhash=shared
+        --with-mcrypt=shared
+        --with-gd=shared
+        --with-jpeg-dir=shared
+        --with-png-dir=shared
+        --with-tiff-dir=shared
+        --with-freetype-dir=shared
         --enable-gd-native-ttf
         --enable-exif=shared
         --enable-bcmath=shared
