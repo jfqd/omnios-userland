@@ -31,7 +31,7 @@
 PROG=pcre
 VER=8.36
 VERHUMAN=$VER
-PKG=library/pcre
+PKG=custom/library/pcre
 SUMMARY="Perl Compatible Regular Expressions"
 DESC="The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5."
 

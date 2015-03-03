@@ -35,7 +35,7 @@ SUMMARY="PHP Server 5.6"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
 
 BUILD_DEPENDS_IPS="compress/bzip2
-    database/sqlite3
+    custom/database/sqlite3
     database/bdb
     library/libtool/libltdl
     library/libxml2
