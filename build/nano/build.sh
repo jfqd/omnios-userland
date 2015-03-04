@@ -31,7 +31,7 @@
 PROG=nano
 VER=2.2.6
 VERHUMAN=$VER
-PKG=editor/nano
+PKG=custom/editor/nano
 SUMMARY="A free replacement for the Pico text editor"
 DESC="It aims to emulate Pico as closely as possible and perhaps include extra functionality."
 
