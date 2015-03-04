@@ -1,0 +1,27 @@
+license LICENSE.txt license=CUPS
+# drop initscripts and desktop stuff (that doesn't even go to PREFIX for some
+# reason)
+<transform file path=etc/ -> drop>
+<transform dir path=etc/ -> drop>
+<transform link path=etc/ -> drop>
+<transform file path=usr/share/(applications|icons) -> drop>
+<transform dir path=usr/share/(applications|icons) -> drop>
+# dupes with cups-filters (and only the cups-filters banners actually work)
+<transform file path=opt/niksula/share/cups/data -> drop>
+<transform file path=opt/niksula/share/cups/banners -> drop>
+# by default cupsd is only executable by root
+<transform file path=opt/niksula/sbin/(amd64|i386)/cupsd -> set group lp>
+<transform file path=opt/niksula/sbin/(amd64|i386)/cupsd -> set mode 0550>
+# some backends (ipp, lpd) also seem to be mode 0700 and root-owned, which
+# won't fly with nonroot cups.
+<transform file path=opt/niksula/lib/cups/backend -> set group lp>
+<transform file path=opt/niksula/lib/cups/backend -> set mode 0550>
+# spool and log directories
+<transform dir path=opt/niksula/var/.*/cups -> set owner cupsd>
+<transform dir path=opt/niksula/var/.*/cups -> set group lp>
+user group=lp username=cupsd home-dir=/opt/niksula/var/spool/cups
+# set config files readable by cupsd (but not writable by default)
+<transform file path=opt/niksula/etc/cups -> set group lp>
+# allow configuring printer ppds and automatic ssl cert generation
+<transform dir path=opt/niksula/etc/cups/ppd$ -> set owner cupsd>
+<transform dir path=opt/niksula/etc/cups/ssl$ -> set owner cupsd>
