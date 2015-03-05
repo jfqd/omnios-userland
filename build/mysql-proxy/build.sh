@@ -30,7 +30,7 @@
 PROG=mysql-proxy
 VER=0.8.5
 VERHUMAN=$VER
-PKG=network/mysql-proxy
+PKG=database/mysql-proxy
 SUMMARY="MySQL proxy application"
 DESC="The MySQL Proxy is an application that \
 communicates over the network using the MySQL \
