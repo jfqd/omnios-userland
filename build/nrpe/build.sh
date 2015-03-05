@@ -38,7 +38,23 @@ USER=`/usr/bin/whoami`
 
 CONFIGURE_OPTS="--enable-ssl \
     --with-nrpe-user=${USER} \
-    --with-nrpe-group=${USER}"
+    --with-nrpe-group=${USER} \
+    --with-nagios-user=${USER} \
+    --with-nagios-group=${USER} \
+    --enable-command-args"
+
+copy_configs() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+    logcmd cp $SRCDIR/files/manifest-nrpe.xml \
+        $DESTDIR/lib/svc/manifest/network/nrpe.xml
+    logcmd cp $SRCDIR/files/svc-nrpe \
+        $DESTDIR/lib/svc/method/svc-nrpe
+    logcmd mkdir -p $DESTDIR/usr/local/etc
+    logcmd cp $SRCDIR/files/nrpe.cfg \
+        $DESTDIR/usr/local/etc/nrpe.cfg
+}
+
 
 init
 download_source nagios $PROG $VER
@@ -46,6 +62,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+copy_configs
 make_package
 clean_up
 

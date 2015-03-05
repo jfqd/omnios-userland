@@ -1,0 +1,146 @@
+#!/bin/bash
+
+unalias -a
+
+BINDIR="/usr/local/bin"
+BINFILE="$BINDIR/nrpe"
+
+RUNFLAG=1
+
+#
+# Solaris Release
+#
+
+SOLREL=`uname -r | awk -F. '{print $2}'`
+
+#
+# 
+#
+
+if [ $SOLREL -ge 10 ]
+then
+        ZONENAME=`/sbin/zonename`
+        . /lib/svc/share/smf_include.sh
+fi
+
+#
+#
+#
+
+CONFIG_FILE=/usr/local/etc/nrpe.cfg
+
+if [ ! -f $CONFIG_FILE ]
+then
+        if [ $SOLREL -lt 10 ]
+        then
+                exit 1
+        else
+                exit $SMF_EXIT_ERR_CONFIG
+        fi
+fi
+
+#
+#
+#
+
+get_pid ()
+{
+        if [ $SOLREL -lt 10 ]
+        then
+                pid=`ps -ef | grep -v "grep" | grep $BINFILE | awk '{print $2}'`
+        else
+                pid=`ps -fz $ZONENAME | grep -v "grep" | grep $BINFILE | awk '{print $2}'`
+        fi
+}
+
+#
+#
+#
+
+stop ()
+{
+        get_pid
+
+        if [ "$pid" ]
+        then
+                kill $pid
+                sleep 1
+                kill -9 $pid 2>/dev/null
+                echo "$BINFILE stopped."
+        else
+                echo "$BINFILE was not running."
+        fi
+}
+
+#
+# 
+#
+
+status ()
+{
+        get_pid
+        
+        if [ "$pid" ]
+        then
+                echo "$BINFILE running with pid $pid."
+                RUNFLAG=0
+        else
+                echo "$BINFILE not running."
+                RUNFLAG=1
+        fi
+}
+
+#
+#
+#
+
+start ()
+{
+        get_pid
+
+        if [ "$pid" ]   # already running?
+        then
+                echo "$BINFILE already running with $pid."
+                return 1
+        fi
+
+        if [ -f $BINFILE ] # does it exist?
+        then
+                $BINFILE -c $CONFIG_FILE -d
+                get_pid
+                echo "$BINFILE running with pid $pid"
+        else
+                if [ $SOLREL -lt 10 ]
+                then
+                        echo "$BINFILE does not exist."
+                        exit 1
+                else
+                        echo "$BINFILE does not exist."
+                        exit $SMF_EXIT_ERR_FATAL
+                fi
+        fi
+}
+
+#
+#
+#
+
+print_usage ()
+{
+        echo "usage: $0 {start|stop|status}"
+}
+
+case "$1" in
+        "status" )      status
+                        exit $RUNFLAG
+                        ;;
+        "start" )       start
+                        exit 0
+                        ;;
+        "stop"  )       stop
+                        exit 0
+                        ;;
+        * )             print_usage
+                        exit 1
+                        ;;
+esac
