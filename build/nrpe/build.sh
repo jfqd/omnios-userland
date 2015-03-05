@@ -45,11 +45,15 @@ CONFIGURE_OPTS="--enable-ssl \
 
 copy_configs() {
     logmsg "Installing SMF"
+    
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
     logcmd cp $SRCDIR/files/manifest-nrpe.xml \
         $DESTDIR/lib/svc/manifest/network/nrpe.xml
+    
+    logcmd mkdir -p $DESTDIR/lib/svc/method/
     logcmd cp $SRCDIR/files/svc-nrpe \
         $DESTDIR/lib/svc/method/svc-nrpe
+    
     logcmd mkdir -p $DESTDIR/usr/local/etc
     logcmd cp $SRCDIR/files/nrpe.cfg \
         $DESTDIR/usr/local/etc/nrpe.cfg
