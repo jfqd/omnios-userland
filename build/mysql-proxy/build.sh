@@ -69,7 +69,7 @@ default_config() {
 }
 
 init
-download_source $PROG $PROG $BUILDDIR
+download_source $PROG $BUILDDIR
 patch_source
 prep_build
 default_build
