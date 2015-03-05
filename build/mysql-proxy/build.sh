@@ -42,7 +42,8 @@ BUILDARCH=64
 BUILDDIR=mysql-proxy-${VER}-solaris11-x86-${BUILDARCH}bit
 
 default_build() {
-  logmsg "Move distribution into place "
+  logmsg "Move distribution into place"
+  logcmd mkdir -p $DESTDIR/usr/local/
   logcmd mv $TMPDIR/$BUILDDIR $DESTDIR/usr/local/mysql-proxy \
       || logerr "cannot move distribution into place"
   
