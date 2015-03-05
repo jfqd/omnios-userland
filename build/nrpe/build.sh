@@ -34,6 +34,11 @@ PKG=monitoring/nagios/nrpe
 SUMMARY="NRPE executes Nagios plugins remotely"
 DESC="NRPE allows you to remotely execute Nagios plugins on other Linux/Unix machines. This allows you to monitor remote machine metrics (disk usage, CPU load, etc.). NRPE can also communicate with some of the Windows agent addons, so you can execute scripts and check metrics on remote Windows machines as well."
 
+USER=`/usr/bin/whoami`
+
+CONFIGURE_OPTS="--with-owner=${USER} \
+    --with-group=${USER}"
+
 init
 download_source nagios $PROG $VER
 patch_source
