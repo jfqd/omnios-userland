@@ -47,18 +47,21 @@ CONFIGURE_OPTS="--enable-ssl \
 
 copy_configs() {
     logmsg "Installing SMF"
-    
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
     logcmd cp $SRCDIR/files/manifest-nrpe.xml \
         $DESTDIR/lib/svc/manifest/network/nrpe.xml
-    
+    # create svc exec
     logcmd mkdir -p $DESTDIR/lib/svc/method/
     logcmd cp $SRCDIR/files/svc-nrpe \
         $DESTDIR/lib/svc/method/svc-nrpe
-    
+    # create config
     logcmd mkdir -p $DESTDIR/usr/local/etc
     logcmd cp $SRCDIR/files/nrpe.cfg \
         $DESTDIR/usr/local/etc/nrpe.cfg
+    # fix isa-stub
+    logcmd mkdir -p $DESTDIR/usr/local/libexec/i386
+    logcmd cp $DESTDIR/usr/local/libexec/check_nrpe \
+        $DESTDIR/usr/local/libexec/i386/check_nrpe
     # fix permissions
     logcmd chmod 0755 $DESTDIR/usr/local/bin/amd64
     logcmd chmod 0755 $DESTDIR/usr/local/bin/i386
@@ -66,7 +69,6 @@ copy_configs() {
     logcmd chmod 0755 $DESTDIR/usr/local/libexec/amd64
     logcmd chmod 0755 $DESTDIR/usr/local/libexec/i386
 }
-
 
 init
 download_source nagios $PROG $VER
