@@ -34,8 +34,8 @@ PKG=monitoring/nagios/nagios-plugins
 SUMMARY="Plugins for running checks under Nagios"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS="network/fping runtime/perl incorporation/perl-516-incorporation"
-DEPENDS_IPS="network/fping runtime/perl incorporation/perl-516-incorporation"
+BUILD_DEPENDS_IPS="network/fping runtime/perl pkg:/omniti/incorporation/perl-516-incorporation"
+DEPENDS_IPS="network/fping runtime/perl pkg:/omniti/incorporation/perl-516-incorporation"
 
 # PREFIX=/opt/nagios
 # reset_configure_opts
