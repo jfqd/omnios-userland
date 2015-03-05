@@ -57,16 +57,18 @@ CONFIGURE_OPTS="--with-nagios-user=${USER}
     --with-trusted-path=$TRUSTED_PATH
     --without-gnutls
     --with-perl=/usr/bin/perl
-    --without-mysql"
+    --without-mysql
+    --exec-prefix=$PREFIX/nagios"
 
 # We need to set our own 32 bit configure opts to put the libexec stuff under
 # $PREFIX/libexec/i386
-CONFIGURE_OPTS_32="--prefix=$PREFIX
+CONFIGURE_OPTS_32="--prefix=$PREFIX/nagios
+    -exec-prefix=$PREFIX/nagios
     --sysconfdir=$PREFIX/etc
-    --bindir=$PREFIX/bin/$ISAPART
-    --sbindir=$PREFIX/sbin/$ISAPART
-    --libdir=$PREFIX/lib
-    --libexecdir=$PREFIX/libexec/$ISAPART"
+    --bindir=$PREFIX/nagios/bin/$ISAPART
+    --sbindir=$PREFIX/nagios/sbin/$ISAPART
+    --libdir=$PREFIX/nagios/lib
+    --libexecdir=$PREFIX/nagios/libexec/$ISAPART"
 
 # Need to include libexec in the list of dirs to make isaexec stubs
 ISAEXEC_DIRS="bin sbin libexec"
