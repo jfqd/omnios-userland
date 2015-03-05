@@ -34,10 +34,16 @@ PKG=network/mtr
 SUMMARY="mtr combines 'traceroute' and 'ping'"
 DESC="mtr combines the functionality of the 'traceroute' and 'ping' programs in a single network diagnostic tool."
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 make_package
