@@ -2,7 +2,7 @@
 
 unalias -a
 
-BINDIR="/usr/local/bin"
+BINDIR="/usr/local/bin/amd64"
 BINFILE="$BINDIR/nrpe"
 
 RUNFLAG=1
