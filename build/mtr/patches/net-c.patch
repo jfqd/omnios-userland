@@ -1,0 +1,10 @@
+--- a/net.c.orig
++++ b/net.c
+@@ -25,6 +25,7 @@
+ #include <sys/types.h>
+ #include <sys/time.h>
+ #include <sys/socket.h>
++#include <sys/filio.h>
+ #include <sys/ioctl.h>
+ #include <sys/select.h>
+ #include <netinet/in.h>
