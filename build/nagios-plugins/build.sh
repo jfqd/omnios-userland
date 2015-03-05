@@ -47,9 +47,10 @@ TRUSTED_PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/opt/
 #LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
 #LDFLAGS64="$LDFLAGS64 -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
 
-CONFIGURE_OPTS="--with-nagios-user=$USER
-    --with-nagios-user=
-    --with-nagios-group=user
+USER=`/usr/bin/whoami`
+
+CONFIGURE_OPTS="--with-nagios-user=${USER}
+    --with-nagios-group=${USER}
     --with-fping-command=/usr/local/sbin/fping
     --without-ipv6
     --without-apt-get-command
