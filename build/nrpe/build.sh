@@ -36,8 +36,9 @@ DESC="NRPE allows you to remotely execute Nagios plugins on other Linux/Unix mac
 
 USER=`/usr/bin/whoami`
 
-CONFIGURE_OPTS="--with-owner=${USER} \
-    --with-group=${USER}"
+CONFIGURE_OPTS="--enable-ssl \
+    --with-nrpe-user=${USER} \
+    --with-nrpe-group=${USER}"
 
 init
 download_source nagios $PROG $VER
