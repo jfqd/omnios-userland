@@ -57,18 +57,17 @@ CONFIGURE_OPTS="--with-nagios-user=${USER}
     --with-trusted-path=$TRUSTED_PATH
     --without-gnutls
     --with-perl=/usr/bin/perl
-    --without-mysql
-    --exec-prefix=$PREFIX/nagios"
+    --without-mysql"
 
 # We need to set our own 32 bit configure opts to put the libexec stuff under
 # $PREFIX/libexec/i386
-CONFIGURE_OPTS_32="--prefix=$PREFIX/nagios
-    -exec-prefix=$PREFIX/nagios
+CONFIGURE_OPTS_32="--prefix=$PREFIX
+    -exec-prefix=$PREFIX
     --sysconfdir=$PREFIX/etc
-    --bindir=$PREFIX/nagios/bin/$ISAPART
-    --sbindir=$PREFIX/nagios/sbin/$ISAPART
-    --libdir=$PREFIX/nagios/lib
-    --libexecdir=$PREFIX/nagios/libexec/$ISAPART"
+    --bindir=$PREFIX/bin/$ISAPART
+    --sbindir=$PREFIX/sbin/$ISAPART
+    --libdir=$PREFIX/lib
+    --libexecdir=$PREFIX/libexec/$ISAPART"
 
 # Need to include libexec in the list of dirs to make isaexec stubs
 ISAEXEC_DIRS="bin sbin libexec"
@@ -80,7 +79,12 @@ fix_utils_pm() {
     logcmd cp $DESTDIR/$PREFIX/libexec/$ISAPART/utils.pm \
         $DESTDIR/$PREFIX/libexec || \
         logerr "--- Failed to move utils.pm file"
-
+    # fix permissions
+    logcmd chmod 0755 $DESTDIR/usr/local/bin/amd64
+    logcmd chmod 0755 $DESTDIR/usr/local/bin/i386
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec/amd64
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec/i386
 }
 
 init

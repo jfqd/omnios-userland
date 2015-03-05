@@ -1,4 +1,4 @@
-group gid=6004 groupname=nagios
-user ftpuser=false gcos-field="Nagios Reserved UID" group=nagios password=NP uid=10098 username=nagios home-dir=/
+# group gid=6004 groupname=nagios
+# user ftpuser=false gcos-field="Nagios Reserved UID" group=nagios password=NP uid=10098 username=nagios home-dir=/
 <transform dir path=usr/local/etc/nrpe.cfg -> set owner nagios>
 <transform dir path=usr/local/etc/nrpe.cfg -> set group nagios>

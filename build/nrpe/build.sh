@@ -36,6 +36,8 @@ DESC="NRPE allows you to remotely execute Nagios plugins on other Linux/Unix mac
 
 USER=`/usr/bin/whoami`
 
+DEPENDS_IPS="monitoring/nagios/nagios-plugins"
+
 CONFIGURE_OPTS="--enable-ssl \
     --with-nrpe-user=${USER} \
     --with-nrpe-group=${USER} \
@@ -57,6 +59,12 @@ copy_configs() {
     logcmd mkdir -p $DESTDIR/usr/local/etc
     logcmd cp $SRCDIR/files/nrpe.cfg \
         $DESTDIR/usr/local/etc/nrpe.cfg
+    # fix permissions
+    logcmd chmod 0755 $DESTDIR/usr/local/bin/amd64
+    logcmd chmod 0755 $DESTDIR/usr/local/bin/i386
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec/amd64
+    logcmd chmod 0755 $DESTDIR/usr/local/libexec/i386
 }
 
 
