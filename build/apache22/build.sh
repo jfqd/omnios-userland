@@ -115,7 +115,6 @@ add_extra_files() {
     logcmd rm -f $DESTDIR$PREFIX/conf/httpd.*.conf
     logcmd mv $DESTDIR$PREFIX/conf/httpd.conf $DESTDIR$PREFIX/conf/httpd.conf.dist
     add_file httpd.conf conf/httpd.conf
-    logcmd mkdir -p $DESTDIR/var/log/apache22/
     logcmd mkdir -p $DESTDIR$PREFIX/conf/conf.d
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-enabled
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-available
