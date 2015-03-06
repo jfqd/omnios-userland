@@ -35,20 +35,38 @@ SUMMARY="Python WSGI adapter module for Apache 2.2"
 DESC="$SUMMARY"
 
 BUILD_DEPENDS_IPS="custom/server/apache22"
-DEPENDS_IPS="omnios/runtime/python-26 system/library/gcc-4-runtime"
+DEPENDS_IPS="pkg://omnios/runtime/python-26 system/library/gcc-4-runtime"
 
 PREFIX=/opt/apache22/
-BUILDARCH=64
 
-LDFLAGS="-L/usr/lib/python2.6 -R/usr/lib/python2.6 $LDFLAGS"
-CONFIGURE_OPTS="$CONFIGURE_OPTS --with-apxs=/usr/local/apache22/bin/$ISAPART64/apxs --with-python=/usr/bin/python"
+TAR=/usr/gnu/bin/tar
+
+CFLAGS32="$CFLAGS32 -I/usr/include/python2.6"
+CFLAGS64="$CFLAGS64 -I/usr/include/python2.6 -I/usr/include/amd64/python2.6"
+
+LDFLAGS32="-L/usr/lib/python2.6 -R/usr/lib/python2.6 $LDFLAGS"
+LDFLAGS64="-L/usr/lib/python2.6/amd64 -R/usr/lib/python2.6/adm64 -L/usr/lib/python2.6 -R/usr/lib/python2.6 $LDFLAGS"
+
+CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32 --with-apxs=/usr/local/apache22/bin/$ISAPART/apxs --with-python=/usr/bin/python2.6"
+CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64 --with-apxs=/usr/local/apache22/bin/$ISAPART64/apxs --with-python=/usr/bin/amd64/python2.6"
+
+# Redefine the build32 to build all MPMs
+save_function build32 build32_orig
+
+build32() {
+    build32_orig
+    logcmd mv $DESTDIR/usr/local/apache22/libexec/amd64 \
+        $DESTDIR/usr/local/apache22/libexec/i386
+    logcmd cp $DESTDIR/usr/local/apache22/libexec/i386/mod_wsgi.so \
+        $DESTDIR/usr/local/apache22/libexec
+}
 
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
-make_isa_stub
+# make_isa_stub
 make_package
 clean_up
 
