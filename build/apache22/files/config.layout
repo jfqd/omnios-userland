@@ -21,6 +21,29 @@
     proxycachedir: ${localstatedir}/proxy
 </Layout>
 
+<Layout Soli386>
+    prefix:        /usr/local/apache22
+    exec_prefix:   ${prefix}
+    bindir:        ${exec_prefix}/bin/i386
+    sbindir:       ${exec_prefix}/bin/i386
+    libdir:        ${exec_prefix}/lib
+    libexecdir:    ${exec_prefix}/libexec/i386
+    mandir:        ${prefix}/man
+    sysconfdir:    ${prefix}/conf
+    datadir:       ${prefix}/share
+    installbuilddir: ${datadir}/build/i386
+    errordir:      ${datadir}/error
+    iconsdir:      ${datadir}/icons
+    htdocsdir:     ${datadir}/htdocs
+    manualdir:     ${datadir}/manual
+    cgidir:        ${datadir}/cgi-bin
+    includedir:    ${prefix}/include/i386
+    localstatedir: ${prefix}/var
+    runtimedir:    ${localstatedir}/run
+    logfiledir:    ${localstatedir}/logs
+    proxycachedir: ${localstatedir}/proxy
+</Layout>
+
 <Layout SolSparc64>
     prefix:        /usr/local/apache22
     exec_prefix:   ${prefix}

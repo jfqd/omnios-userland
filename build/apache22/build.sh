@@ -14,55 +14,39 @@ BUILD_DEPENDS_IPS="custom/database/sqlite3 \
     custom/library/apr \
     custom/library/apr-util"
 
-DEPENDS_IPS="custom/library/apr \
-    custom/library/apr-util \
-    library/security/openssl \
-    custom/database/sqlite3"
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 PREFIX=/usr/local/apache22
 reset_configure_opts
 
-# Package info
-NAME=Apache
-CATEGORY=network
-
-BUILDARCH=64
-#MIRROR=archive.apache.org
-#DIR=dist/httpd # Mirror directory to download from
-MPMS="worker event prefork" # Which MPMs to build
+MPMS="prefork" # Which MPMs to build: worker event prefork
 
 # Define some architecture specific variables
 if [[ $ISAPART == "i386" ]]; then
     LAYOUT64=SolAmd64
-    #DEF64="-DALTLAYOUT -DAMD64"
+    LAYOUT32=Soli386
 else
     # sparc
     LAYOUT64=SolSparc64
-    #DEF64="-DALTLAYOUT -DSPARCV9"
 fi
 
 # General configure options - BASE is for options to be applied everywhere
 # and the *64 variables are for 64 bit builds.
 CONFIGURE_OPTS_BASE="--enable-dtrace
-    --enable-ldap
-    --enable-authnz-ldap
-    --enable-ssl
-    --with-ssl=/usr/local/apache22
-    --enable-file-cache
-    --enable-proxy
-    --enable-proxy-http
-    --enable-cache
-    --enable-disk-cache
-    --enable-mem-cache
-    --enable-modules=none
-    --disable-reqtimeout
-    --disable-proxy-scgi"
+    --enable-mods-shared=all
+    "
+
+CONFIGURE_OPTS_32="
+    --enable-layout=$LAYOUT32
+    --with-apr=/usr/local/bin/$ISAPART32/apr-1-config
+    --with-apr-util=/usr/local/bin/$ISAPART32/apu-1-config"
 
 CONFIGURE_OPTS_64="
     --enable-layout=$LAYOUT64
     --with-apr=/usr/local/bin/$ISAPART64/apr-1-config
     --with-apr-util=/usr/local/bin/$ISAPART64/apu-1-config"
 
+LDFLAGS32="$LDFLAGS32 -L/usr/local/lib/$ISAPART32 -R/usr/local/lib/$ISAPART32"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 CFLAGS64="$CFLAGS64 -g"
 
@@ -85,6 +69,18 @@ build_mpm() {
         $CALLBACK
     done
 }
+
+# Redefine the build32 to build all MPMs
+save_function build32 build32_orig
+    
+build32() {
+    logcmd perl -pi -e "
+    s#-L/usr/local/lib#-L/usr/local/lib/$ISAPART32 -R/usr/local/lib/$ISAPART32#g; 
+    s#(-[LR]/usr/local/lib(?!/))#"'$1'"/$ISAPART32#g;
+    s#^EXTRA_LDFLAGS = .+#EXTRA_LDFLAGS = #;
+    " $TMPDIR/$BUILDDIR/build/config_vars.mk
+    build_mpm build32_orig
+}   
 
 # Redefine the build64 to build all MPMs
 save_function build64 build64_orig
