@@ -27,8 +27,8 @@ NAME=Apache
 CATEGORY=network
 
 BUILDARCH=64
-MIRROR=archive.apache.org
-DIR=dist/httpd # Mirror directory to download from
+#MIRROR=archive.apache.org
+#DIR=dist/httpd # Mirror directory to download from
 MPMS="worker event prefork" # Which MPMs to build
 
 # Define some architecture specific variables
