@@ -47,14 +47,14 @@ CONFIGURE_OPTS_BASE="--enable-dtrace
     --enable-ldap
     --enable-authnz-ldap
     --enable-ssl
-    --with-ssl=/opt/omni
+    --with-ssl=/usr/local/apache22
     --enable-file-cache
     --enable-proxy
     --enable-proxy-http
     --enable-cache
     --enable-disk-cache
     --enable-mem-cache
-    --enable-modules=all
+    --enable-modules=none
     --disable-reqtimeout
     --disable-proxy-scgi"
 
@@ -115,6 +115,12 @@ add_extra_files() {
     logcmd rm -f $DESTDIR$PREFIX/conf/httpd.*.conf
     logcmd mv $DESTDIR$PREFIX/conf/httpd.conf $DESTDIR$PREFIX/conf/httpd.conf.dist
     add_file httpd.conf conf/httpd.conf
+    logcmd mkdir -p $DESTDIR/var/log/apache22/
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/conf.d
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-enabled
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-available
+    add_file ports.conf conf/conf.d/ports.conf
+    add_file modules.load conf/conf.d/modules.load
 }
 
 # Add some more files once the source code has been downloaded
