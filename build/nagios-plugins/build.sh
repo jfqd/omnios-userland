@@ -72,6 +72,12 @@ CONFIGURE_OPTS_32="--prefix=$PREFIX
 # Need to include libexec in the list of dirs to make isaexec stubs
 ISAEXEC_DIRS="bin sbin libexec"
 
+copy_additional_check_files() {
+    logmsg "Copy custom checks"
+    logcmd cp $SRCDIR/files/check_* $DESTDIR/usr/local/libexec/amd64
+    logcmd cp $SRCDIR/files/check_* $DESTDIR/usr/local/libexec/i386
+}
+
 fix_utils_pm() {
     logmsg "Fixing utils.pm library"
     logcmd rm -f $DESTDIR/$PREFIX/libexec/utils.pm || \
@@ -92,6 +98,7 @@ download_source nagios $PROG $VER
 patch_source
 prep_build
 build
+copy_additional_check_files
 make_isa_stub
 fix_utils_pm
 make_package

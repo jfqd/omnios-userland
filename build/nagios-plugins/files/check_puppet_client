@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# http://www.lindstromconsulting.com/display/~nathan/How+to+use+Nagios+to+monitor+Puppet
+#
+
+CLIENT=$1
+ 
+if [ "$CLIENT" == "" ]; then
+    echo "Your check_puppet_client plugin configuration is broken"
+    exit 1
+fi
+ 
+NOW=`/usr/bin/date "+%s"`
+LOGFILE=/var/log/puppet/masterhttp.log
+LASTRUN=`/usr/bin/grep $CLIENT $LOGFILE | /usr/bin/tail -1 | /usr/bin/awk '{ print $1 " " $2 }' | /usr/bin/sed 's/\[//' | /usr/bin/sed 's/\]//'`
+LASTRUN=`/usr/bin/date "+%s" -d "$LASTRUN"`
+TIMEDIFF=`/usr/bin/expr $NOW - $LASTRUN`
+ 
+if [ $TIMEDIFF -gt 7200 ]; then
+    printf "PUPPET CLIENT CRITICAL - Last checkin was $TIMEDIFF seconds ago\n"
+    exit 2
+elif [ $TIMEDIFF -gt 3600 ]; then
+    printf "PUPPET CLIENT WARNING - Last checkin was $TIMEDIFF seconds ago\n"
+    exit 1
+else
+    printf "PUPPET CLIENT OK - Last checkin was $TIMEDIFF seconds ago\n"
+    exit 0
+fi

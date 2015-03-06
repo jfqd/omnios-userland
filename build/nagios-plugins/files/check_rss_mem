@@ -1,0 +1,137 @@
+#!/usr/bin/perl 
+#===============================================================================
+#
+#         FILE:  check_rss_mem.pl
+#
+#        USAGE:  ./check_rss_mem.pl -w warning -c critical
+#
+#  DESCRIPTION:  Nagios Plugin - Check Reserved Memory for Solaris
+#
+#      OPTIONS:  ---
+# REQUIREMENTS:  ---
+#         BUGS:  ---
+#        NOTES:  ---
+#      LICENSE:  This Nagios module is under GPLv2 License
+#       AUTHOR:  Pierre Mavro (), pierre@mavro.fr
+#      COMPANY:  
+#      VERSION:  1.0
+#      CREATED:  07/12/2009 09:18:41
+#     REVISION:  ---
+#===============================================================================
+#
+# Usage : check_mem_rss.pl -w warn -c critical
+#    -w : Warning at a percentage number of unfree ram
+#    -c : Critical at a percentage number of unfree ram
+#
+# example : ./check_mem_rss.pl -w 80 -c 90
+#
+
+use strict;
+use warnings;
+use Getopt::Long;
+
+# Vars
+my $swap_bin='/usr/sbin/swap';
+my $prtconf_bin='/usr/sbin/prtconf';
+my ($help, $warning, $critical);
+
+# Set options
+GetOptions( "help|h"	=> \&help,
+            "w=i"       => \$warning,
+            "c=i"       => \$critical);
+
+# Get total RAM amount from the machine
+sub get_total_mem
+{
+	open (TOTAL_RAM, "$prtconf_bin |") or die("$prtconf_bin couldn't be run : $!\n");
+	while (<TOTAL_RAM>)
+	{
+		if (/^Memory size: (\d+) Megabytes/i)
+		{
+			return $1;
+		}
+	}
+	close(TOTAL_RAM);
+	
+	print "Sorry, but I couln't get total amount of RAM with prtconf command\n";
+	exit (-1);
+}
+
+# Get free RAM amount from the machine
+sub get_free_mem
+{
+	open (SWAP_SPACE, "$swap_bin -s |") or die("$swap_bin couldn't be run : $!\n");
+    while (<SWAP_SPACE>)
+    {
+        if (/(\d+)k available/i)
+        {
+        	my $free_mem = $1 / 1024;
+            return $free_mem;
+        }
+    }
+    close(SWAP_SPACE);
+    
+    print "Sorry, but I couln't get free amount of RAM with swap command\n";
+	exit (-1);
+}
+
+# Send to nagios the result
+sub send_to_nagios
+{
+	my $total_mem=shift;
+	my $free_mem=shift;
+	my $warning=shift;
+	my $critical=shift;
+
+    # Calcul mem size from alerts
+	my $critical_alert= $total_mem * "0.$critical";
+	my $warning_alert= $total_mem * "0.$warning";
+
+    # Truncate free mem to be shown in nagios
+    my $free_mem_trunc = sprintf "%.0f", $free_mem;
+    
+    # Calcul busy mem
+    my $busy_mem = $total_mem - $free_mem_trunc;
+
+    # Check if OK, Warn or Critical
+    if ($busy_mem < $warning_alert)
+    {
+        print "RSS Memory OK - $free_mem_trunc Mb available on $total_mem Mb\n";
+        exit(0);
+    }
+    elsif ($busy_mem > $critical_alert)
+    {
+		print "RSS Memory CRITICAL : $free_mem_trunc Mb available on $total_mem Mb\n";
+        exit(2);
+    }
+    else
+    {
+        print "RSS Memory WARNING : $free_mem_trunc Mb available on $total_mem Mb\n";
+    	exit(1);
+	}
+}
+
+# Help print
+sub help
+{
+    print "Usage : check_mem_rss -w warn -c critical\n";
+    print "\t-w : Warning at a percentage number of unfree ram\n";
+    print "\t-c : Critical at a percentage number of unfree ram\n";
+}
+
+# Check if warning and critical options are set
+if (($warning) and ($critical))
+{
+    # Get total memory
+	my $total_mem = &get_total_mem;
+    # Get free memory
+    my $free_mem = &get_free_mem;
+    # Check and send to nagios
+    &send_to_nagios($total_mem,$free_mem,$warning,$critical);
+}
+# If warning and critical are not set, exit with help
+else
+{
+    &help;
+    exit(-1);
+}

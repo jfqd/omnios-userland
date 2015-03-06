@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+#
+# check_delayed_job
+#
+# Check if a delayed_job is running
+#
+
+def number_of_running_processes(cwd, counter=0)
+  pids = %x[/usr/bin/cat #{cwd}/tmp/pids/*].split("\n") rescue []
+  pids.each do |pid|
+    counter+=1 if %x[/usr/bin/ps #{pid}].include?(pid.to_s)
+    
+    # http://stackoverflow.com/questions/325082/how-can-i-check-from-ruby-whether-a-process-with-a-certain-pid-is-running
+    # begin
+    #   Process.getpgid( pid )
+    #   counter+=1
+    # rescue Errno::ESRCH
+    # end
+    
+  end
+  counter
+end
+
+# main entry
+cwd = ARGV.shift
+
+if !cwd.nil? && File.exists?(cwd)
+  r = number_of_running_processes(cwd) rescue -1
+  if r > 0
+    puts "OK - delayed_job is running with #{r} processes."
+    exit 0
+  elsif r == 0
+    puts "CRITICAL - delayed_job not running!"
+    exit 1
+  else
+    puts "CRITICAL - status of delayed_job unknown: #{r}"
+    exit 1
+  end
+else
+  puts "CRITICAL - cannot find directory: '#{cwd}'"
+  exit 1
+end

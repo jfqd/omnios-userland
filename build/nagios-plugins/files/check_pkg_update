@@ -1,0 +1,11 @@
+#!/bin/bash
+
+number_of_packages_to_update=`/usr/bin/pkg list -u 2> /dev/null | /usr/bin/wc -l`
+
+if [ $number_of_packages_to_update -gt 0 ]; then
+  echo "WARNING - $number_of_packages_to_update packages to update"
+  exit 1
+else
+  echo 'OK - nothing to update'
+  exit 0
+fi

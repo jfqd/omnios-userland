@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# check for any reported events
+#
+
+# include Nagios utilities
+. /usr/local/nagios/libexec/utils.sh
+
+ipmi_ip=$1
+
+SEL_LIST=`/usr/local/bin/ipmitool -I lan -H $ipmi_ip -U ipmi-user -f /var/lib/ipmitool/ipmi sel list 2>/dev/null`
+ASSERTED=`/usr/bin/echo $SEL_LIST | /usr/bin/grep 'Asserted'`
+LINE_NO=`/usr/bin/echo $SEL_LIST | /usr/bin/grep 'Asserted' | /usr/bin/wc -l`
+
+if [ $LINE_NO -ne 0 ]; then
+  echo "IPMI SEL CRITICAL: '$ASSERTED'"
+  exit $STATE_CRITICAL
+else
+  echo "IPMI SEL OK: no events found"
+  exit $STATE_OK
+fi

@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+#
+# Check if a service is enabled or disabled
+#
+# check_smf_health
+
+def check_processes
+  %x[/usr/bin/svcs -a -H -o state,fmri | /usr/bin/grep maintenance].split("\n")
+end
+
+def repair(processes)
+  processes.each do |p|
+    %x[/usr/sbin/svcadm clear #{p.split(" ")[1]}]
+  end
+end
+
+# main
+result = ""
+processes = check_processes
+
+if processes.is_a?(Array) && !processes.empty?
+  # try to repair maintenance states
+  begin
+    repair(processes)
+    result = "CRITICAL - " << processes.collect{ |p| p.split(" ")[1] }.join(",")
+  rescue
+    result = "CRITICAL - cannot get smf states"
+  end
+  puts result
+  exit 1
+else
+  # everything is ok
+  puts "OK"
+  exit 0
+end
