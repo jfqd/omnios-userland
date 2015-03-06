@@ -43,7 +43,9 @@ CONFIGURE_OPTS="--enable-ssl \
     --with-nrpe-group=${USER} \
     --with-nagios-user=${USER} \
     --with-nagios-group=${USER} \
-    --enable-command-args"
+    --enable-command-args" 
+
+# command args may be evil! It is your turn to use it or not.
 
 copy_configs() {
     logmsg "Installing SMF"
