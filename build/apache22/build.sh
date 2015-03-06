@@ -133,7 +133,7 @@ patch_source() {
 }
 
 init
-download_source $DIR $PROG $VER
+download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
