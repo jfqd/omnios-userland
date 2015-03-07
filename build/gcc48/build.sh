@@ -76,7 +76,8 @@ configure32() {
 }
 
 init
-download_source $PROG/releases/$PROG-$VER $PROG $VER
+#download_source $PROG/releases/$PROG-$VER $PROG $VER
+download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
