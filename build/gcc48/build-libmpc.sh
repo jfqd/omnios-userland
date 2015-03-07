@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=mpc
-VER=1.0.1
+VER=1.0.3
 VERHUMAN=$VER
 PKG=developer/gcc48/libmpc-gcc48
 SUMMARY="gcc48 - private libmpc"
