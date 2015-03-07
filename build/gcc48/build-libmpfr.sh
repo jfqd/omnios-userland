@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=mpfr
-VER=3.1.1
+VER=3.1.2
 VERHUMAN=$VER
 PKG=developer/gcc48/libmpfr-gcc48
 SUMMARY="gcc48 - private libmpfr"
