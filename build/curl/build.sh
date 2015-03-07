@@ -38,9 +38,15 @@ DEPENDS_IPS="web/ca-bundle library/security/openssl@1.0.1 local/library/zlib lib
 
 CONFIGURE_OPTS="--enable-thread --with-ca-bundle=/etc/ssl/cacert.pem"
 # curl actually has arch-dependent headers. Boo.
+CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32 --includedir=$PREFIX/include"
 CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64 --includedir=$PREFIX/include/amd64"
 
 LIBTOOL_NOSTDLIB=libtool
+
+fix_isa_stub() {
+    logcmd rm $DESTDIR/usr/local/bin/curl-config
+    logcmd cp $DESTDIR/usr/local/bin/i386/curl-config $DESTDIR/usr/local/bin/curl-config
+}
 
 init
 download_source $PROG $PROG $VER
@@ -48,5 +54,6 @@ patch_source
 prep_build
 build
 make_isa_stub
+fix_isa_stub
 make_package
 clean_up
