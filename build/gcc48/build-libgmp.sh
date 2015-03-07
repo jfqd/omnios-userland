@@ -31,12 +31,12 @@ GCCVER=4.8.1
 PATH=/opt/gcc-${GCCVER}/bin:$PATH
 export LD_LIBRARY_PATH=/opt/gcc-${GCCVER}/lib
 
-PROG=gmp         # App name
-VER=5.0.5        # App version
-VERHUMAN=$VER    # Human-readable version
-PKG=developer/gcc48/libgmp-gcc48 # Package name (without prefix)
+PROG=gmp
+VER=5.1.3
+VERHUMAN=$VER
+PKG=developer/gcc48/libgmp-gcc48
 SUMMARY="gcc48 - private libgmp"
-DESC="$SUMMARY" # Longer description
+DESC="$SUMMARY"
 
 # This stuff is in its own domain
 PKGPREFIX=""
