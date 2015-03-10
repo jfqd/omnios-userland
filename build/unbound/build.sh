@@ -29,7 +29,7 @@
 
 # https://unbound.net/downloads/unbound-1.5.2.tar.gz
 PROG=unbound
-VER=1.5.2
+VER=1.5.3
 PKG=service/network/unbound
 SUMMARY="$PROG - A validating, recursive, and caching DNS resolver."
 DESC="$SUMMARY ($VER)"
