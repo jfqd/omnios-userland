@@ -1,6 +1,6 @@
-diff -ruN httpd-2.2.16.orig/Makefile.in httpd-2.2.16/Makefile.in
---- httpd-2.2.16.orig/Makefile.in	2008-11-25 20:24:49.000000000 +0000
-+++ httpd-2.2.16/Makefile.in	2011-02-23 18:51:52.799366376 +0000
+diff -ruN httpd-2.2.29.orig/Makefile.in httpd-2.2.29/Makefile.in
+--- httpd-2.2.29.orig/Makefile.in	2008-11-25 20:24:49.000000000 +0000
++++ httpd-2.2.29/Makefile.in	2011-02-23 18:51:52.799366376 +0000
 @@ -2,10 +2,18 @@
  SUBDIRS = srclib os server modules support
  CLEAN_SUBDIRS = test
@@ -48,9 +48,9 @@ diff -ruN httpd-2.2.16.orig/Makefile.in httpd-2.2.16/Makefile.in
  install-conf:
  	@echo Installing configuration files
  	@$(MKINSTALLDIRS) $(DESTDIR)$(sysconfdir) $(DESTDIR)$(sysconfdir)/extra
-diff -ruN httpd-2.2.16.orig/acinclude.m4 httpd-2.2.16/acinclude.m4
---- httpd-2.2.16.orig/acinclude.m4	2008-11-24 11:06:52.000000000 +0000
-+++ httpd-2.2.16/acinclude.m4	2011-02-23 18:51:52.809857472 +0000
+diff -ruN httpd-2.2.29.orig/acinclude.m4 httpd-2.2.29/acinclude.m4
+--- httpd-2.2.29.orig/acinclude.m4	2008-11-24 11:06:52.000000000 +0000
++++ httpd-2.2.29/acinclude.m4	2011-02-23 18:51:52.809857472 +0000
 @@ -175,23 +175,63 @@
    fi
  
@@ -116,9 +116,9 @@ diff -ruN httpd-2.2.16.orig/acinclude.m4 httpd-2.2.16/acinclude.m4
  EOF
      fi
    fi
-diff -ruN httpd-2.2.16.orig/ap.d httpd-2.2.16/ap.d
---- httpd-2.2.16.orig/ap.d	1970-01-01 00:00:00.000000000 +0000
-+++ httpd-2.2.16/ap.d	2011-02-23 18:51:52.799642738 +0000
+diff -ruN httpd-2.2.29.orig/ap.d httpd-2.2.29/ap.d
+--- httpd-2.2.29.orig/ap.d	1970-01-01 00:00:00.000000000 +0000
++++ httpd-2.2.29/ap.d	2011-02-23 18:51:52.799642738 +0000
 @@ -0,0 +1,98 @@
 +#pragma D depends_on provider io
 +typedef struct request_rec {
@@ -218,9 +218,9 @@ diff -ruN httpd-2.2.16.orig/ap.d httpd-2.2.16/ap.d
 +    int eos_sent;
 +} request_rec;
 +
-diff -ruN httpd-2.2.16.orig/apache_probes.d httpd-2.2.16/apache_probes.d
---- httpd-2.2.16.orig/apache_probes.d	1970-01-01 00:00:00.000000000 +0000
-+++ httpd-2.2.16/apache_probes.d	2011-02-23 18:51:52.808318833 +0000
+diff -ruN httpd-2.2.29.orig/apache_probes.d httpd-2.2.29/apache_probes.d
+--- httpd-2.2.29.orig/apache_probes.d	1970-01-01 00:00:00.000000000 +0000
++++ httpd-2.2.29/apache_probes.d	2011-02-23 18:51:52.808318833 +0000
 @@ -0,0 +1,172 @@
 +provider ap {
 +  /* Explicit, core */
@@ -394,9 +394,9 @@ diff -ruN httpd-2.2.16.orig/apache_probes.d httpd-2.2.16/apache_probes.d
 +  probe insert_all_liveprops__dispatch__complete(char *, uint32_t);
 +  probe insert_all_liveprops__return(uint32_t);
 +};
-diff -ruN httpd-2.2.16.orig/build/library.mk httpd-2.2.16/build/library.mk
---- httpd-2.2.16.orig/build/library.mk	2006-07-12 03:38:44.000000000 +0000
-+++ httpd-2.2.16/build/library.mk	2011-02-23 18:51:52.809420596 +0000
+diff -ruN httpd-2.2.29.orig/build/library.mk httpd-2.2.29/build/library.mk
+--- httpd-2.2.29.orig/build/library.mk	2006-07-12 03:38:44.000000000 +0000
++++ httpd-2.2.29/build/library.mk	2011-02-23 18:51:52.809420596 +0000
 @@ -17,6 +17,13 @@
  # The build environment was provided by Sascha Schumann.
  
@@ -411,9 +411,9 @@ diff -ruN httpd-2.2.16.orig/build/library.mk httpd-2.2.16/build/library.mk
  	$(LINK) -static $(LTLIBRARY_LDFLAGS) $(LTLIBRARY_OBJECTS) $(LTLIBRARY_LIBADD)
 +	echo $(LTLIBRARY_FP_OS) > $(LIBLIST)
 +	ld -r -o $(LIBNAME) $(LTLIBRARY_OS)
-diff -ruN httpd-2.2.16.orig/configure.in httpd-2.2.16/configure.in
---- httpd-2.2.16.orig/configure.in	2008-12-01 20:32:43.000000000 +0000
-+++ httpd-2.2.16/configure.in	2011-02-23 18:51:52.809173291 +0000
+diff -ruN httpd-2.2.29.orig/configure.in httpd-2.2.29/configure.in
+--- httpd-2.2.29.orig/configure.in	2008-12-01 20:32:43.000000000 +0000
++++ httpd-2.2.29/configure.in	2011-02-23 18:51:52.809173291 +0000
 @@ -386,7 +386,8 @@
  strings.h \
  sys/prctl.h \
@@ -467,9 +467,9 @@ diff -ruN httpd-2.2.16.orig/configure.in httpd-2.2.16/configure.in
  AC_OUTPUT($APACHE_OUTPUT_FILES docs/conf/httpd.conf docs/conf/extra/httpd-autoindex.conf docs/conf/extra/httpd-dav.conf docs/conf/extra/httpd-default.conf docs/conf/extra/httpd-info.conf docs/conf/extra/httpd-languages.conf docs/conf/extra/httpd-manual.conf docs/conf/extra/httpd-mpm.conf docs/conf/extra/httpd-multilang-errordoc.conf docs/conf/extra/httpd-ssl.conf docs/conf/extra/httpd-userdir.conf docs/conf/extra/httpd-vhosts.conf include/ap_config_layout.h support/apxs support/apachectl support/dbmmanage support/envvars-std support/log_server_status support/logresolve.pl support/phf_abuse_log.cgi support/split-logfile build/rules.mk build/pkg/pkginfo build/config_vars.sh,[true],[
    APACHE_GEN_MAKEFILES
  ])
-diff -ruN httpd-2.2.16.orig/include/ap_config.h httpd-2.2.16/include/ap_config.h
---- httpd-2.2.16.orig/include/ap_config.h	2006-07-12 03:38:44.000000000 +0000
-+++ httpd-2.2.16/include/ap_config.h	2011-02-23 18:51:52.808653497 +0000
+diff -ruN httpd-2.2.29.orig/include/ap_config.h httpd-2.2.29/include/ap_config.h
+--- httpd-2.2.29.orig/include/ap_config.h	2006-07-12 03:38:44.000000000 +0000
++++ httpd-2.2.29/include/ap_config.h	2011-02-23 18:51:52.808653497 +0000
 @@ -238,6 +238,13 @@
  #define AP_NONBLOCK_WHEN_MULTI_LISTEN 1
  #endif
@@ -484,9 +484,9 @@ diff -ruN httpd-2.2.16.orig/include/ap_config.h httpd-2.2.16/include/ap_config.h
  /* TODO - We need to put OS detection back to make all the following work */
  
  #if defined(SUNOS4) || defined(IRIX) || defined(NEXT) || defined(AUX3) \
-diff -ruN httpd-2.2.16.orig/libtool-dep-extract httpd-2.2.16/libtool-dep-extract
---- httpd-2.2.16.orig/libtool-dep-extract	1970-01-01 00:00:00.000000000 +0000
-+++ httpd-2.2.16/libtool-dep-extract	2011-02-23 18:51:52.799818766 +0000
+diff -ruN httpd-2.2.29.orig/libtool-dep-extract httpd-2.2.29/libtool-dep-extract
+--- httpd-2.2.29.orig/libtool-dep-extract	1970-01-01 00:00:00.000000000 +0000
++++ httpd-2.2.29/libtool-dep-extract	2011-02-23 18:51:52.799818766 +0000
 @@ -0,0 +1,6 @@
 +#!/bin/sh
 +
@@ -494,9 +494,9 @@ diff -ruN httpd-2.2.16.orig/libtool-dep-extract httpd-2.2.16/libtool-dep-extract
 +do
 +  sh -c ". $i; "'echo $dependency_libs'
 +done
-diff -ruN httpd-2.2.16.orig/modules/http/http_request.c httpd-2.2.16/modules/http/http_request.c
---- httpd-2.2.16.orig/modules/http/http_request.c	2010-01-27 00:45:57.000000000 +0000
-+++ httpd-2.2.16/modules/http/http_request.c	2011-02-23 18:51:52.802386887 +0000
+diff -ruN httpd-2.2.29.orig/modules/http/http_request.c httpd-2.2.29/modules/http/http_request.c
+--- httpd-2.2.29.orig/modules/http/http_request.c	2010-01-27 00:45:57.000000000 +0000
++++ httpd-2.2.29/modules/http/http_request.c	2011-02-23 18:51:52.802386887 +0000
 @@ -273,6 +273,7 @@
       * Use this hook with extreme care and only if you know what you are
       * doing.
@@ -523,9 +523,9 @@ diff -ruN httpd-2.2.16.orig/modules/http/http_request.c httpd-2.2.16/modules/htt
      /* ap_die was already called, if an error occured */
      if (!new) {
          return;
-diff -ruN httpd-2.2.16.orig/modules/mappers/mod_rewrite.c httpd-2.2.16/modules/mappers/mod_rewrite.c
---- httpd-2.2.16.orig/modules/mappers/mod_rewrite.c	2010-07-16 10:36:21.000000000 +0000
-+++ httpd-2.2.16/modules/mappers/mod_rewrite.c	2011-02-23 18:53:35.735460988 +0000
+diff -ruN httpd-2.2.29.orig/modules/mappers/mod_rewrite.c httpd-2.2.29/modules/mappers/mod_rewrite.c
+--- httpd-2.2.29.orig/modules/mappers/mod_rewrite.c	2010-07-16 10:36:21.000000000 +0000
++++ httpd-2.2.29/modules/mappers/mod_rewrite.c	2011-02-23 18:53:35.735460988 +0000
 @@ -475,7 +475,8 @@
  
      conf = ap_get_module_config(r->server->module_config, &rewrite_module);
@@ -548,9 +548,9 @@ diff -ruN httpd-2.2.16.orig/modules/mappers/mod_rewrite.c httpd-2.2.16/modules/m
      nbytes = strlen(logline);
      apr_file_write(conf->rewritelogfp, logline, &nbytes);
  
-diff -ruN httpd-2.2.16.orig/modules/proxy/mod_proxy.c httpd-2.2.16/modules/proxy/mod_proxy.c
---- httpd-2.2.16.orig/modules/proxy/mod_proxy.c	2010-07-11 06:21:06.000000000 +0000
-+++ httpd-2.2.16/modules/proxy/mod_proxy.c	2011-02-23 18:51:52.803926425 +0000
+diff -ruN httpd-2.2.29.orig/modules/proxy/mod_proxy.c httpd-2.2.29/modules/proxy/mod_proxy.c
+--- httpd-2.2.29.orig/modules/proxy/mod_proxy.c	2010-07-11 06:21:06.000000000 +0000
++++ httpd-2.2.29/modules/proxy/mod_proxy.c	2011-02-23 18:51:52.803926425 +0000
 @@ -993,6 +993,7 @@
          ap_log_error(APLOG_MARK, APLOG_DEBUG, 0, r->server,
                       "Running scheme %s handler (attempt %d)",
@@ -567,9 +567,9 @@ diff -ruN httpd-2.2.16.orig/modules/proxy/mod_proxy.c httpd-2.2.16/modules/proxy
  
      return access_status;
  }
-diff -ruN httpd-2.2.16.orig/server/Makefile.in httpd-2.2.16/server/Makefile.in
---- httpd-2.2.16.orig/server/Makefile.in	2006-03-09 21:29:55.000000000 +0000
-+++ httpd-2.2.16/server/Makefile.in	2011-02-23 18:51:52.800269831 +0000
+diff -ruN httpd-2.2.29.orig/server/Makefile.in httpd-2.2.29/server/Makefile.in
+--- httpd-2.2.29.orig/server/Makefile.in	2006-03-09 21:29:55.000000000 +0000
++++ httpd-2.2.29/server/Makefile.in	2011-02-23 18:51:52.800269831 +0000
 @@ -61,7 +61,7 @@
  	for dir in $(EXPORT_DIRS_APR); do \
  	    (ls $$dir/ap[ru].h $$dir/ap[ru]_*.h >> $$tmp 2>/dev/null); \
@@ -579,9 +579,9 @@ diff -ruN httpd-2.2.16.orig/server/Makefile.in httpd-2.2.16/server/Makefile.in
  	rm -f $$tmp
  
  exports.c: export_files
-diff -ruN httpd-2.2.16.orig/server/protocol.c httpd-2.2.16/server/protocol.c
---- httpd-2.2.16.orig/server/protocol.c	2010-03-02 04:01:29.000000000 +0000
-+++ httpd-2.2.16/server/protocol.c	2011-02-23 18:51:52.801720793 +0000
+diff -ruN httpd-2.2.29.orig/server/protocol.c httpd-2.2.29/server/protocol.c
+--- httpd-2.2.29.orig/server/protocol.c	2010-03-02 04:01:29.000000000 +0000
++++ httpd-2.2.29/server/protocol.c	2011-02-23 18:51:52.801720793 +0000
 @@ -844,9 +844,11 @@
      apr_socket_t *csd;
      apr_interval_time_t cur_timeout;

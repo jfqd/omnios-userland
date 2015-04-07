@@ -1,6 +1,6 @@
-diff -ruN httpd-2.2.16.orig/configure httpd-2.2.16/configure
---- httpd-2.2.16.orig/configure	2010-07-22 09:07:29.000000000 +0000
-+++ httpd-2.2.16/configure	2011-02-23 18:38:20.248658436 +0000
+diff -ruN httpd-2.2.29.orig/configure httpd-2.2.29/configure
+--- httpd-2.2.29.orig/configure	2010-07-22 09:07:29.000000000 +0000
++++ httpd-2.2.29/configure	2011-02-23 18:38:20.248658436 +0000
 @@ -772,6 +772,7 @@
  PILDFLAGS
  PICFLAGS
