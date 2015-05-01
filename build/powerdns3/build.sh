@@ -29,7 +29,7 @@
 
 # https://downloads.powerdns.com/releases/pdns-3.4.2.tar.bz2
 PROG=powerdns
-VER=3.4.2
+VER=3.4.4
 VERHUMAN=$VER
 PKG=service/network/dns/powerdns3
 SUMMARY="DNS Authoritative Server"
