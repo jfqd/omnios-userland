@@ -69,6 +69,7 @@ service_configs() {
 default_config() {
     logmsg "Copying default configuration files"
     logcmd cp $SRCDIR/files/munin-node.conf $DESTDIR/etc/munin/munin-node.conf
+    logcmd mkdir -p /var/run/munin
 }
 
 
