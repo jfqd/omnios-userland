@@ -14,25 +14,17 @@ BUILD_DEPENDS_IPS="custom/database/sqlite3 \
     custom/library/apr \
     custom/library/apr-util"
 
-DEPENDS_IPS  ="custom/database/sqlite3 \
-    library/security/openssl \
-    custom/library/apr \
-    custom/library/apr-util"
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 PREFIX=/usr/local/apache22
 reset_configure_opts
 
-# Package info
-NAME=Apache
-CATEGORY=network
-
-BUILDARCH=32
-
-MPMS="prefork" # Which MPMs to build: worker event prefork
+# Which MPMs to build: worker event prefork
+MPMS="prefork"
 
 # Define some architecture specific variables
 if [[ $ISAPART == "i386" ]]; then
-    # LAYOUT64=SolAmd64
+    LAYOUT64=SolAmd64
     LAYOUT32=Soli386
 else
     # sparc
@@ -44,18 +36,18 @@ fi
 CONFIGURE_OPTS_BASE="--enable-dtrace
     --enable-mods-shared=all"
 
-CONFIGURE_OPTS_32="
-    --enable-layout=$LAYOUT32
+CONFIGURE_OPTS_32="--enable-layout=$LAYOUT32
     --with-apr=/usr/local/bin/$ISAPART32/apr-1-config
     --with-apr-util=/usr/local/bin/$ISAPART32/apu-1-config"
 
-CONFIGURE_OPTS_64="
-    --enable-layout=$LAYOUT64
+CONFIGURE_OPTS_64="--enable-layout=$LAYOUT64
     --with-apr=/usr/local/bin/$ISAPART64/apr-1-config
     --with-apr-util=/usr/local/bin/$ISAPART64/apu-1-config"
 
 LDFLAGS32="$LDFLAGS32 -L/usr/local/lib/$ISAPART32 -R/usr/local/lib/$ISAPART32"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
+
+CFLAGS32="-D_FILE_OFFSET_BITS=64" # without it stat64 or open64 will segfault!
 CFLAGS64="$CFLAGS64 -g"
 
 # Run a build for each MPM
@@ -150,7 +142,7 @@ download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
-make_isa_stub
+# make_isa_stub
 add_extra_files
 make_package
 clean_up
