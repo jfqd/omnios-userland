@@ -14,16 +14,25 @@ BUILD_DEPENDS_IPS="custom/database/sqlite3 \
     custom/library/apr \
     custom/library/apr-util"
 
-DEPENDS_IPS=$BUILD_DEPENDS_IPS
+DEPENDS_IPS  ="custom/database/sqlite3 \
+    library/security/openssl \
+    custom/library/apr \
+    custom/library/apr-util"
 
 PREFIX=/usr/local/apache22
 reset_configure_opts
+
+# Package info
+NAME=Apache
+CATEGORY=network
+
+BUILDARCH=32
 
 MPMS="prefork" # Which MPMs to build: worker event prefork
 
 # Define some architecture specific variables
 if [[ $ISAPART == "i386" ]]; then
-    LAYOUT64=SolAmd64
+    # LAYOUT64=SolAmd64
     LAYOUT32=Soli386
 else
     # sparc
@@ -33,8 +42,7 @@ fi
 # General configure options - BASE is for options to be applied everywhere
 # and the *64 variables are for 64 bit builds.
 CONFIGURE_OPTS_BASE="--enable-dtrace
-    --enable-mods-shared=all
-    "
+    --enable-mods-shared=all"
 
 CONFIGURE_OPTS_32="
     --enable-layout=$LAYOUT32
