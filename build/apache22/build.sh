@@ -116,6 +116,8 @@ add_extra_files() {
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-available
     add_file ports.conf conf/conf.d/ports.conf
     add_file modules.load conf/conf.d/modules.load
+    logcmd mkdir -p $DESTDIR$PREFIX/var/log
+    logcmd touch $DESTDIR$PREFIX/var/log/error.log
     logmsg "Installing SMF"
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
     logcmd cp $SRCDIR/files/manifest-http-apache.xml \
