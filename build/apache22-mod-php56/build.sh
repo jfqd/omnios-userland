@@ -28,7 +28,9 @@
 . ../../lib/functions.sh
 
 # http://de1.php.net/get/php-5.6.8.tar.gz/from/this/mirror
-PROG=mod-php56
+PROG=php
+VER=5.6.8
+#PROG=mod-php56
 PKG=custom/server/apache22/mod-php56
 SUMMARY="PHP 5.6 - mod-php5 extension for Apache 2.2"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
@@ -110,9 +112,15 @@ remove_httpd_conf() {
 }
 
 make_install() {
-    logmsg "--- make install (custom)"
+    logmsg "--- make (custom) install"
     logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
         logerr "--- Make install failed"
+    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules
+    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
+    logcmd cp $SRCDIR/files/php56-amd64.load \
+        $DESTDIR/usr/local/apache22/conf/modules/php56-amd64.load
+    logcmd cp $SRCDIR/files/php56-amd64.conf \
+        $DESTDIR/usr/local/apache22/conf/conf.d/php56-amd64.conf
 }
 
 # There are some dotfiles/dirs that look like noise
@@ -131,8 +139,7 @@ prep_build
 make_httpd_conf
 build
 remove_httpd_conf
-clean_dotfiles
-prep_build
+clean_dot_and_php_files
 make_package ext.mog
 
 clean_up

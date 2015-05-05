@@ -1,0 +1,1 @@
+LoadModule php5_module libexec/amd64/libphp5.so
