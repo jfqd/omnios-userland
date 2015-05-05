@@ -17,7 +17,7 @@
     includedir:    ${prefix}/include/amd64
     localstatedir: ${prefix}/var
     runtimedir:    ${localstatedir}/run
-    logfiledir:    ${localstatedir}/logs
+    logfiledir:    ${localstatedir}/log
     proxycachedir: ${localstatedir}/proxy
 </Layout>
 
@@ -40,7 +40,7 @@
     includedir:    ${prefix}/include/i386
     localstatedir: ${prefix}/var
     runtimedir:    ${localstatedir}/run
-    logfiledir:    ${localstatedir}/logs
+    logfiledir:    ${localstatedir}/log
     proxycachedir: ${localstatedir}/proxy
 </Layout>
 
@@ -63,6 +63,6 @@
     includedir:    ${prefix}/include/sparcv9
     localstatedir: ${prefix}/var
     runtimedir:    ${localstatedir}/run
-    logfiledir:    ${localstatedir}/logs
+    logfiledir:    ${localstatedir}/log
     proxycachedir: ${localstatedir}/proxy
 </Layout>
