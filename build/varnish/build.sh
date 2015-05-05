@@ -48,8 +48,8 @@ patch_source
 prep_build
 build
 
-logcmd mkdir -p /etc/varnish/
-logcmd touch /etc/varnish/varnish.vcl
+logcmd mkdir -p $DESTDIR/etc/varnish/
+logcmd touch $DESTDIR/etc/varnish/varnish.vcl
 logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
 logcmd cp $SRCDIR/files/manifest-varnish.xml $DESTDIR/lib/svc/manifest/network/varnish.xml
 
