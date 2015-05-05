@@ -30,7 +30,6 @@
 # http://de1.php.net/get/php-5.6.8.tar.gz/from/this/mirror
 PROG=php
 VER=5.6.8
-#PROG=mod-php56
 PKG=custom/server/apache22/mod-php56
 SUMMARY="PHP 5.6 - mod-php5 extension for Apache 2.2"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
@@ -64,15 +63,13 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/mhash
     library/libmysqlclient18"
 
-# Though not strictly needed since we override build(), still nice to set
 BUILDARCH=64
 PREFIX=$PREFIX/php56
 reset_configure_opts
 
 CFLAGS="-O2 -DZLIB_INTERNAL=1 -std=gnu99"
 CPPFLAGS="-I/usr/local/include"
-LDFLAGS="-L/usr/local/lib -R/usr/local/lib \
-    -L$PREFIX/lib -R$PREFIX/lib"
+LDFLAGS="-L/usr/local/lib -R/usr/local/lib -L$PREFIX/lib -R$PREFIX/lib"
 
 CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl \
     -I/usr/local/include"
@@ -107,7 +104,7 @@ make_httpd_conf() {
 # And a function to remove the temporary httpd.conf files
 remove_httpd_conf() {
     logmsg "Removing Generated httpd.conf file"
-    logcmd rm -rf $DESTDIR/usr/local/apache22/conf/httpd.conf ||
+    logcmd rm -rf $DESTDIR/usr/local/apache22/conf/httpd.conf* ||
         logerr "Failed to remove apache22 config"
 }
 
