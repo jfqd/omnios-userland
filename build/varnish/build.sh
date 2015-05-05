@@ -47,6 +47,12 @@ download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
+
+logcmd mkdir -p /etc/varnish/
+logcmd touch /etc/varnish/varnish.vcl
+logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+logcmd cp $SRCDIR/files/manifest-varnish.xml $DESTDIR/lib/svc/manifest/network/varnish.xml
+
 make_isa_stub
 make_package
 clean_up
