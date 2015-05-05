@@ -1,5 +1,5 @@
 group gid=202 groupname=pound
-user ftpuser=false gcos-field="Unbound Reserved UID" group=unbound password=NP uid=202 username=pound home-dir=/
+user ftpuser=false gcos-field="Pound Reserved UID" group=pound password=NP uid=202 username=pound home-dir=/
 <transform dir path=etc/pound27/certs -> set owner root>
 <transform dir path=etc/pound27/certs -> set group root>
 <transform dir path=etc/pound27/certs -> set mode 0750>
