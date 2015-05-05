@@ -97,7 +97,7 @@ build64() {
 # Extra script/file installs
 add_file() {
     logcmd cp $SRCDIR/files/$1 $DESTDIR$PREFIX/$2
-    logcmd chown root:root $DESTDIR$PREFIX/$2
+    # logcmd chown root:root $DESTDIR$PREFIX/$2
     if [[ -n "$3" ]]; then
         logcmd chmod $3 $DESTDIR$PREFIX/$2
     else
@@ -107,13 +107,12 @@ add_file() {
 
 add_extra_files() {
     logmsg "Installing custom files and scripts"
-    add_file manifest-http-apache.xml conf/http-apache.xml
     logcmd rm -f $DESTDIR$PREFIX/conf/httpd.conf
     logcmd rm -f $DESTDIR$PREFIX/conf/httpd.*.conf
     logcmd cp $SRCDIR/files/httpd.conf.dist $DESTDIR$PREFIX/conf/httpd.conf.dist
     add_file httpd-i386.conf conf/httpd-i386.conf
     add_file httpd-amd64.conf conf/httpd-amd64.conf
-    logcmd ln -s /usr/local/apache22/conf/httpd.conf $DESTDIR$PREFIX/conf/httpd-i386.conf
+    logcmd ln -s /usr/local/apache22/conf/httpd-i386.conf $DESTDIR$PREFIX/conf/httpd.conf
     logcmd mkdir -p $DESTDIR$PREFIX/conf/conf.d
     logcmd mkdir -p $DESTDIR$PREFIX/conf/modules
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-enabled
