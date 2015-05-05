@@ -28,11 +28,11 @@
 . ../../lib/functions.sh
 
 # http://de1.php.net/get/php-5.6.8.tar.gz/from/this/mirror
-PROG=php
-VER=5.6.8
-PKG=runtime/php56
-SUMMARY="PHP Server 5.6"
+PROG=mod-php56
+PKG=custom/server/apache22/mod-php56
+SUMMARY="PHP 5.6 - mod-php5 extension for Apache 2.2"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
+DEPENDS_IPS="custom/server/apache22"
 
 BUILD_DEPENDS_IPS="compress/bzip2
     custom/database/sqlite3
@@ -110,28 +110,18 @@ remove_httpd_conf() {
 }
 
 make_install() {
-    logmsg "--- make install"
+    logmsg "--- make install (custom)"
     logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
         logerr "--- Make install failed"
-    logmsg "--- copy php.ini examples"
-    logcmd cp $TMPDIR/$BUILDDIR/php.ini-production $DESTDIR/$PREFIX/etc/php.ini-production
-    logcmd cp $TMPDIR/$BUILDDIR/php.ini-development $DESTDIR/$PREFIX/etc/php.ini-development
-}
-
-install_ext_mod_php()
-{
-  logcmd mkdir -p /usr/local/apache22/libexec/amd64
-  logmsg "--- Moving files for mod-php5 extension"
-  logcmd mv $INSTALLDIR/$EXTENSION_DIR/zip.a $DESTDIR/usr/local/apache22/libexec/amd64/ && \
-      logcmd mv $INSTALLDIR/$EXTENSION_DIR/zip.so $DESTDIR/usr/local/apache22/libexec/amd64/ || \
-          logerr "--- Moving zip extensions failed."
 }
 
 # There are some dotfiles/dirs that look like noise
-clean_dotfiles() {
+clean_dot_and_php_files() {
     logmsg "--- Cleaning up dotfiles in destination directory"
     logcmd rm -rf $DESTDIR/.??* || \
         logerr "--- Unable to clean up destination directory"
+    logcmd rm -rf $DESTDIR/usr/local/php56 || \
+        logerr "--- Unable to clean up php56 directory"
 }
 
 init
@@ -142,18 +132,7 @@ make_httpd_conf
 build
 remove_httpd_conf
 clean_dotfiles
-
-#################################
-### CREATE EXTENSION PACKAGES ###
-#################################
-
-PROG=mod-php56
-PKG=custom/server/apache22/mod-php56
-SUMMARY="PHP 5.6 - mod-php5 extension for Apache 2.2"
-DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-DEPENDS_IPS="custom/server/apache22"
 prep_build
-install_ext_mod_php
 make_package ext.mog
 
 clean_up
