@@ -107,7 +107,7 @@ make_httpd_conf() {
 # And a function to remove the temporary httpd.conf files
 remove_httpd_conf() {
     logmsg "Removing Generated httpd.conf file"
-    logcmd rm -rf $DESTDIR/usr/local/apache22/conf ||
+    logcmd rm -rf $DESTDIR/usr/local/apache22/conf/httpd.conf ||
         logerr "Failed to remove apache22 config"
 }
 
