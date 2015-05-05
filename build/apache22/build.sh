@@ -109,13 +109,17 @@ add_extra_files() {
     logmsg "Installing custom files and scripts"
     add_file manifest-http-apache.xml conf/http-apache.xml
     logcmd rm -f $DESTDIR$PREFIX/conf/httpd.*.conf
-    logcmd mv $DESTDIR$PREFIX/conf/httpd.conf $DESTDIR$PREFIX/conf/httpd.conf.dist
-    add_file httpd.conf conf/httpd.conf
+    logcmd mv $DESTDIR$PREFIX/conf/httpd.conf.dist $DESTDIR$PREFIX/conf/httpd.conf.dist
+    add_file httpd-i386.conf conf/httpd-i386.conf
+    add_file httpd-i386.conf conf/httpd-i386.conf
+    logcmd ln /usr/local/apache22/conf/httpd.conf $DESTDIR$PREFIX/conf/httpd-i386.conf
     logcmd mkdir -p $DESTDIR$PREFIX/conf/conf.d
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/modules
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-enabled
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-available
     add_file ports.conf conf/conf.d/ports.conf
-    add_file modules.load conf/conf.d/modules.load
+    add_file modules-i386.load conf/modules/modules-i386.load
+    add_file modules-amd64.load conf/modules/modules-amd64.load
     logcmd mkdir -p $DESTDIR$PREFIX/var/log
     logcmd touch $DESTDIR$PREFIX/var/log/error.log
     logmsg "Installing SMF"

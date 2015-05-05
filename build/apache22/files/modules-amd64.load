@@ -1,0 +1,84 @@
+#
+# Dynamic Shared Object (DSO) Support
+#
+# To be able to use the functionality of a module which was built as a DSO you
+# have to place corresponding `LoadModule' lines at this location so the
+# directives contained in it are actually available _before_ they are used.
+# Statically compiled modules (those listed by `httpd -l') do not need
+# to be loaded here.
+#
+# Example:
+# LoadModule foo_module modules/mod_foo.so
+#
+LoadModule authn_file_module libexec/amd64/mod_authn_file.so
+# LoadModule authn_dbm_module libexec/amd64/mod_authn_dbm.so
+# LoadModule authn_anon_module libexec/amd64/mod_authn_anon.so
+# LoadModule authn_dbd_module libexec/amd64/mod_authn_dbd.so
+# LoadModule authn_default_module libexec/amd64/mod_authn_default.so
+# LoadModule authn_alias_module libexec/amd64/mod_authn_alias.so
+LoadModule authz_host_module libexec/amd64/mod_authz_host.so
+LoadModule authz_groupfile_module libexec/amd64/mod_authz_groupfile.so
+LoadModule authz_user_module libexec/amd64/mod_authz_user.so
+# LoadModule authz_dbm_module libexec/amd64/mod_authz_dbm.so
+# LoadModule authz_owner_module libexec/amd64/mod_authz_owner.so
+# LoadModule authnz_ldap_module libexec/amd64/mod_authnz_ldap.so
+LoadModule authz_default_module libexec/amd64/mod_authz_default.so
+LoadModule auth_basic_module libexec/amd64/mod_auth_basic.so
+# LoadModule auth_digest_module libexec/amd64/mod_auth_digest.so
+# LoadModule file_cache_module libexec/amd64/mod_file_cache.so
+# LoadModule cache_module libexec/amd64/mod_cache.so
+# LoadModule disk_cache_module libexec/amd64/mod_disk_cache.so
+# LoadModule mem_cache_module libexec/amd64/mod_mem_cache.so
+# LoadModule dbd_module libexec/amd64/mod_dbd.so
+# LoadModule bucketeer_module libexec/amd64/mod_bucketeer.so
+# LoadModule dumpio_module libexec/amd64/mod_dumpio.so
+# LoadModule reqtimeout_module libexec/amd64/mod_reqtimeout.so
+# LoadModule ext_filter_module libexec/amd64/mod_ext_filter.so
+# LoadModule include_module libexec/amd64/mod_include.so
+# LoadModule filter_module libexec/amd64/mod_filter.so
+# LoadModule substitute_module libexec/amd64/mod_substitute.so
+# LoadModule charset_lite_module libexec/amd64/mod_charset_lite.so
+LoadModule deflate_module libexec/amd64/mod_deflate.so
+# LoadModule ldap_module libexec/amd64/mod_ldap.so
+LoadModule log_config_module libexec/amd64/mod_log_config.so
+# LoadModule log_forensic_module libexec/amd64/mod_log_forensic.so
+# LoadModule logio_module libexec/amd64/mod_logio.so
+LoadModule env_module libexec/amd64/mod_env.so
+# LoadModule mime_magic_module libexec/amd64/mod_mime_magic.so
+# LoadModule cern_meta_module libexec/amd64/mod_cern_meta.so
+LoadModule expires_module libexec/amd64/mod_expires.so
+LoadModule headers_module libexec/amd64/mod_headers.so
+# LoadModule ident_module libexec/amd64/mod_ident.so
+# LoadModule usertrack_module libexec/amd64/mod_usertrack.so
+# LoadModule unique_id_module libexec/amd64/mod_unique_id.so
+LoadModule setenvif_module libexec/amd64/mod_setenvif.so
+# LoadModule version_module libexec/amd64/mod_version.so
+# LoadModule proxy_module libexec/amd64/mod_proxy.so
+# LoadModule proxy_connect_module libexec/amd64/mod_proxy_connect.so
+# LoadModule proxy_ftp_module libexec/amd64/mod_proxy_ftp.so
+# LoadModule proxy_http_module libexec/amd64/mod_proxy_http.so
+# LoadModule proxy_scgi_module libexec/amd64/mod_proxy_scgi.so
+# LoadModule proxy_ajp_module libexec/amd64/mod_proxy_ajp.so
+# LoadModule proxy_balancer_module libexec/amd64/mod_proxy_balancer.so
+# LoadModule ssl_module libexec/amd64/mod_ssl.so
+LoadModule mime_module libexec/amd64/mod_mime.so
+# LoadModule dav_module libexec/amd64/mod_dav.so
+LoadModule status_module libexec/amd64/mod_status.so
+# LoadModule autoindex_module libexec/amd64/mod_autoindex.so
+# LoadModule asis_module libexec/amd64/mod_asis.so
+LoadModule info_module libexec/amd64/mod_info.so
+# LoadModule suexec_module libexec/amd64/mod_suexec.so
+# LoadModule cgi_module libexec/amd64/mod_cgi.so
+# LoadModule cgid_module libexec/amd64/mod_cgid.so
+# LoadModule dav_fs_module libexec/amd64/mod_dav_fs.so
+# LoadModule dav_lock_module libexec/amd64/mod_dav_lock.so
+# LoadModule vhost_alias_module libexec/amd64/mod_vhost_alias.so
+LoadModule negotiation_module libexec/amd64/mod_negotiation.so
+LoadModule dir_module libexec/amd64/mod_dir.so
+# LoadModule imagemap_module libexec/amd64/mod_imagemap.so
+# LoadModule actions_module libexec/amd64/mod_actions.so
+# LoadModule speling_module libexec/amd64/mod_speling.so
+# LoadModule userdir_module libexec/amd64/mod_userdir.so
+LoadModule alias_module libexec/amd64/mod_alias.so
+LoadModule rewrite_module libexec/amd64/mod_rewrite.so
+# LoadModule wsgi_module libexec/amd64/mod_wsgi.so
