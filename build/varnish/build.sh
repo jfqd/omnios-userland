@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://repo.varnish-cache.org/source/varnish-4.0.3.tar.gz
+# https://repo.varnish-cache.org/source/varnish-3.0.7.tar.gz
 PROG=varnish
-VER=3.0.6
+VER=3.0.7
 VERHUMAN=$VER
 PKG=service/network/varnish
 SUMMARY="Fast Web HTTP Cache Proxy"
