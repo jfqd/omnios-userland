@@ -70,19 +70,22 @@ build32(){
     logcmd $GEM_BIN --config-file $GEMRC install \
          -r --no-rdoc --no-ri -i ${GEM_HOME} -v $VER $PROG || \
         logerr "Failed to gem install $PROG-$VER"
-    logmsg "--- Fixing include paths on binaries"
-    for i in $GEM_HOME/bin/*; do
-      logmsg "----- Processing file: $i"
-      sed -e "/require 'rubygems'/ a\\
+    # only process files if bin dir is not empty
+    if [ "$(ls -A $GEM_HOME/bin)" ]; then
+        logmsg "--- Fixing include paths on binaries"
+        logcmd mkdir -p "${DESTDIR}/${RUBY_HOME}/bin"
+        for i in $GEM_HOME/bin/*; do
+            logmsg "----- Processing file: $i"
+            sed -e "/require 'rubygems'/ a\\
 Gem.use_paths(Gem.dir, [\"${RUBY_HOME}/lib/ruby/gems/${RUBY_VER_EXTENDED}\"])\\
 Gem.refresh\\
 " $i >$i.tmp
-      mv $i.tmp $i
-      chmod +x $i
-      logmsg "--- Copy binaries to bin path"
-      logcmd mkdir -p "${DESTDIR}/${RUBY_HOME}/bin"
-      logcmd cp $i "${DESTDIR}/${RUBY_HOME}/bin"
-    done
+            mv $i.tmp $i
+            chmod +x $i
+            logmsg "--- Copy binary to regular bin path"
+            logcmd cp $i "${DESTDIR}/${RUBY_HOME}/bin"
+        done
+    fi
 }
 
 download_source() {
