@@ -27,11 +27,12 @@
 
 # Adapted from ms branch build/chef/build.sh 
 
+RUBY_VER=2.1
+
 BUILDARCH=32
-DEPENDS_IPS="runtime/ruby-2.1"
+DEPENDS_IPS="runtime/ruby-${RUBY_VER}"
 BUILD_DEPENDS_IPS="gnu-coreutils"
 
-RUBY_VER=2.1
 RUBY_VER_EXTENDED="${RUBY_VER}.0"
 
 RUBY_HOME="${PREFIX}/ruby/${RUBY_VER}"
