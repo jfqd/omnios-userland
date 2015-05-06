@@ -79,6 +79,9 @@ Gem.refresh\\
 " $i >$i.tmp
       mv $i.tmp $i
       chmod +x $i
+      logmsg "--- Copy binaries to bin path"
+      logcmd mkdir -p "${DESTDIR}/${RUBY_HOME}/bin"
+      logcmd cp $i "${DESTDIR}/${RUBY_HOME}/bin"
     done
 }
 
