@@ -28,11 +28,8 @@
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
 
-# PKGPUBLISHER=root.omnios.omniti.com
-# PKGSRVR=http://localhost:888/
-
 PROG=bundler
-VER=1.8.4
+VER=1.9.6
 VERHUMAN=$VER
 PKG=runtime/ruby-2.1/bundler
 SUMMARY="Gem install of the bundler gem"
