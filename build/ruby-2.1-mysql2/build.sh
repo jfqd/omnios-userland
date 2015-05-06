@@ -31,9 +31,11 @@
 PROG=mysql2
 VER=0.3.18
 VERHUMAN=$VER
-PKG=runtime/ruby-2.1/passenger4
+PKG=runtime/ruby-2.1/mysql2
 SUMMARY="Gem install of the mysql2 gem"
 DESC="$SUMMARY"
+
+DEPENDS_IPS="library/libmysqlclient18"
 
 RUBY_VER=2.1
 GEM_DEPENDS=""
