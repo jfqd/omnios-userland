@@ -28,21 +28,41 @@
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
 
-PROG=bundler
+PROG=passenger
 VER=4.0.59
 VERHUMAN=$VER
 PKG=runtime/ruby-2.1/passenger4
 SUMMARY="Gem install of the passenger gem"
 DESC="$SUMMARY"
 
+DEPENDS_IPS="custom/server/apache22
+             local/web/curl
+             custom/library/apr"
+
 RUBY_VER=2.1
 GEM_DEPENDS=""
+
+compile_apache22_module() {
+  logmsg "Compiling apache22 module"
+  RUBY_VER_EXTENDED="${RUBY_VER}.0"
+  RUBY_HOME=${PREFIX}/ruby/${RUBY_VER}
+  GEM_HOME=${DESTDIR}${RUBY_HOME}/lib/ruby/gems/${RUBY_VER_EXTENDED}
+  ln -nfs /usr/local/apache22/bin/i386/apxs /usr/bin/apxs
+  export APR_CONFIG=/usr/local/bin/apr-1-config
+  export APXS2=/usr/local/apache22/bin/i386/apxs
+  export LD_LIBRARY_PATH=/usr/local/lib
+  export LANG=en_US.UTF-8
+  export GEM_HOME="${GEM_HOME}"
+  export GEM_PATH="${GEM_HOME}:${RUBY_HOME}/lib/ruby/gems/2.1.0/"
+  logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
+}
 
 init
 download_source
 patch_source
 prep_build
 build
+compile_apache22_module
 make_isa_stub
 make_package
 clean_up
