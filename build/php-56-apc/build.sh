@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=APC
-VER=3.1.11
+VER=3.1.13
 VERHUMAN=$VER
 PKG=runtime/php56/apc
 SUMMARY="APC for php-56"
