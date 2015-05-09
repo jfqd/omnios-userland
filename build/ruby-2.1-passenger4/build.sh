@@ -50,10 +50,10 @@ compile_apache22_module() {
   RUBY_VER_EXTENDED="${RUBY_VER}.0"
   RUBY_HOME=${PREFIX}/ruby/${RUBY_VER}
   GEM_HOME=${DESTDIR}${RUBY_HOME}/lib/ruby/gems/${RUBY_VER_EXTENDED}
-  ln -nfs /usr/local/apache22/bin/i386/apxs /usr/bin/apxs
-  export APR_CONFIG=/usr/local/bin/apr-1-config
-  export APXS2=/usr/local/apache22/bin/i386/apxs
-  export LD_LIBRARY_PATH=/usr/local/lib
+  ln -nfs ${PREFIX}/apache22/bin/i386/apxs /usr/bin/apxs
+  export APR_CONFIG=${PREFIX}/bin/apr-1-config
+  export APXS2=${PREFIX}/apache22/bin/i386/apxs
+  export LD_LIBRARY_PATH=${PREFIX}/lib
   export LANG=en_US.UTF-8
   export GEM_HOME="${GEM_HOME}"
   export GEM_PATH="${GEM_HOME}:${RUBY_HOME}/lib/ruby/gems/2.1.0/"
