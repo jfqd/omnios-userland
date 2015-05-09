@@ -1,5 +1,5 @@
---- ruby-2.2.0/siphash.c	2012-11-09 07:38:38.000000000 -0800
-+++ ruby-2.2.0-patched/siphash.c	2012-12-19 08:43:08.655075159 -0800
+--- ruby-2.2.2/siphash.c	2012-11-09 07:38:38.000000000 -0800
++++ ruby-2.2.2-patched/siphash.c	2012-12-19 08:43:08.655075159 -0800
 @@ -8,7 +8,15 @@
  #ifdef _WIN32
    #define BYTE_ORDER __LITTLE_ENDIAN
