@@ -114,12 +114,13 @@ add_extra_files() {
     add_file httpd-amd64.conf conf/httpd-amd64.conf
     logcmd ln -s /usr/local/apache22/conf/httpd-i386.conf $DESTDIR$PREFIX/conf/httpd.conf
     logcmd mkdir -p $DESTDIR$PREFIX/conf/conf.d
-    logcmd mkdir -p $DESTDIR$PREFIX/conf/modules
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/modules/i386
+    logcmd mkdir -p $DESTDIR$PREFIX/conf/modules/amd64
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-enabled
     logcmd mkdir -p $DESTDIR$PREFIX/conf/sites-available
     add_file ports.conf conf/conf.d/ports.conf
-    add_file modules-i386.load conf/modules/modules-i386.load
-    add_file modules-amd64.load conf/modules/modules-amd64.load
+    add_file modules-i386.load conf/modules/i386/modules.load
+    add_file modules-amd64.load conf/modules/amd64/modules.load
     logcmd mkdir -p $DESTDIR$PREFIX/var/log
     logcmd touch $DESTDIR$PREFIX/var/log/error.log
     logmsg "Installing SMF"
