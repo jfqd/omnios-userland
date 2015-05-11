@@ -41,7 +41,9 @@ BUILD_DEPENDS_IPS="custom/server/apache22
              runtime/ruby-2.1/rack
              library/libssh2
              library/libldap
-             library/security/cyrus-sasl"
+             library/security/cyrus-sasl
+             developer/object-file
+             developer/gcc48"
 
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
