@@ -38,7 +38,8 @@ DESC="$SUMMARY"
 BUILD_DEPENDS_IPS="custom/server/apache22
              local/web/curl
              custom/library/apr
-             runtime/ruby-2.1/rack"
+             runtime/ruby-2.1/rack
+             library/libssh2"
 
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
@@ -58,7 +59,7 @@ compile_apache22_module() {
   export GEM_HOME="${GEM_HOME}"
   export GEM_PATH="${GEM_HOME}:${RUBY_HOME}/lib/ruby/gems/2.1.0/"
   export CXXFLAGS="$CPPFLAGS -fPIC"
-  logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
+  # logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
   logmsg "Remove docs cause of pkgmogrify issue with spaces in filenames."
   logcmd rm -rf ${GEM_HOME}/gems/passenger-4.0.59/doc
   logmsg "Cleanup rake and rack gems"
