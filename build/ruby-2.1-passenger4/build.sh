@@ -52,19 +52,12 @@ GEM_DEPENDS=""
 
 compile_apache22_module() {
   logmsg "Compiling apache22 module"
-  RUBY_VER_EXTENDED="${RUBY_VER}.0"
   RUBY_HOME=${PREFIX}/ruby/${RUBY_VER}
-  GEM_HOME=${DESTDIR}${RUBY_HOME}/lib/ruby/gems/${RUBY_VER_EXTENDED}
-  ln -nfs ${PREFIX}/apache22/bin/i386/apxs /usr/bin/apxs
-  export APR_CONFIG=${PREFIX}/bin/apr-1-config
-  export APXS2=${PREFIX}/apache22/bin/i386/apxs
-  export LD_LIBRARY_PATH=${PREFIX}/lib
+  ln -nfs ${PREFIX}/apache22/bin/i386/apxs /usr/local/bin/apxs
   export LANG=en_US.UTF-8
-  export GEM_HOME="${GEM_HOME}"
-  export GEM_PATH="${GEM_HOME}:${RUBY_HOME}/lib/ruby/gems/2.1.0/"
-  export CXXFLAGS="$CPPFLAGS -fPIC"
-  # logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
+  logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
   logmsg "Remove docs cause of pkgmogrify issue with spaces in filenames."
+  GEM_HOME=${DESTDIR}${RUBY_HOME}/lib/ruby/gems/${RUBY_VER}.0
   logcmd rm -rf ${GEM_HOME}/gems/passenger-4.0.59/doc
   logmsg "Cleanup rake and rack gems"
   logcmd rm -rf ${DESTDIR}${RUBY_HOME}/bin/rackup
