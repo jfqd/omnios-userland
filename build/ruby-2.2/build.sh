@@ -36,10 +36,9 @@ PKG=runtime/ruby-2.2
 SUMMARY="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write."
 DESC="$SUMMARY ($VER)"
 
-BUILD_DEPENDS_IPS="runtime/ruby-1.8 custom/library/libffi custom/library/readline developer/build/autoconf"
+BUILD_DEPENDS_IPS="custom/library/libffi custom/library/readline developer/build/autoconf"
 DEPENDS_IPS="library/yaml"
 
-BASERUBY="$PREFIX/$PROG/1.8/bin/ruby"
 PREFIX="$PREFIX/$PROG/$MAIN_VER"
 
 # Ruby doesn't have the concept of library paths,
@@ -47,19 +46,15 @@ PREFIX="$PREFIX/$PROG/$MAIN_VER"
 # Default to 32-bit
 [[ "$BUILDARCH" == "both" ]] && BUILDARCH=32
 
-CONFIGURE_OPTS="--prefix=$PREFIX
-    --without-gcc \
-    --with-baseruby=$BASERUBY \
-    --without-miniruby \
+CONFIGURE_OPTS="--prefix=$PREFIX \
     --enable-shared \
-    ac_cv_func_dl_iterate_phdr=no \
-    "
+    --disable-install-doc \
+    ac_cv_func_dl_iterate_phdr=no"
+
 CONFIGURE_OPTS_32=
 
-export CFLAGS="-std=c99"
-#export CLFAGS="-std=gnu99 -I/usr/local/lib/libffi-3.1/include -I/usr/local/include -I/usr/include/openssl"
-#export EXTLIBS=-lm
-#export CPPFLAGS="-I/usr/local/lib/libffi-3.1/include -I/usr/local/include -I/usr/include/libelf -I/usr/include"
+# https://bugs.ruby-lang.org/issues/10460
+export CFLAGS="-O2"
 
 init
 download_source $PROG $PROG $VER
@@ -67,7 +62,7 @@ patch_source
 prep_build
 #run_autoconf
 build
-make_isa_stub
+#make_isa_stub
 make_package
 clean_up
 
