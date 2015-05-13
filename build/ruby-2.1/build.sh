@@ -53,10 +53,8 @@ CONFIGURE_OPTS="--prefix=$PREFIX \
 
 CONFIGURE_OPTS_32=
 
-export CFLAGS="-std=c99"
-#export CLFAGS="-std=gnu99 -I/usr/local/lib/libffi-3.1/include -I/usr/local/include -I/usr/include/openssl"
-#export EXTLIBS=-lm
-#export CPPFLAGS="-I/usr/local/lib/libffi-3.1/include -I/usr/local/include -I/usr/include/libelf -I/usr/include"
+# https://bugs.ruby-lang.org/issues/10460
+export CFLAGS="-O2"
 
 init
 download_source $PROG $PROG $VER
