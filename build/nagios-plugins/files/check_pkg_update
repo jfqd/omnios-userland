@@ -1,6 +1,6 @@
 #!/bin/bash
 
-number_of_packages_to_update=`/usr/bin/pkg list -u 2> /dev/null | /usr/bin/wc -l`
+number_of_packages_to_update=`/usr/bin/pkg list -u -H 2> /dev/null | /usr/bin/wc -l`
 
 if [ $number_of_packages_to_update -gt 0 ]; then
   echo "WARNING - $number_of_packages_to_update packages to update"
