@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/local/ruby/2.1/bin/ruby
 #
 # Check if a service is enabled or disabled
 #
