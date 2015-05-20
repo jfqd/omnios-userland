@@ -35,6 +35,7 @@ SUMMARY="Ghostscript, a Postscript and PDF interpreter"
 DESC="$SUMMARY"
 
 BUILD_DEPENDS_IPS='print/cups'
+DEPENDS_IPS='print/cups'
 
 CUPSCONFIG="${PREFIX}/bin/cups-config"
 export CUPSCONFIG
