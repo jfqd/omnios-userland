@@ -35,12 +35,12 @@ PKG=image/imagemagick
 SUMMARY="software suite to create, edit, compose, or convert bitmap images"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng"
-DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng"
+BUILD_DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff"
+DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff"
 
 CFLAGS="-I/opt/omni/include -I/usr/local/include"
-LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
-LDFLAGS64="$LDFLAGS64 -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
+LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
+LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
 CONFIGURE_OPTS="--disable-openmp --disable-static --without-x"
 
