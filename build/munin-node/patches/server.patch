@@ -2,12 +2,16 @@ diff --git a/./munin-2.0.25/node/lib/Munin/Node/Server.pm.orig b/./munin-2.0.25/
 index e5e0863..6425f3a 100644
 --- munin-2.0.25/node/lib/Munin/Node/Server.pm.orig
 +++ munin-2.0.25/node/lib/Munin/Node/Server.pm
-@@ -2,6 +2,9 @@ package Munin::Node::Server;
+@@ -2,6 +2,13 @@ package Munin::Node::Server;
  
  # $Id$
  
 +BEGIN{push @INC, '/opt/OMNIperl/lib/site_perl/5.14.2/i86pc-solaris-thread-multi-64int';}
 +BEGIN{push @INC, '/opt/OMNIperl/lib/site_perl/5.14.2/';}
++BEGIN{push @INC, '/opt/OMNIperl/lib/site_perl/5.16.3/i86pc-solaris-thread-multi-64int';}
++BEGIN{push @INC, '/opt/OMNIperl/lib/site_perl/5.16.3/';}
++BEGIN{push @INC, '/opt/OMNIperl/lib/vendor_perl/5.16/i86pc-solaris-thread-multi-64int';}
++BEGIN{push @INC, '/opt/OMNIperl/lib/vendor_perl/5.16/';}
 +
  use base qw(Net::Server::Fork);
  
