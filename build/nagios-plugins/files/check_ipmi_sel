@@ -4,7 +4,7 @@
 #
 
 # include Nagios utilities
-. /usr/local/nagios/libexec/utils.sh
+. /usr/local/libexec/amd64/utils.sh
 
 ipmi_ip=$1
 
