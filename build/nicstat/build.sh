@@ -34,8 +34,10 @@ PKG=network/nicstat
 SUMMARY="Network traffic statics utility for Solaris and Linux"
 DESC=$SUMMARY
 
+BUILDDIR="$PROG-src-$VER"
+
 init
-download_source $PROG $PROG $VER
+download_source $PROG $PROG-src $VER
 patch_source
 prep_build
 
