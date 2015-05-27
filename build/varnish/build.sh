@@ -50,6 +50,7 @@ build
 
 logcmd mkdir -p $DESTDIR/etc/varnish/
 logcmd touch $DESTDIR/etc/varnish/varnish.vcl
+logcmd cp $SRCDIR/files/http-varnish $DESTDIR/lib/svc/method/http-varnish
 logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
 logcmd cp $SRCDIR/files/manifest-varnish.xml $DESTDIR/lib/svc/manifest/network/varnish.xml
 
