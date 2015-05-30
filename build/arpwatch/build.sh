@@ -27,6 +27,11 @@
 # Load support functions
 . ../../lib/functions.sh
 
+BUILD_DEPENDS_IPS="library/pcap"
+DEPENDS_IPS="library/pcap"
+
+CFLAGS="-std=gnu99"
+
 PROG=arpwatch
 VER=2.1a15
 VERHUMAN=$VER
