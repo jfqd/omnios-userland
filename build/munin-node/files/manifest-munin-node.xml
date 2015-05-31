@@ -18,7 +18,7 @@
        <method_credential user="root" group="root"/>
        <method_environment>
          <envvar name="PATH" value="/usr/local/bin:/usr/local/sbin:/usr/gnu/bin:/usr/bin:/usr/sbin:/sbin"/>
-         <envvar name="PERL5LIB" value="/usr/perl5/lib/site_perl:/usr/perl5/lib/site_perl/5.16.1"/>
+         <envvar name="PERL5LIB" value="/usr/perl5/lib/site_perl:/usr/perl5/lib/site_perl/5.16.1:/opt/OMNIperl/lib/site_perl:/opt/OMNIperl/lib/site_perl/5.14.2:/opt/OMNIperl/lib/vendor_perl:/opt/OMNIperl/lib/vendor_perl/5.16"/>
        </method_environment>
      </method_context>
    </exec_method>
