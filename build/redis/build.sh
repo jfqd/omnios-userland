@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=redis
-VER=2.8.17
+VER=2.8.21
 VERHUMAN=$VER
 PKG=database/redis
 SUMMARY="Redis is an open source, advanced key-value store."
