@@ -76,6 +76,9 @@ CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 \
     -L$PREFIX/lib -R$PREFIX/lib"
 
+# https://www.mail-archive.com/php-install@lists.php.net/msg16137.html
+export PHP_MYSQLND_ENABLED=yes
+
 export EXTENSION_DIR=$PREFIX/lib/modules
 CONFIGURE_OPTS_32=""
 CONFIGURE_OPTS_64=""
@@ -93,6 +96,12 @@ CONFIGURE_OPTS="
         --datarootdir=$PREFIX/share
         --mandir=$PREFIX/man
         --with-openssl
+        --enable-pcntl
+        --with-gettext
+        --with-iconv
+        --enable-dtrace
+        --enable-xml
+        --enable-simplexml
         --with-apxs2=/usr/local/apache22/bin/amd64/apxs"
 
 # We need to make a fake httpd.conf so apxs in make install
