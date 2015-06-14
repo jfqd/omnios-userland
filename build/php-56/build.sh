@@ -102,11 +102,11 @@ CONFIGURE_OPTS="
         --with-zlib=shared
         --with-zlib-dir=/usr/local
         --with-sqlite3=shared
-        --enable-pdo
+        --enable-pdo=shared
         --with-pdo-sqlite=shared
-        --with-mysql=mysqlnd
-        --with-mysqli=mysqlnd
-        --with-pdo-mysql=mysqlnd
+        --with-mysql=shared,mysqlnd
+        --with-mysqli=shared,mysqlnd
+        --with-pdo-mysql=shared,mysqlnd
         --enable-mbstring=shared
         --with-mhash=shared
         --with-mcrypt=shared
@@ -238,27 +238,27 @@ install_ext_mcrypt() {
             logerr "--- Moving mcrypt extensions failed."
 }
 
-# # PHP mysql extension
-# install_ext_mysql() {
-#     create_extension_dir
-#     logmsg "--- Moving files for mysql extensions"
-#     logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.a $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.so $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.so $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.a $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.so $DESTDIR/$EXTENSION_DIR/ || \
-#             logerr "--- Moving mysql extensions failed."
-# }
+# PHP mysql extension
+install_ext_mysql() {
+    create_extension_dir
+    logmsg "--- Moving files for mysql extensions"
+    logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.a $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.so $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.so $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.a $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.so $DESTDIR/$EXTENSION_DIR/ || \
+            logerr "--- Moving mysql extensions failed."
+}
 
-# # PHP pdo extension
-# install_ext_pdo() {
-#     create_extension_dir
-#     logmsg "--- Moving files for pdo extension"
-#     logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.a $DESTDIR/$EXTENSION_DIR/ && \
-#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.so $DESTDIR/$EXTENSION_DIR/ || \
-#             logerr "--- Moving pdo extensions failed."
-# }
+# PHP pdo extension
+install_ext_pdo() {
+    create_extension_dir
+    logmsg "--- Moving files for pdo extension"
+    logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.a $DESTDIR/$EXTENSION_DIR/ && \
+        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.so $DESTDIR/$EXTENSION_DIR/ || \
+            logerr "--- Moving pdo extensions failed."
+}
 
 # PHP sqlite extension
 install_ext_sqlite() {
@@ -388,23 +388,23 @@ prep_build
 install_ext_mcrypt
 make_package ext.mog
 
-# PROG=php-mysql
-# PKG=runtime/php56/php-mysql
-# SUMMARY="PHP 5.6 - MySQL Extensions"
-# DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-# DEPENDS_IPS="library/libmysqlclient18"
-# prep_build
-# install_ext_mysql
-# make_package ext_mysql.mog
+PROG=php-mysql
+PKG=runtime/php56/php-mysql
+SUMMARY="PHP 5.6 - MySQL Extensions"
+DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
+DEPENDS_IPS="library/libmysqlclient18"
+prep_build
+install_ext_mysql
+make_package ext_mysql.mog
 
-# PROG=php-pdo
-# PKG=runtime/php56/php-pdo
-# SUMMARY="PHP 5.6 - pdo extension"
-# DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-# DEPENDS_IPS=""
-# prep_build
-# install_ext_pdo
-# make_package ext.mog
+PROG=php-pdo
+PKG=runtime/php56/php-pdo
+SUMMARY="PHP 5.6 - pdo extension"
+DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
+DEPENDS_IPS=""
+prep_build
+install_ext_pdo
+make_package ext.mog
 
 PROG=php-sqlite
 PKG=runtime/php56/php-sqlite
