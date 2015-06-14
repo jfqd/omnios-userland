@@ -70,10 +70,12 @@ LDFLAGS="-L/usr/local/lib -R/usr/local/lib \
     -L$PREFIX/lib -R$PREFIX/lib"
 
 CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl \
-    -I/usr/local/include"
+    -I/usr/local/include -I /usr/local/include/mysql"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 \
     -L$PREFIX/lib -R$PREFIX/lib"
 
+# https://www.mail-archive.com/php-install@lists.php.net/msg16137.html
+export PHP_MYSQLND_ENABLED=yes
 
 export EXTENSION_DIR=$PREFIX/lib/modules
 CONFIGURE_OPTS_32=""
@@ -82,6 +84,8 @@ CONFIGURE_OPTS="
         --prefix=$PREFIX
         --with-libdir=lib/$ISAPART64
         --sysconfdir=$PREFIX/etc
+        --with-config-file-path=$PREFIX/etc
+        --with-config-file-scan-dir=$PREFIX/etc/conf.d
         --includedir=$PREFIX/include
         --bindir=$PREFIX/bin
         --sbindir=$PREFIX/sbin
@@ -91,17 +95,18 @@ CONFIGURE_OPTS="
         --mandir=$PREFIX/man
         --with-pear=$PREFIX/pear
         --enable-dtrace
-        --enable-cgi
         --enable-fpm
+        --enable-xml
+        --enable-simplexml
         --enable-zip=shared
         --with-zlib=shared
         --with-zlib-dir=/usr/local
         --with-sqlite3=shared
-        --enable-pdo=shared
+        --enable-pdo
         --with-pdo-sqlite=shared
-        --with-mysql=shared,mysqlnd
-        --with-mysqli=shared,mysqlnd
-        --with-pdo-mysql=shared,mysqlnd
+        --with-mysql=mysqlnd
+        --with-mysqli=mysqlnd
+        --with-pdo-mysql=mysqlnd
         --enable-mbstring=shared
         --with-mhash=shared
         --with-mcrypt=shared
@@ -119,8 +124,11 @@ CONFIGURE_OPTS="
         --enable-soap=shared
         --with-curl=shared
         --with-openssl
-        --with-ldap=shared,/usr/local
-        "
+        --enable-pcntl
+        --with-gettext
+        --with-iconv
+        --enable-sockets
+        --with-ldap=shared,/usr/local"
 
 # TEST TODO
 #        --with-bzip2=shared,/usr/local
@@ -130,10 +138,17 @@ CONFIGURE_OPTS="
 
 # DID NOT WORK
 #        --with-ldap-sasl=shared,/usr/local -> did not find sasl.h in inc/sasl/sasl.h
-#        --enable-sockets
 #        --enable-intl=shared
 #        --enable-intl=shared
 
+# https://lucamerello.wordpress.com/2015/01/29/solaris-10-how-to-build-and-install-php/
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  cd $TMPDIR/$BUILDDIR
+  logcmd /usr/bin/aclocal
+  logcmd /usr/bin/libtoolize
+  logcmd /usr/bin/autoreconf -vi
+}
 
 make_install() {
     logmsg "--- make install"
@@ -222,27 +237,27 @@ install_ext_mcrypt() {
             logerr "--- Moving mcrypt extensions failed."
 }
 
-# PHP mysql extension
-install_ext_mysql() {
-    create_extension_dir
-    logmsg "--- Moving files for mysql extensions"
-    logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.so $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.so $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.so $DESTDIR/$EXTENSION_DIR/ || \
-            logerr "--- Moving mysql extensions failed."
-}
+# # PHP mysql extension
+# install_ext_mysql() {
+#     create_extension_dir
+#     logmsg "--- Moving files for mysql extensions"
+#     logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.a $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.so $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.so $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.a $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.so $DESTDIR/$EXTENSION_DIR/ || \
+#             logerr "--- Moving mysql extensions failed."
+# }
 
-# PHP pdo extension
-install_ext_pdo() {
-    create_extension_dir
-    logmsg "--- Moving files for pdo extension"
-    logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.so $DESTDIR/$EXTENSION_DIR/ || \
-            logerr "--- Moving pdo extensions failed."
-}
+# # PHP pdo extension
+# install_ext_pdo() {
+#     create_extension_dir
+#     logmsg "--- Moving files for pdo extension"
+#     logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.a $DESTDIR/$EXTENSION_DIR/ && \
+#         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo.so $DESTDIR/$EXTENSION_DIR/ || \
+#             logerr "--- Moving pdo extensions failed."
+# }
 
 # PHP sqlite extension
 install_ext_sqlite() {
@@ -253,17 +268,6 @@ install_ext_sqlite() {
         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_sqlite.a $DESTDIR/$EXTENSION_DIR/ && \
         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_sqlite.so $DESTDIR/$EXTENSION_DIR/ || \
             logerr "--- Moving sqlite extensions failed."
-}
-
-# PHP pgsql extension
-install_ext_pgsql() {
-    create_extension_dir
-    logmsg "--- Moving files for pgsql extension"
-    logcmd mv $INSTALLDIR/$EXTENSION_DIR/pgsql.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pgsql.so $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_pgsql.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_pgsql.so $DESTDIR/$EXTENSION_DIR/ || \
-            logerr "--- Moving pgsql extensions failed."
 }
 
 # PHP zlib extension
@@ -296,6 +300,7 @@ init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 clean_dotfiles
 
@@ -358,7 +363,8 @@ DESC="PHP is a widely-used general-purpose scripting language that is especially
 DEPENDS_IPS="library/freetype2
     library/libjpeg
     library/libpng
-    library/libtiff"
+    library/libtiff
+    library/libgd"
 prep_build
 install_ext_gd
 make_package ext.mog
@@ -381,32 +387,23 @@ prep_build
 install_ext_mcrypt
 make_package ext.mog
 
-PROG=php-mysql
-PKG=runtime/php56/php-mysql
-SUMMARY="PHP 5.6 - MySQL Extensions"
-DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-DEPENDS_IPS=""
-prep_build
-install_ext_mysql
-make_package ext_mysql.mog
+# PROG=php-mysql
+# PKG=runtime/php56/php-mysql
+# SUMMARY="PHP 5.6 - MySQL Extensions"
+# DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
+# DEPENDS_IPS="library/libmysqlclient18"
+# prep_build
+# install_ext_mysql
+# make_package ext_mysql.mog
 
-PROG=php-pdo
-PKG=runtime/php56/php-pdo
-SUMMARY="PHP 5.6 - pdo extension"
-DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-DEPENDS_IPS=""
-prep_build
-install_ext_pdo
-make_package ext.mog
-
-PROG=php-pgsql
-PKG=runtime/php56/php-pgsql
-SUMMARY="PHP 5.6 - PostgreSQL Extension"
-DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
-DEPENDS_IPS="library/libpq5"
-prep_build
-install_ext_pgsql
-make_package ext_pgsql.mog
+# PROG=php-pdo
+# PKG=runtime/php56/php-pdo
+# SUMMARY="PHP 5.6 - pdo extension"
+# DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
+# DEPENDS_IPS=""
+# prep_build
+# install_ext_pdo
+# make_package ext.mog
 
 PROG=php-sqlite
 PKG=runtime/php56/php-sqlite

@@ -1,0 +1,10 @@
+--- php-5.6.10/ext/sockets/config.m4.orig	2015-06-14 11:07:00.000000000 +0200
++++ php-5.6.10/ext/sockets/config.m4	2015-06-14 11:07:37.000000000 +0200
+@@ -56,6 +56,6 @@
+     AC_DEFINE(HAVE_AI_V4MAPPED,1,[Whether you have AI_V4MAPPED])
+   fi
+ 
+-  PHP_NEW_EXTENSION([sockets], [sockets.c multicast.c conversions.c sockaddr_conv.c sendrecvmsg.c], [$ext_shared])
++  PHP_NEW_EXTENSION([sockets], [sockets.c multicast.c conversions.c sockaddr_conv.c sendrecvmsg.c], [$ext_shared],,-D_XPG4_2)
+   PHP_INSTALL_HEADERS([ext/sockets/], [php_sockets.h])
+ fi
