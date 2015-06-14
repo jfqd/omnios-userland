@@ -144,10 +144,11 @@ CONFIGURE_OPTS="
 # https://lucamerello.wordpress.com/2015/01/29/solaris-10-how-to-build-and-install-php/
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
-  cd $TMPDIR/$BUILDDIR
+  pushd $TMPDIR/$BUILDDIR >/dev/null
   logcmd /usr/bin/aclocal
   logcmd /usr/bin/libtoolize
   logcmd /usr/bin/autoreconf -vi
+  popd >/dev/null
 }
 
 make_install() {
