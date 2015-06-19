@@ -123,10 +123,10 @@ make_install() {
     logmsg "--- make (custom) install"
     logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
         logerr "--- Make install failed"
-    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules
+    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/amd64
     logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
     logcmd cp $SRCDIR/files/php56-amd64.load \
-        $DESTDIR/usr/local/apache22/conf/modules/php56-amd64.load
+        $DESTDIR/usr/local/apache22/conf/modules/amd64/php56.load
     logcmd cp $SRCDIR/files/php56-amd64.conf \
         $DESTDIR/usr/local/apache22/conf/conf.d/php56-amd64.conf
 }
