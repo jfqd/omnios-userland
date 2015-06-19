@@ -142,6 +142,7 @@ CONFIGURE_OPTS="
 #        --enable-intl=shared
 
 # https://lucamerello.wordpress.com/2015/01/29/solaris-10-how-to-build-and-install-php/
+# https://bugs.php.net/bug.php?id=66013
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
   pushd $TMPDIR/$BUILDDIR >/dev/null
