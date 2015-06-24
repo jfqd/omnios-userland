@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz
+# http://download.osgeo.org/libtiff/tiff-4.0.4.tar.gz
 PROG=libtiff
-VER=4.0.3
+VER=4.0.4
 PKG=library/libtiff
 SUMMARY="$PROG - for reading and writing TIFF"
 DESC="$SUMMARY ($VER)"
