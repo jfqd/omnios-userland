@@ -78,15 +78,17 @@ copy_additional_check_files() {
     logcmd cp $SRCDIR/files/check_* $DESTDIR/usr/local/libexec/i386
 }
 
+# http://lists.nagios.com/pipermail/nagiosplugin-help/2006-October/003265.html
 fix_pst3() {
   pushd $TMPDIR/$BUILDDIR/plugins-root >/dev/null
-  # 32 bit
-  logcmd CC -g -O2 -c pst3.c
-  logcmd CC -o pst3 pst3.o /usr/lib/libkvm.so.1
+  logmsg "Build pst3 in 32 bit"
+  logcmd /opt/gcc-4.8.1/bin/gcc -g -O2 -c pst3.c
+  logcmd /opt/gcc-4.8.1/bin/gcc -o pst3 pst3.o /usr/lib/libkvm.so.1
   logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/i386
-  # 64 bit
-  logcmd CC -m64 -g -O2 -c pst3.c
-  logcmd CC -m64 -o pst3 pst3.o /usr/lib/amd64/libkvm.so.1
+  logcmd /usr/bin/rm pst3.o
+  logmsg "Build pst3 in 64 bit"
+  logcmd /opt/gcc-4.8.1/bin/gcc -m64 -g -O2 -c pst3.c
+  logcmd /opt/gcc-4.8.1/bin/gcc -m64 -o pst3 pst3.o /usr/lib/amd64/libkvm.so.1
   logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/amd64
   popd >/dev/null
 }
@@ -112,8 +114,8 @@ patch_source
 prep_build
 build
 copy_additional_check_files
-fix_pst3
 make_isa_stub
+fix_pst3
 fix_utils_pm
 make_package
 clean_up
