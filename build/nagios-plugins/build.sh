@@ -62,7 +62,7 @@ CONFIGURE_OPTS="--with-nagios-user=${USER}
 # We need to set our own 32 bit configure opts to put the libexec stuff under
 # $PREFIX/libexec/i386
 CONFIGURE_OPTS_32="--prefix=$PREFIX
-    -exec-prefix=$PREFIX
+    --exec-prefix=$PREFIX
     --sysconfdir=$PREFIX/etc
     --bindir=$PREFIX/bin/$ISAPART
     --sbindir=$PREFIX/sbin/$ISAPART
@@ -76,6 +76,19 @@ copy_additional_check_files() {
     logmsg "Copy custom checks"
     logcmd cp $SRCDIR/files/check_* $DESTDIR/usr/local/libexec/amd64
     logcmd cp $SRCDIR/files/check_* $DESTDIR/usr/local/libexec/i386
+}
+
+fix_pst3() {
+  pushd $TMPDIR/$BUILDDIR/plugins-root >/dev/null
+  # 32 bit
+  logcmd CC -g -O2 -c pst3.c
+  logcmd CC -o pst3 pst3.o /usr/lib/libkvm.so.1
+  logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/i386
+  # 64 bit
+  logcmd CC -m64 -g -O2 -c pst3.c
+  logcmd CC -m64 -o pst3 pst3.o /usr/lib/amd64/libkvm.so.1
+  logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/amd64
+  popd >/dev/null
 }
 
 fix_utils_pm() {
@@ -99,6 +112,7 @@ patch_source
 prep_build
 build
 copy_additional_check_files
+fix_pst3
 make_isa_stub
 fix_utils_pm
 make_package
