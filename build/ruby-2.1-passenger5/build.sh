@@ -74,6 +74,13 @@ compile_apache22_module() {
   logcmd rm -rf ${GEM_HOME}/gems/rake-*
   logcmd rm -rf ${GEM_HOME}/specifications/rack-*
   logcmd rm -rf ${GEM_HOME}/specifications/rake-*
+  logmsg "Copy config files"
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/modules/i386
+  logcmd cp $SRCDIR/files/passenger.load $DESTDIR/usr/local/apache22/modules/i386
+  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache22/modules/i386/passenger.load
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf.d
+  logcmd cp $SRCDIR/files/passenger.conf $DESTDIR/usr/local/apache22/conf.d
+  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache22/conf.d/passenger.conf
 }
 
 init
