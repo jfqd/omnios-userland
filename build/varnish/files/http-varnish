@@ -41,7 +41,7 @@ fi
 case "$1" in
 start)
     check_conf
-    /usr/local/sbin/amd64/varnishd -P /var/run/varnishd.pid -f /etc/varnish/varnish.vcl -s malloc,${MALLOC} -a 127.0.0.1:8080 -u varnish
+    /usr/local/sbin/amd64/varnishd -P /var/run/varnishd.pid -f /etc/varnish/varnish.vcl -s malloc,${MALLOC} -a 0.0.0.0:8080 -u varnish
     ;;
 stop)
     /usr/bin/kill `/usr/bin/cat $PID`
