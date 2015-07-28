@@ -40,8 +40,8 @@ DEPENDS_IPS="omniti/perl/date-calc"
 build() {
   logcmd mkdir -p $DESTDIR/usr/local/bin
   logcmd mkdir -p $DESTDIR/usr/local/man/man1/
-  logcmd cp $SRCDIR/pflogsumm.pl $DESTDIR/usr/local/bin/pflogsumm.pl
-  logcmd cp $SRCDIR/pflogsumm.1 $DESTDIR/usr/local/man/man1/pflogsumm.1
+  logcmd cp $TMPDIR/$BUILDDIR/pflogsumm.pl $DESTDIR/usr/local/bin/pflogsumm.pl
+  logcmd cp $TMPDIR/$BUILDDIR/pflogsumm.1  $DESTDIR/usr/local/man/man1/pflogsumm.1
 }
 
 init
