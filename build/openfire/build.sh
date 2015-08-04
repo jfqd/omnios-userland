@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=openfire
-VER=3.9.3
+VER=3.10.0
 VERHUMAN=$VER
 PKG=network/openfire
 SUMMARY="Openfire XMPP/Jabber Server"
@@ -37,18 +37,36 @@ BUILDDIR=openfire_src
 
 DEPENDS_IPS="runtime/java"
 
+build() {
+  logcmd mkdir -p $DESTDIR/opt || logerr "cannot make /opt"
+  logcmd mv $TMPDIR/$BUILDDIR/src $DESTDIR/opt/openfire \
+      || logerr "cannot move distribution into place"
+  logcmd cp $SRCDIR/openfire.xml $DESTDIR/opt/openfire/conf/ \
+      || logerr "cannot install config"
+  logcmd mkdir -p $DESTDIR/lib/svc/manifest/network \
+      || logerr "cannot make SMF dir"
+  logcmd cp $SRCDIR/smf-openfire.xml $DESTDIR/lib/svc/manifest/network/openfire.xml \
+      || logerr "cannot install SMF manifest"
+}
+
+fix_spaces_in_filenames() {
+  logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google\ Android\ License.txt \
+      $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google_Android_License.txt
+  logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Open-Sans/Apache\ License\ Version\ 2.txt
+      $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Open-Sans/Apache_License_Version_2.txt
+  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/build.txt\ -\ Shortcut.lnk
+      $DESTDIR/opt/openfire/plugins/nodejs/build.txt_-_Shortcut.lnk
+  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/plugin-nodejs.cmd\ -\ Shortcut.lnk
+      $DESTDIR/opt/openfire/plugins/nodejs/plugin-nodejs.cmd_-_Shortcut.lnk
+  logcmd mv $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Fonthead\ Standard\ EULA.txt
+      $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Font  
+}
+
 init
 download_source $PROG $PROG $VER
 prep_build
-logcmd mkdir -p $DESTDIR/opt || logerr "cannot make /opt"
-logcmd mv $TMPDIR/$BUILDDIR/src $DESTDIR/opt/openfire \
-    || logerr "cannot move distribution into place"
-logcmd cp $SRCDIR/openfire.xml $DESTDIR/opt/openfire/conf/ \
-    || logerr "cannot install config"
-logcmd mkdir -p $DESTDIR/lib/svc/manifest/network \
-    || logerr "cannot make SMF dir"
-logcmd cp $SRCDIR/smf-openfire.xml $DESTDIR/lib/svc/manifest/network/openfire.xml \
-    || logerr "cannot install SMF manifest"
+build
+fix_spaces_in_filenames
 make_isa_stub
 make_package
 clean_up
