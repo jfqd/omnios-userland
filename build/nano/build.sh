@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://www.nano-editor.org/dist/v2.2/nano-2.2.6.tar.gz
+# http://www.nano-editor.org/dist/v2.2/nano-2.4.2.tar.gz
 PROG=nano
-VER=2.2.6
+VER=2.4.2
 VERHUMAN=$VER
 PKG=custom/editor/nano
 SUMMARY="A free replacement for the Pico text editor"
