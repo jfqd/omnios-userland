@@ -29,7 +29,7 @@
 . ../../lib/gem-functions.sh
 
 PROG=passenger
-VER=5.0.13
+VER=5.0.15
 VERHUMAN=$VER
 PKG=runtime/ruby-2.1/passenger5
 SUMMARY="Gem install of the passenger gem"
