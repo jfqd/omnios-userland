@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libssh2
-VER=1.4.3
+VER=1.6.0
 PKG=library/libssh2
 SUMMARY="$PROG - a client-side C library implementing the SSH2 protocol."
 DESC="$SUMMARY ($VER)"
