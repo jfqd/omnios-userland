@@ -59,18 +59,12 @@
             </method_context>
         
             <property_group name='mysql_56' type='application'>
-                <propval name='base' type='astring'
-                    value='/usr/local/mysql/5.6'/>
-                <propval name='bin' type='astring'
-                    value='/usr/local/mysql/5.6/bin'/>
-                <propval name='data' type='astring'
-                    value='/var/mysql/5.6/data'/>
-                <propval name='mycnf' type='astring'
-                    value='/var/mysql/5.6/etc/my.cnf'/>
-                <propval name='socket' type='astring'
-                    value='/var/mysql/5.6/run/mysqld.socket'/>
-                <propval name='pidfile' type='astring'
-                    value='/var/mysql/5.6/run/mysqld.pid'/>
+                <propval name='base'    type='astring' value='/usr/local/mysql/5.6'/>
+                <propval name='bin'     type='astring' value='/usr/local/mysql/5.6/bin'/>
+                <propval name='data'    type='astring' value='/var/mysql/5.6/data'/>
+                <propval name='mycnf'   type='astring' value='/var/mysql/5.6/etc/my.cnf'/>
+                <propval name='socket'  type='astring' value='/var/mysql/5.6/run/mysqld.socket'/>
+                <propval name='pidfile' type='astring' value='/var/mysql/5.6/run/mysqld.pid'/>
             </property_group>    
         </instance>
 
