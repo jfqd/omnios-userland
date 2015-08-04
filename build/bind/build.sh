@@ -55,6 +55,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+VER=${VER//-[PW]/.}
 make_package
 clean_up
 
