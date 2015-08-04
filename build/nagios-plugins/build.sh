@@ -85,11 +85,13 @@ fix_pst3() {
   logcmd /opt/gcc-4.8.1/bin/gcc -g -O2 -c pst3.c
   logcmd /opt/gcc-4.8.1/bin/gcc -o pst3 pst3.o /usr/lib/libkvm.so.1
   logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/i386
+  logcmd chmod u+s $DESTDIR/usr/local/libexec/i386/pst3
   logcmd /usr/bin/rm pst3.o
   logmsg "Build pst3 in 64 bit"
   logcmd /opt/gcc-4.8.1/bin/gcc -m64 -g -O2 -c pst3.c
   logcmd /opt/gcc-4.8.1/bin/gcc -m64 -o pst3 pst3.o /usr/lib/amd64/libkvm.so.1
   logcmd /usr/bin/mv pst3 $DESTDIR/usr/local/libexec/amd64
+  logcmd chmod u+s $DESTDIR/usr/local/libexec/amd64/pst3
   popd >/dev/null
 }
 
