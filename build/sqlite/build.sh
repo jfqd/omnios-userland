@@ -28,8 +28,8 @@
 . ../../lib/functions.sh
 
 PROG=sqlite3
-VER=3.8.8.3
-TARVER=3080803
+VER=3.8.11.1
+TARVER=3081101
 VERHUMAN=$VER
 PKG=custom/database/sqlite3
 SUMMARY="SQLite is an embedded SQL database engine"
