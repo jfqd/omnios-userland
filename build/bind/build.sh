@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# ftp://ftp.isc.org/isc/bind9/9.10.2/bind-9.10.2.tar.gz
+# ftp://ftp.isc.org/isc/bind9/9.10.2-P3/bind-9.10.2-P3.tar.gz
 PROG=bind
-VER=9.10.2
+VER=9.10.2-P3
 VERHUMAN=$VER
 PKG=service/network/dns/bind
 SUMMARY="BIND DNS server and tools"
