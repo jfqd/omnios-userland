@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=memcached
-VER=1.4.22
+VER=1.4.24
 VERHUMAN=$VER
 PKG=server/memcached
 SUMMARY="$PROG - free & open source, high-performance, distributed memory object caching system"
