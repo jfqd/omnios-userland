@@ -1,5 +1,5 @@
 --- logwatch-7.4.1/install_logwatch.sh.orig	2015-08-07 11:28:36.000000000 +0200
-+++ logwatch-7.4.1-patched/install_logwatch.sh	2015-08-07 12:32:57.000000000 +0200
++++ logwatch-7.4.1-patched/install_logwatch.sh	2015-08-07 12:37:07.000000000 +0200
 @@ -72,11 +72,11 @@
  
  #All these can be set via user input
@@ -274,7 +274,7 @@
 -printf "Created symlink for /usr/sbin/logwatch \n"
 +#Go for the safe install rather then editing man.cf
 +mkdir -p $INSTALLDIR/$MANDIR/man1m > /dev/null 2>&1
-+mkdir -p $INSTALLDIR/$MANDIR/man > /dev/null 2>&1
++mkdir -p $INSTALLDIR/$MANDIR/man1 > /dev/null 2>&1
 +install -m 0644 logwatch.8 $INSTALLDIR/$MANDIR/man1m
 +install -m 0644 logwatch.conf.5 $INSTALLDIR/$MANDIR/man1m
 +install -m 0644 override.conf.5 $INSTALLDIR/$MANDIR/man1m
