@@ -30,16 +30,16 @@
 PROG=subversion
 VER=1.6.17
 VERHUMAN=$VER
-PKG=omniti/developer/versioning/subversion
+PKG=developer/versioning/subversion
 SUMMARY="$PROG - An Open-Source Revision Control System"
 DESC="$SUMMARY"
 
 NEON=neon
-NVER=0.30.1
+NVER=0.29.0
 
-BUILD_DEPENDS_IPS="developer/swig custom/server/apache22"
+BUILD_DEPENDS_IPS="developer/swig"
 DEPENDS_IPS="custom/database/sqlite3 library/security/openssl 
-             custom/library/apr custom/library/apr-util"
+             custom/library/apr@1.4 custom/library/apr-util@1.4"
 
 CFLAGS32="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
 CPPFLAGS32="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
@@ -60,7 +60,7 @@ CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32
     --with-apr-util=/usr/local/bin/$ISAPART/apu-1-config"
 
 CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64
-    --with-swig=/usr/bin/local/$ISAPART64/swig
+    --with-swig=/usr/bin/amd64/swig
     --with-apr=/usr/local/bin/$ISAPART64/apr-1-config
     --with-apr-util=/usr/local/bin/$ISAPART64/apu-1-config"
 
