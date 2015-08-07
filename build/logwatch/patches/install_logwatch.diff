@@ -154,7 +154,7 @@
 -if [ $munge_base ]; then
 -   perl -pi -e "s%/usr/share/logwatch%$BASEDIR%" $BASEDIR/scripts/logwatch.pl
 -fi
-+perl -pi -e "s%/usr/share/logwatch%/usr/local/share/logwatch" $INSTALLDIR/$BASEDIR/scripts/logwatch.pl
++perl -pi -e "s%/usr/share/logwatch%/usr/local/share/logwatch%" $INSTALLDIR/$BASEDIR/scripts/logwatch.pl
  
  #CONFIG
 -install -m 0755 -d $CONFIGDIR
