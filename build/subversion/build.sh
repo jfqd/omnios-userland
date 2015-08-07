@@ -35,7 +35,7 @@ SUMMARY="$PROG - An Open-Source Revision Control System"
 DESC="$SUMMARY"
 
 NEON=neon
-NVER=0.29.0
+NVER=0.30.1
 
 BUILD_DEPENDS_IPS="developer/swig custom/server/apache22"
 DEPENDS_IPS="custom/database/sqlite3 library/security/openssl 
