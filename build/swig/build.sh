@@ -28,18 +28,18 @@
 . ../../lib/functions.sh
 
 PROG=swig
-VER=3.0.2
+VER=3.0.7
 VERHUMAN=$VER
 PKG=developer/swig
 SUMMARY="$PROG - Simplified Wrapper and Interface Generator"
 DESC="$SUMMARY ($VER)"
 
-BUILD_DEPENDS_IPS="runtime/python-27"
+#BUILD_DEPENDS_IPS="runtime/python-27"
 
 BUILDARCH=64
 
 CONFIGURE_OPTS="$CONFIGURE_OPTS --disable-ccache
-                --with-python=/opt/python27/bin/python"
+                --with-python=/usr/bin/python"
 
 init
 download_source $PROG $PROG $VER
