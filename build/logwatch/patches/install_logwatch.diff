@@ -1,5 +1,5 @@
---- install_logwatch.sh.orig	2015-08-07 11:28:36.000000000 +0200
-+++ install_logwatch.sh	2015-08-07 11:34:15.000000000 +0200
+--- logwatch-7.4.1/install_logwatch.sh	2015-08-07 11:28:36.000000000 +0200
++++ logwatch-7.4.1-patched/install_logwatch.sh	2015-08-07 11:34:15.000000000 +0200
 @@ -108,77 +108,9 @@
     munge_base=1
     CONFIGDIR=$BASEDIR/etc
