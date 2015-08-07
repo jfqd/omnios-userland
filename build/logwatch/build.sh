@@ -39,11 +39,9 @@ download_source $PROG $PROG $VER
 patch_source
 prep_build
 
-$TMPDIR/$BUILDDIR/install_logwatch.sh --prefix $DESTDIR$PREFIX
+logcmd chmod +x $TMPDIR/$BUILDDIR/install_logwatch.sh
+logcmd $TMPDIR/$BUILDDIR/install_logwatch.sh --prefix $DESTDIR$PREFIX
 # https://buildfarm.opencsw.org/source/xref/opencsw/csw/mgar/pkg/logwatch/trunk/Makefile
-logcmd touch $DESTDIR$PREFIX/conf/logwatch.conf
-logcmd touch $DESTDIR$PREFIX/conf/ignore.conf
-logcmd touch $$DESTDIR$PREFIX/conf/override.conf
 
 make_package
 clean_up

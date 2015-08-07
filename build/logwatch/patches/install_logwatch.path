@@ -1,0 +1,135 @@
+--- install_logwatch.sh.orig	2015-08-07 11:28:36.000000000 +0200
++++ install_logwatch.sh	2015-08-07 11:34:15.000000000 +0200
+@@ -108,77 +108,9 @@
+    munge_base=1
+    CONFIGDIR=$BASEDIR/etc
+    munge_conf=1
+-   TEMPDIR=$BASEDIR/tmp
+-   munge_temp=1
+    MANDIR=$BASEDIR/man
+ fi
+ 
+-
+-#Talk to user
+-printf "#################################\n"
+-printf "Preparing to install Logwatch\n"
+-printf "Enter the path to the Logwatch BaseDir [$BASEDIR] : "
+-read base
+-
+-if [ "$base" = "" ]; then
+-   printf "### Using $BASEDIR\n"
+-else
+-   BASEDIR="$base"
+-   #Set munge flag
+-   munge_base=1
+-   printf "### Using $BASEDIR [will modify logwatch.pl]\n"
+-fi
+-
+-printf "Enter the path for the Logwatch ConfigDir [$CONFIGDIR] : "
+-read config
+-
+-if [ "$config" = "" ]; then
+-   printf "### Using $CONFIGDIR\n"
+-else
+-   CONFIGDIR="$config" 
+-   munge_conf=1
+-   printf "### Using $CONFIGDIR [will modify logwatch.pl]\n"
+-fi
+-
+-printf "Enter the dir name to be used for temp files [$TEMPDIR] : "
+-read temp
+-
+-if [ "$temp" = "" ]; then
+-   printf "### Using $TEMPDIR\n"
+-else
+-   TEMPDIR="$temp"
+-   munge_temp=1
+-   printf "### Using $TEMPDIR [will write to $CONFIGDIR/conf/logwatch.conf]\n"
+-fi
+-
+-printf "Enter the location of perl [$PERLEXE] : "
+-read perlexe
+-
+-if [ "$perlexe" = "" ]; then
+-   printf "### Using $PERLEXE\n"
+-else
+-   PERLEXE="$perlexe"
+-   munge_perl=1
+-   printf "### Using $PERLEXE [will modify logwatch.pl]\n"
+-fi
+-
+-printf "Enter the dir name to used for the manpage [$MANDIR] : "
+-read mandir
+-
+-if [ "$mandir" = "" ]; then
+-   printf "### Using $MANDIR\n"
+-else
+-   MANDIR="$mandir"
+-   printf "### Using $MANDIR [Will try to run makewhatis]\n"
+-fi
+-
+-echo "### Installing"
+-
+-#OS Tests for known issues
+-if [ $OS = "Darwin" ]; then
+-   munge_gzcat=1
+-fi
+-
+ #Install is borked under IRIX
+ #BASE
+ install -m 0755 -d $BASEDIR
+@@ -211,9 +143,7 @@
+ install -m 0644 scripts/services/* $BASEDIR/scripts/services
+ install -m 0644 lib/* $BASEDIR/lib
+ 
+-if [ $munge_base ]; then
+-   perl -pi -e "s%/usr/share/logwatch%$BASEDIR%" $BASEDIR/scripts/logwatch.pl
+-fi
++perl -pi -e "s%/usr/share/logwatch%/usr/local/share/logwatch" $BASEDIR/scripts/logwatch.pl
+ 
+ #CONFIG
+ install -m 0755 -d $CONFIGDIR
+@@ -224,10 +154,6 @@
+ install -m 0755 -d $CONFIGDIR/conf/services
+ install -m 0755 -d $CONFIGDIR/conf/html
+ 
+-if [ $munge_conf ]; then
+-   perl -pi -e "s%/etc/logwatch%$CONFIGDIR%" $BASEDIR/scripts/logwatch.pl
+-fi
+-
+ touch $CONFIGDIR/conf/logwatch.conf
+ touch $CONFIGDIR/conf/ignore.conf
+ touch $CONFIGDIR/conf/override.conf
+@@ -240,20 +166,7 @@
+    install -m 0755 -d $TEMPDIR
+ fi
+ 
+-#This can create duplicates need to grep first -mgt
+-if [ $munge_temp ]; then
+-   echo "TmpDir = $TEMPDIR" >> $CONFIGDIR/conf/logwatch.conf
+-fi
+-
+-#PERL
+-if [ $munge_perl ]; then
+-   perl -pi -e "s%/usr/bin/perl%$PERLEXE%" $BASEDIR/scripts/logwatch.pl
+-fi
+-
+-#Gzcat
+-if [ $munge_gzcat ]; then
+-   echo "Pathtozcat = gzcat" >> $CONFIGDIR/conf/logwatch.conf
+-fi
++echo "TmpDir = /var/cache/logwatch" >> $CONFIGDIR/conf/logwatch.conf
+ 
+ #Search for makewhatis
+ for f in `echo $PATH | tr : ' '`; do
+@@ -316,10 +229,6 @@
+    fi
+ fi
+ 
+-#Symlink
+-ln -f -s $BASEDIR/scripts/logwatch.pl /usr/sbin/logwatch
+-printf "Created symlink for /usr/sbin/logwatch \n"
+-
+ #Cron
+ if [ -d /etc/cron.daily ]; then
+    rm -f /etc/cron.daily/0logwatch
