@@ -40,7 +40,7 @@ patch_source
 prep_build
 
 logcmd chmod +x $TMPDIR/$BUILDDIR/install_logwatch.sh
-logcmd cd $TMPDIR/$BUILDDIR ; ./install_logwatch.sh --prefix $DESTDIR$PREFIX
+logcmd cd $TMPDIR/$BUILDDIR ; ./install_logwatch.sh --prefix $DESTDIR
 # https://buildfarm.opencsw.org/source/xref/opencsw/csw/mgar/pkg/logwatch/trunk/Makefile
 
 make_package
