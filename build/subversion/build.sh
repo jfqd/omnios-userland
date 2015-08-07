@@ -37,9 +37,9 @@ DESC="$SUMMARY"
 NEON=neon
 NVER=0.29.0
 
-BUILD_DEPENDS_IPS="developer/swig@1.3 omniti/server/apache22"
-DEPENDS_IPS="database/sqlite-3@3.7 library/security/openssl@1.0.1 
-             omniti/library/apr@1.4 omniti/library/apr-util@1.4"
+BUILD_DEPENDS_IPS="developer/swig custom/server/apache22"
+DEPENDS_IPS="custom/database/sqlite3 library/security/openssl 
+             custom/library/apr custom/library/apr-util"
 
 CFLAGS32="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
 CPPFLAGS32="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
@@ -53,24 +53,24 @@ CONFIGURE_OPTS="$CONFIGURE_OPTS
     --without-berkeley-db
     --without-jdk
     --disable-nls
-    --with-sqlite=/usr"
+    --with-sqlite=/usr/local"
 
 CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32
-    --with-apr=/opt/omni/bin/$ISAPART/apr-1-config
-    --with-apr-util=/opt/omni/bin/$ISAPART/apu-1-config"
+    --with-apr=/usr/local/bin/$ISAPART/apr-1-config
+    --with-apr-util=/usr/local/bin/$ISAPART/apu-1-config"
 
 CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64
-    --with-swig=/usr/bin/$ISAPART64/swig
-    --with-apr=/opt/omni/bin/$ISAPART64/apr-1-config
-    --with-apr-util=/opt/omni/bin/$ISAPART64/apu-1-config"
+    --with-swig=/usr/bin/local/$ISAPART64/swig
+    --with-apr=/usr/local/bin/$ISAPART64/apr-1-config
+    --with-apr-util=/usr/local/bin/$ISAPART64/apu-1-config"
 
-CPPFLAGS="$CPPFLAGS -I/opt/omni/include" 
+CPPFLAGS="$CPPFLAGS -I/usr/local/include" 
 
 LDFLAGS32="$LDFLAGS32 \
-    -L/opt/omni/lib -R/opt/omni/lib"
+    -L/usr/local/lib -R/usr/local/lib"
 
 LDFLAGS64="$LDFLAGS64 \
-    -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
+    -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
 # Extra script/file installs
 add_file() {
@@ -83,12 +83,6 @@ add_file() {
     else
         logcmd chmod 0444 $DESTDIR$PREFIX/$2
     fi
-}
-
-add_extra_files() {
-    logmsg "Installing custom files"
-    add_file cacert.pem etc/subversion/cacert.pem
-    add_file servers etc/subversion/servers
 }
 
 save_function download_source download_source_orig
@@ -108,7 +102,6 @@ patch_source
 prep_build
 build
 make_isa_stub
-add_extra_files
 make_package
 clean_up
 
