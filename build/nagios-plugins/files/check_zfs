@@ -58,6 +58,7 @@ my $size="";
 my $used="";
 my $avail="";
 my $expand="";
+my $frag="";
 my $cap="";
 my $dedup="";
 my $health="";
@@ -85,6 +86,9 @@ while(<STAT>) {
   } elsif (/^NAME\s+SIZE\s+ALLOC\s+FREE\s+EXPANDSZ\s+CAP\s+DEDUP\s+HEALTH\s+ALTROOT/) {
     $zfs_version = "v2";
     next;
+  } elsif (/^NAME\s+SIZE\s+ALLOC\s+FREE\s+EXPANDSZ\s+FRAG\s+CAP\s+DEDUP\s+HEALTH\s+ALTROOT/) {
+    $zfs_version = "v3";
+    next;
   }
 
   if (/^${pool}\s+/) {
@@ -92,6 +96,8 @@ while(<STAT>) {
       ($size, $used, $avail, $cap, $dedup, $health) = /^${pool}\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/;
     } elsif ($zfs_version eq "v2") {
       ($size, $used, $avail, $expand, $cap, $dedup, $health) = /^${pool}\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/;
+    } elsif ($zfs_version eq "v3") {
+      ($size, $used, $avail, $expand, $frag, $cap, $dedup, $health) = /^${pool}\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/;
     } else {
       # TODO: exit with error
     }
