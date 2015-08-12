@@ -42,6 +42,9 @@ download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
+# fix install issues with nano
+logcmd mv $DESTDIR/usr/local/share/info/dir $DESTDIR/usr/local/share/info/dir.libgcrypt-bak
+#
 make_isa_stub
 make_package
 clean_up
