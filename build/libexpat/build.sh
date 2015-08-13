@@ -34,8 +34,10 @@ PKG=custom/library/libexpat
 SUMMARY="XML parser library"
 DESC="James Clark's Expat XML parser library in C. It is a stream oriented parser that requires setting handlers to deal with the structure that the parser discovers in the document."
 
+BUILDDIR=expat-$VER
+
 init
-download_source $PROG $PROG $VER
+download_source $PROG expat $VER
 patch_source
 prep_build
 build
