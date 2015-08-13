@@ -34,7 +34,7 @@ PKG=service/network/unbound
 SUMMARY="$PROG - A validating, recursive, and caching DNS resolver."
 DESC="$SUMMARY ($VER)"
 
-DEPENDS_IPS="system/library/gcc-4-runtime"
+DEPENDS_IPS="system/library/gcc-4-runtime custom/library/libexpat library/libevent"
 
 USER=unbound
 GROUP=unbound
