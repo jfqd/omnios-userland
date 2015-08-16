@@ -30,28 +30,39 @@
 PROG=geoip
 VER=1.0.8
 VERHUMAN=$VER
-PKG=runtime/php56/geoip
+PKG=runtime/php56/php-geoip
 SUMMARY="This PHP extension allows you to find the location of an IP address"
 DESC="This PHP extension allows you to find the location of an IP address - City, State, Country, Longitude, Latitude, and other information as all, such as ISP and connection type. For more info, please visit Maxmind's website."
 
-DEPENDS_IPS="runtime/php56"
+DEPENDS_IPS="runtime/php56 library/geoip developer/re2c"
 
 BUILDARCH=64
 PREFIX=$PREFIX/php56
 reset_configure_opts
 
+CONFIGURE_OPTS="--with-php-config=$PREFIX/bin/php-config --with-geoip"
+
 CPPFLAGS="-I/usr/local/include"
 LDFLAGS="-L/usr/local/lib -R/usr/local/lib \
     -L$PREFIX/lib -R$PREFIX/lib"
 
-CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl \
-    -I/usr/local/include -I /usr/local/include/mysql"
+CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 \
     -L$PREFIX/lib -R$PREFIX/lib"
 
+make_install64() {
+  logmsg "--- make install"
+  logcmd mkdir -p $DESTDIR/$PREFIX/lib/modules
+  logcmd cp $TMPDIR/$BUILDDIR/modules/geoip.so $DESTDIR/$PREFIX/lib/modules
+  logcmd cp $TMPDIR/$BUILDDIR/modules/geoip.la $DESTDIR/$PREFIX/lib/modules
+}
+
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
-  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
+  pushd $TMPDIR/$BUILDDIR >/dev/null
+  logcmd /usr/local/php56/bin/phpize
+  logcmd /usr/bin/aclocal && /usr/bin/libtoolize --force && /usr/sfw/bin/autoreconf
+  popd >/dev/null
 }
 
 init
