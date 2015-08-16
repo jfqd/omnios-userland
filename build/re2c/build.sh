@@ -30,7 +30,7 @@
 PROG=re2c
 VER=0.14.3
 VERHUMAN=$VER
-PKG=library/re2c
+PKG=developer/re2c
 SUMMARY="Re2c is a tool for writing very fast and very flexible scanners."
 DESC="Re2c is a tool for writing very fast and very flexible scanners. Unlike any other such tool, re2c focuses on generating high efficient code for regular expression matching"
 
