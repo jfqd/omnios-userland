@@ -49,10 +49,16 @@ CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 \
     -L$PREFIX/lib -R$PREFIX/lib"
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logcmd autoreconf -vi $TMPDIR/$BUILDDIR
+}
+
 init
 download_source php-$PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 make_package
