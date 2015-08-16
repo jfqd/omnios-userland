@@ -37,7 +37,7 @@ DESC="Netatalk is a freely-available, kernel level implementation of the AppleTa
 
 DEPENDS_IPS="database/bdb library/libevent service/network/dns/mdns
              system/library system/library/gcc-4-runtime system/library/math 
-             library/security/libgcrypt library/libldap library/security/cyrus-sasl
+             pkg://application/library/security/libgcrypt library/libldap library/security/cyrus-sasl
              library/libmysqlclient18"
 
 export MYSQL_LIBS="-lstdc++"
