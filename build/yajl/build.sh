@@ -34,6 +34,10 @@ PKG=library/yajl
 SUMMARY="Yet Another JSON Library."
 DESC="YAJL is a small event-driven (SAX-style) JSON parser written in ANSI C, and a small validating JSON generator."
 
+BUILDARCH=32
+
+MAKE=make
+
 init
 download_source $PROG $PROG $VER
 patch_source
