@@ -41,19 +41,29 @@ reset_configure_opts
 # PERLPATH32=/opt/OMNIperl/bin/$ISAPART
 # PERLPATH64=/opt/OMNIperl/bin/$ISAPART64
 
-BUILD_DEPENDS_IPS="library/gd library/libjpeg library/libpng incorporation/perl-516-incorporation runtime/perl"
-DEPENDS_IPS="library/gd library/libjpeg library/libpng incorporation/perl-516-incorporation runtime/perl"
+BUILD_DEPENDS_IPS="monitoring/nagios/nagios-plugins \
+                   library/libgd \
+                   library/libjpeg \
+                   library/libpng \
+                   pkg:/omniti/incorporation/perl-516-incorporation \
+                   runtime/perl"
+
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 # Don't make a stub for p1.pl
 NOSCRIPTSTUB=1
+
+BUILDARCH=32
 
 CPPFLAGS="-I/usr/local/include"
 LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
+USER=`/usr/bin/whoami`
+
 CONFIGURE_OPTS="
-    --with-nagios-user=$USER
-    --with-nagios-group=users
+    --with-nagios-user=${USER}
+    --with-nagios-group=${USER}
     --with-httpd-conf=$PREFIX/etc
     --with-htmurl=
     --with-cgiurl=/cgi-bin
