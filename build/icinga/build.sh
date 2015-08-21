@@ -34,14 +34,30 @@ PKG=monitoring/icinga2
 SUMMARY="Open source monitoring system"
 DESC="Icinga 2 is an open source monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting."
 
+
+BUILD_DEPENDS_IPS="developer/lexer/flex \
+                   developer/parser/bison \
+                   pkg://application/library/pkgcon \
+                   library/yajl"
+                   
+BUILDARCH=32
+
 build() {
-  logmsg "Build icinga with cmake $TMPDIR/$BUILDDIR"
   pushd $TMPDIR/$BUILDDIR >/dev/null
+  #logmsg "--- make clean"
+  #logcmd $MAKE clean
+  #logcmd rm CMakeCache.txt
+  logmsg "--- Build icinga with cmake $TMPDIR/$BUILDDIR"
   logcmd mkdir build && cd build
-  logcmd cmake .. -DCMAKE_INSTALL_PREFIX=$DESTDIR
-  logcmd make
+  logcmd cmake .. -DICINGA2_WITH_PGSQL=OFF \
+                  -DPKG_CONFIG_EXECUTABLE=/usr/local/bin/pkgconf \
+                  -DOPENSSL_ROOT_DIR=/usr \
+                  -DOPENSSL_LIBRARIES=/usr/lib \
+                  -DOPENSSL_INCLUDE_DIR=/usr/include/openssl
+                  
+                  # -DCMAKE_INSTALL_PREFIX=$DESTDIR$PREFIX
+  logcmd gmake
   popd >/dev/null
-  
 }
 
 init
