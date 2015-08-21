@@ -27,10 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-PROG=icinga
+PROG=icinga2
 VER=2.3.8
 VERHUMAN=$VER
-PKG=monitoring/icinga
+PKG=monitoring/icinga2
 SUMMARY="Open source monitoring system"
 DESC="Icinga 2 is an open source monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting."
 
