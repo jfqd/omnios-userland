@@ -46,7 +46,7 @@
         timeout_seconds='30' />
 
     <property_group name='openvpn' type='application'>
-        <propval name='cfg_file' type='astring' value='/etc/openvpn/openvpn.conf' />
+        <propval name='cfg_file' type='astring' value='/etc/openvpn/server.conf' />
     </property_group>
     <stability value='Unstable' />
     <template>

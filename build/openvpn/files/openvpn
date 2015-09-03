@@ -26,7 +26,7 @@ case "$1" in
              "service: $SMF_FMRI"
         exit $SMF_EXIT_ERR_CONFIG
        fi
-       cmd='/usr/sbin/openvpn --daemon --config ';
+       cmd='/usr/local/sbin/openvpn --daemon --config ';
        cmd="${cmd} ${cfg_file}";
     echo $cmd;
     exec $cmd
