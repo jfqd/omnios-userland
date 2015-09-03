@@ -48,7 +48,13 @@ BUILD_DEPENDS_IPS="monitoring/nagios/nagios-plugins \
                    pkg:/omniti/incorporation/perl-516-incorporation \
                    runtime/perl"
 
-DEPENDS_IPS=$BUILD_DEPENDS_IPS
+DEPENDS_IPS="monitoring/nagios/nagios-plugins \
+                   library/libgd \
+                   library/libjpeg \
+                   library/libpng \
+                   pkg:/omniti/incorporation/perl-516-incorporation \
+                   runtime/perl \
+                   custom/server/apache22"
 
 # Don't make a stub for p1.pl
 NOSCRIPTSTUB=1
@@ -76,6 +82,16 @@ CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32
 CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64
     --with-gd-lib=/usr/local/lib/$ISAPART64"
 
+smf_support() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/application/management
+    logcmd cp $SRCDIR/files/manifest-nagios.xml \
+        $DESTDIR/lib/svc/manifest/application/management/nagios.xml
+    logcmd mkdir -p $DESTDIR/lib/svc/method
+    logcmd cp $SRCDIR/files/svc-nagios \
+        $DESTDIR/lib/svc/method/svc-nagios
+}
+
 make_prog() {
     logmsg "--- make"
     logmsg "------ make all"
@@ -101,6 +117,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+smf_support
 make_package
 clean_up
 
