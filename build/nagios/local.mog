@@ -6,4 +6,8 @@
 <transform file path=usr/local/nagios/share.* -> set group nagios>
 <transform dir path=usr/local/nagios/var.* -> set user nagios>
 <transform dir path=usr/local/nagios/var.* -> set group nagios>
+<transform dir path=var/nagios -> set user nagios>
+<transform dir path=var/nagios -> set group nagios>
+<transform dir path=var/nagios/* -> set user nagios>
+<transform dir path=var/nagios/* -> set group nagios>
 license LICENSE license=GPLv2
