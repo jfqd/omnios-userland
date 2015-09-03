@@ -85,6 +85,7 @@ CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64
 add_configuration() {
   logcmd mkdir -p $DESTDIR/var/nagios
   logcmd mkdir -p $DESTDIR/var/nagios/spool/checkresults
+  logcmd mkdir -p $DESTDIR/var/nagios/rw/
   logcmd mkdir -p $DESTDIR/etc/nagios/objects
   logcmd cp $SRCDIR/files/nagios.cfg \
       $DESTDIR/etc/nagios/nagios.cfg
