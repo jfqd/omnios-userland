@@ -8,6 +8,8 @@
 <transform dir path=usr/local/nagios/var.* -> set group nagios>
 <transform dir path=var/nagios -> set user nagios>
 <transform dir path=var/nagios -> set group nagios>
-<transform dir path=var/nagios/* -> set user nagios>
-<transform dir path=var/nagios/* -> set group nagios>
+<transform dir path=var/nagios/spool -> set user nagios>
+<transform dir path=var/nagios/spool -> set group nagios>
+<transform dir path=var/nagios/spool/checkresults -> set user nagios>
+<transform dir path=var/nagios/spool/checkresults -> set group nagios>
 license LICENSE license=GPLv2
