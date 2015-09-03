@@ -88,6 +88,8 @@ add_configuration() {
   logcmd mkdir -p $DESTDIR/etc/nagios/objects
   logcmd cp $SRCDIR/files/nagios.cfg \
       $DESTDIR/etc/nagios/nagios.cfg
+  logcmd cp $SRCDIR/files/cgi.cfg \
+      $DESTDIR/etc/nagios/cgi.cfg
   logcmd cp $SRCDIR/files/commands.cfg \
       $DESTDIR/etc/nagios/objects/commands.cfg
   logcmd cp $SRCDIR/files/templates.cfg \
@@ -97,7 +99,7 @@ add_configuration() {
   logcmd cp $SRCDIR/files/contacts.cfg \
       $DESTDIR/etc/nagios/objects/contacts.cfg
   logcmd cp $SRCDIR/files/resource.cfg \
-      $DESTDIR/etc/nagios/objects/resource.cfg
+      $DESTDIR/etc/nagios/resource.cfg
   logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/i386
   logcmd cp $SRCDIR/files/nagios.load \
       $DESTDIR/usr/local/apache22/conf/modules/i386/nagios.load
