@@ -82,6 +82,32 @@ CONFIGURE_OPTS_32="$CONFIGURE_OPTS_32
 CONFIGURE_OPTS_64="$CONFIGURE_OPTS_64
     --with-gd-lib=/usr/local/lib/$ISAPART64"
 
+add_configuration() {
+  logcmd mkdir -p $DESTDIR/var/nagios
+  logcmd mkdir -p $DESTDIR/var/nagios/spool
+  logcmd mkdir -p $DESTDIR/etc/nagios/objects
+  logcmd cp $SRCDIR/files/nagios.cfg \
+      $DESTDIR/etc/nagios/nagios.cfg
+  logcmd cp $SRCDIR/files/commands.cfg \
+      $DESTDIR/etc/nagios/objects/commands.cfg
+  logcmd cp $SRCDIR/files/templates.cfg \
+      $DESTDIR/etc/nagios/objects/templates.cfg
+  logcmd cp $SRCDIR/files/timeperiods.cfg \
+      $DESTDIR/etc/nagios/objects/timeperiods.cfg
+  logcmd cp $SRCDIR/files/contacts.cfg \
+      $DESTDIR/etc/nagios/objects/contacts.cfg
+  logcmd cp $SRCDIR/files/resource.cfg \
+      $DESTDIR/etc/nagios/objects/resource.cfg
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/i386
+  logcmd cp $SRCDIR/files/nagios.load \
+      $DESTDIR/usr/local/apache22/conf/modules/i386/nagios.load
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
+  logcmd cp $SRCDIR/files/httpd-nagios.conf \
+      $DESTDIR/usr/local/apache22/conf/conf.d/httpd-nagios.conf
+  logcmd cp $SRCDIR/files/htpasswd.users \
+      $DESTDIR/etc/nagios/htpasswd.users
+}
+
 smf_support() {
     logmsg "Installing SMF"
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/application/management
@@ -117,6 +143,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+add_configuration
 smf_support
 make_package
 clean_up
