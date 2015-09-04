@@ -42,9 +42,10 @@ PREFIX=/usr/local/apache22
 
 BUILDARCH=32
 ARCHIVENAME=httpd
+BUILDDIR=$PROG
 
 build() {
-    logcmd mkdir $DESTDIR$PREFIX/libexec/i386
+    logcmd mkdir -p $DESTDIR$PREFIX/libexec/i386
     logcmd cp $TMPDIR/$BUILDDIR/mod_ssl.so $DESTDIR$PREFIX/libexec/i386
 }
 
