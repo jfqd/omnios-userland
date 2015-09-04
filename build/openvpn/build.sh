@@ -47,7 +47,7 @@ service_configs() {
     logmsg "Installing SMF"
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
     logcmd cp $SRCDIR/files/manifest-openvpn.xml \
-        $DESTDIR/lib/svc/manifest/network/openvpn
+        $DESTDIR/lib/svc/manifest/network/openvpn.xml
     logcmd mkdir -p $DESTDIR/lib/svc/method
     logcmd cp $SRCDIR/files/openvpn \
         $DESTDIR/lib/svc/method/openvpn
