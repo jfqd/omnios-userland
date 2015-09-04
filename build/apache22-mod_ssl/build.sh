@@ -42,21 +42,52 @@ BUILD_DEPENDS_IPS="custom/database/sqlite3 \
 DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 PREFIX=/usr/local/apache22
-reset_configure_opts
 
 BUILDARCH=32
 ARCHIVENAME=httpd
 BUILDDIR=$ARCHIVENAME-$VER
 
 CONFIGURE_OPTS="--prefix=$PREFIX
+    --enable-layout=Soli386
     --enable-ssl
     --enable-mods-shared=all
     --with-apr=/usr/local/bin/i386/apr-1-config
     --with-apr-util=/usr/local/bin/i386/apu-1-config"
 
-make_install32() {
-  logcmd mkdir $DESTDIR$PREFIX/libexec/i386
-  logcmd cp $TMPDIR/$BUILDDIR/build/modules/ssl/.libs/mod_ssl.so $DESTDIR$PREFIX/libexec/i386
+# reset_configure_opts
+
+# Add some more files once the source code has been downloaded
+save_function download_source download_source_orig
+download_source() {
+    download_source_orig "$@"
+    logcmd cp $SRCDIR/files/config.layout $TMPDIR/$BUILDDIR/
+}
+
+configure() {
+    logmsg "--- configure (32-bit)"
+    CFLAGS="$CFLAGS $CFLAGS32" \
+    CXXFLAGS="$CXXFLAGS $CXXFLAGS32" \
+    CPPFLAGS="$CPPFLAGS $CPPFLAGS32" \
+    LDFLAGS="$LDFLAGS $LDFLAGS32" \
+    CC=$CC CXX=$CXX \
+    logcmd $CONFIGURE_CMD $CONFIGURE_OPTS || \
+        logerr "--- Configure failed"
+}
+
+build() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 32-bit"
+    export ISALIST="$ISAPART"
+    make_clean
+    configure
+    make_prog32
+    
+    logcmd mkdir $DESTDIR$PREFIX/libexec/i386
+    logcmd cp $TMPDIR/$BUILDDIR/build/modules/ssl/.libs/mod_ssl.so $DESTDIR$PREFIX/libexec/i386
+    
+    popd > /dev/null
+    unset ISALIST
+    export ISALIST
 }
 
 init
