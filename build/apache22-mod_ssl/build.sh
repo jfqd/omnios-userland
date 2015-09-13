@@ -27,6 +27,14 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# wget http://apache.openmirror.de//httpd/httpd-2.2.31.tar.gz
+# tar xzf httpd-2.2.31.tar.gz
+# cd httpd-2.2.31
+# export PATH=/opt/gcc-4.8.1/bin:/usr/local/apache22/bin/i386:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin
+# ./configure --prefix=/usr/local/apache22 --enable-ssl --enable-mods-shared=all --with-apr=/usr/local/bin/i386/apr-1-config --with-apr-util=/usr/local/bin/i386/apu-1-config
+# make
+# cp ./modules/ssl/.libs/mod_ssl.so /usr/local/apache22/libexec/i386
+
 PROG=mod_ssl
 VER=2.2.31
 VERHUMAN=$VER
