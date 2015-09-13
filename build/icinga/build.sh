@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=icinga2
-VER=2.3.8
+VER=2.3.10
 VERHUMAN=$VER
 PKG=monitoring/icinga2
 SUMMARY="Open source monitoring system"
@@ -37,9 +37,9 @@ DESC="Icinga 2 is an open source monitoring system which checks the availability
 
 BUILD_DEPENDS_IPS="developer/lexer/flex \
                    developer/parser/bison \
-                   pkg://application/library/pkgcon \
+                   pkg://application/library/pkgconf \
                    library/yajl"
-                   
+
 BUILDARCH=32
 
 build() {
