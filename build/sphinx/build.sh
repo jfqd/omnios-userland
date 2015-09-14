@@ -34,10 +34,22 @@ PKG=service/search/sphinx
 SUMMARY="Full text search server"
 DESC="Sphinx is an open source full text search server, designed from the ground up with performance, relevance (aka search quality), and integration simplicity in mind"
 
+CONFIGURE_OPTS="--with-mysql-lib=/usr/local/lib \
+    --with-mysql-includes=/usr/local/include/mysql"
+
+BUILDARCH=32
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+
+# build fails with newer gcc
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/sfw/bin:/usr/gnu/bin:/usr/bin:/usr/sbin:/sbin:/bin
+logcmd unset CC
+logcmd unset CXX
+logcmd unset CPP
+
 build
 make_isa_stub
 make_package
