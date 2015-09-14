@@ -36,10 +36,10 @@ PKG=library/libwrap
 SUMMARY="Socket Wrappers is an improved version of tcp_wrappers by Wietse Venema."
 DESC="Socket wrappers for pre-screening tcp connections (ipv6.4 patched)"
 
-BUILDDIR=tcp_wrappers_$VER-$RELEASE
+BUILDDIR=tcpwrappers_$VER-$RELEASE
 
 init
-download_source tcp_wrappers $BUILDDIR
+download_source tcpwrappers $BUILDDIR
 patch_source
 prep_build
 build
