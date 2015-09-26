@@ -47,16 +47,18 @@ CONFIGURE_OPTS="--without-zenmap \
                 --without-nmap-update \
                 --with-openssl=/usr"
 
-fix_configure() {
+save_function configure32 configure32_orig
+configure32() {
+  configure32_orig
   # thanks to opencsw
-  /usr/bin/gsed -i -e 's;^/\* #undef HAVE_STREAMS_MIB2 \*/;#define HAVE_STREAMS_MIB2 1;' $TMPDIR/$BUILDDIR/libdnet-stripped/include/config.h
+  logcmd gsed -i -e 's;^/\* #undef HAVE_STREAMS_MIB2 \*/;#define HAVE_STREAMS_MIB2 1;' \
+    $TMPDIR/$BUILDDIR/libdnet-stripped/include/config.h
 }
 
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
-fix_configure
 build
 make_isa_stub
 make_package
