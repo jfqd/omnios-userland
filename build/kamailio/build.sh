@@ -30,22 +30,23 @@
 PROG=kamailio
 VER=4.3
 VERHUMAN=$VER
-PKG=
+PKG=service/network/kamailio
 SUMMARY="Open Source SIP Server"
 DESC="Open Source SIP Server released under GPL, able to handle thousands of call setups per second."
 
-ADDITIONAL_MODULES="db_mysql tls"
-
 BUILDARCH=32
 
-export PREFIX="/usr/local/kamailio"
+export PREFIX="/usr/local"
 export LD_LIBRARY_PATH="/usr/local/lib"
 
 DEPENDS_IPS="library/libmysqlclient18"
 
 download_source() {
   logcmd mkdir -p $TMPDIR/$BUILDDIR
-  logcmd git clone --depth 1 --no-single-branch git://git.kamailio.org/kamailio /$TMPDIR/$BUILDDIR/kamailio
+  logcmd git clone --depth 1 --no-single-branch git://git.kamailio.org/kamailio $TMPDIR/$BUILDDIR
+  pushd $TMPDIR/$BUILDDIR > /dev/null
+  logcmd git checkout -b 4.3 origin/4.3
+  popd > /dev/null
 }
 
 patch_source() {
@@ -53,12 +54,14 @@ patch_source() {
 }
 
 build() {
-  pushd $TMPDIR/$BUILDDIR/kamailio > /dev/null
-  logcmd git checkout -b 4.3 origin/4.3
-  logcmd make PREFIX=$PREFIX include_modules="$ADDITIONAL_MODULES" cfg
-  logcmd make proper
-  logcmd make clean
-  logcmd make all
+  logmsg "--- Switch into builddir: $TMPDIR/$BUILDDIR"
+  pushd $TMPDIR/$BUILDDIR > /dev/null
+  logcmd /usr/gnu/bin/make cfg include_modules='db_mysql tls'
+  logcmd /usr/gnu/bin/make proper
+  logcmd /usr/gnu/bin/make clean
+  logcmd /usr/gnu/bin/make INSTALL=install all
+  logmsg "--- Install into: $DESTDIR$PREFIX"
+  logcmd /usr/gnu/bin/make prefix=$PREFIX basedir=$DESTDIR install
   popd > /dev/null
 }
 
