@@ -58,12 +58,20 @@ build() {
   popd > /dev/null
 }
 
+smf_support() {
+  logmsg "Installing SMF"
+  logcmd mkdir -p $DESTDIR$DESTDIR/lib/svc/manifest/network
+  logcmd cp $SRCDIR/files/manifest-kamailio.xml \
+      $DESTDIR/lib/svc/manifest/network/kamailio.xml
+}
+
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
-# make_isa_stub
+smf_support
 make_package
 clean_up
 
