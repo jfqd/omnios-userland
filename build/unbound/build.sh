@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://unbound.net/downloads/unbound-1.5.4.tar.gz
+# https://unbound.net/downloads/unbound-1.5.5.tar.gz
 PROG=unbound
-VER=1.5.4
+VER=1.5.5
 PKG=service/network/unbound
 SUMMARY="$PROG - A validating, recursive, and caching DNS resolver."
 DESC="$SUMMARY ($VER)"
