@@ -60,7 +60,7 @@ build() {
 
 smf_support() {
   logmsg "Installing SMF"
-  logcmd mkdir -p $DESTDIR$DESTDIR/lib/svc/manifest/network
+  logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
   logcmd cp $SRCDIR/files/manifest-kamailio.xml \
       $DESTDIR/lib/svc/manifest/network/kamailio.xml
 }
