@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/kamailio/kamailio/archive/4.3.3.tar.gz
 PROG=kamailio
-VER=4.3
+VER=4.3.3
 VERHUMAN=$VER
 PKG=service/network/kamailio
 SUMMARY="Open Source SIP Server"
@@ -37,20 +38,12 @@ DESC="Open Source SIP Server released under GPL, able to handle thousands of cal
 BUILDARCH=32
 
 export PREFIX="/usr/local"
-export LD_LIBRARY_PATH="/usr/local/lib"
+export LD_LIBRARY_PATH="/usr/local/lib:/usr/gnu/lib"
 
 DEPENDS_IPS="library/libmysqlclient18"
 
-download_source() {
-  logcmd mkdir -p $TMPDIR/$BUILDDIR
-  logcmd git clone --depth 1 --no-single-branch git://git.kamailio.org/kamailio $TMPDIR/$BUILDDIR
-  pushd $TMPDIR/$BUILDDIR > /dev/null
-  logcmd git checkout -b 4.3 origin/4.3
-  popd > /dev/null
-}
-
 patch_source() {
-  logcmd sed -i -e "s#%expect 6#/*%expect 6*/#g" $TMPDIR/$BUILDDIR/cfg.y
+  logcmd /usr/gnu/bin/sed -i -e "s#%expect 6#/*%expect 6*/#g" $TMPDIR/$BUILDDIR/cfg.y
 }
 
 build() {
@@ -58,15 +51,15 @@ build() {
   pushd $TMPDIR/$BUILDDIR > /dev/null
   logcmd /usr/gnu/bin/make cfg include_modules='db_mysql tls'
   logcmd /usr/gnu/bin/make proper
-  logcmd /usr/gnu/bin/make clean
   logcmd /usr/gnu/bin/make INSTALL=install all
   logmsg "--- Install into: $DESTDIR$PREFIX"
-  logcmd /usr/gnu/bin/make prefix=$PREFIX basedir=$DESTDIR install
+  logcmd /usr/gnu/bin/sed -i -e "s#include \$(COREPATH)/config.mak#include \$(COREPATH)/config.mak/\nbasedir=$DESTDIR#g" $TMPDIR/$BUILDDIR/utils/kamctl/Makefile
+  logcmd /usr/gnu/bin/make install basedir=$DESTDIR
   popd > /dev/null
 }
 
 init
-download_source
+download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
