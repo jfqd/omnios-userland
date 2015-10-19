@@ -13,15 +13,15 @@
 			<service_fmri value='svc:/milestone/multi-user-server' />
 		</dependency>
 
-		<exec_method type='method' name='start' exec='/usr/local/sbin/kamailio start' timeout_seconds='30'>
+		<exec_method type='method' name='start' exec='/usr/local/sbin/kamailio -u 6003 -g 6003 start' timeout_seconds='30'>
 		  <method_context>
         <method_credential user='kamailio' group='kamailio' />
       </method_context>
     </exec_method>
 
-		<exec_method type='method' name='stop' exec='/usr/local/sbin/kamailio stop' timeout_seconds='60' /> 
+		<exec_method type='method' name='stop' exec='/usr/local/sbin/kamailio -u 6003 -g 6003 stop' timeout_seconds='60' /> 
 
-		<exec_method type='method' name='restart' exec='/usr/local/sbin/kamailio restart' timeout_seconds='-1' />
+		<exec_method type='method' name='restart' exec='/usr/local/sbin/kamailio -u 6003 -g 6003 restart' timeout_seconds='-1' />
 
 		<stability value='Unstable' />
 		<template>
