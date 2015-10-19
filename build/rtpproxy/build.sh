@@ -27,12 +27,23 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/sippy/rtpproxy/archive/v1.3-beta.1.tar.gz
 PROG=rtpproxy
-VER=2.0.0
+VER=1.3.1
 VERHUMAN=$VER
 PKG=service/network/rtpproxy
 SUMMARY="High-performance software proxy for RTP streams"
 DESC="The RTPproxy is a high-performance software proxy for RTP streams that can work together with Sippy B2BUA, Kamailo, OpenSIPs and SER"
+
+smf_support() {
+  logmsg "Installing files for SMF"
+  logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+  logcmd cp $SRCDIR/files/manifest-rtpproxy.xml \
+      $DESTDIR/lib/svc/manifest/network/rtpproxy.xml
+  logcmd mkdir -p $DESTDIR/lib/svc/method
+  logcmd cp $SRCDIR/files/rtpproxy \
+      $DESTDIR/lib/svc/method
+}
 
 init
 download_source $PROG $PROG $VER
@@ -40,6 +51,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+smf_support
 make_package
 clean_up
 

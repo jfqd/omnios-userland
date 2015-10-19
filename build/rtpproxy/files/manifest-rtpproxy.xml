@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='rtpproxy'>  
+  <service name='network/rtpproxy' type='service' version='1'>
+    <create_default_instance enabled='false' />
+    <single_instance/>
+
+    <dependency name='multi-user' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/milestone/multi-user' />
+    </dependency>
+
+    <dependency name='multi-user-server' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/milestone/multi-user-server' />
+    </dependency>
+
+    <exec_method type='method' name='start' exec='/lib/svc/method/rtpproxy start' timeout_seconds='30' />
+    <exec_method type='method' name='stop' exec='/lib/svc/method/rtpproxy start stop' timeout_seconds='60' />
+    <exec_method type='method' name='restart' exec='/lib/svc/method/rtpproxy start restart' timeout_seconds='-1' />
+    
+    <stability value='Unstable' />
+    <template>
+      <common_name>
+        <loctext xml:lang='C'> rtpproxy </loctext>
+      </common_name>
+    </template>
+  </service>
+</service_bundle>
