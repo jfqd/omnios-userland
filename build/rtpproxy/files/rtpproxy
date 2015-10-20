@@ -29,7 +29,6 @@ prog=rtpproxy
 rtpproxy=/usr/local/bin/$prog
 
 user=rtpproxy
-lockfile=/var/run/$prog.lock
 pidfile=/var/run/$prog.pid
 
 OPTIONS="-F -s udp:127.0.0.1:7722 -d DBUG:LOG_LOCAL1"
@@ -40,7 +39,7 @@ start() {
   echo -n "Starting $prog: "
   
   # check whether rtpproxy was already started
-  if [ -f $lockfile ]; then
+  if [ -f $pidfile ]; then
     echo -n "$prog already running"
     echo
     return 0
@@ -49,7 +48,6 @@ start() {
   $rtpproxy -p $pidfile -u $user $OPTIONS
   RETVAL=$?
   echo
-  [ $RETVAL = 0 ] && touch $lockfile
   return $RETVAL
 }
 
@@ -57,7 +55,7 @@ stop() {
   echo -n "Stopping $prog: "
   /usr/bin/kill `/usr/bin/cat $PID` 2>/dev/null
   RETVAL=$?
-  [ $RETVAL = 0 ] && rm -f $lockfile $pidfile
+  [ $RETVAL = 0 ] && rm -f $pidfile
   echo
   return $RETVAL
 }
