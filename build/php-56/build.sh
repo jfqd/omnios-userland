@@ -416,7 +416,7 @@ prep_build
 install_ext_sqlite
 make_package ext_sqlite.mog
 
-PROG=php-zib
+PROG=php-zip
 PKG=runtime/php56/php-zip
 SUMMARY="PHP 5.6 - zip extension"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
