@@ -41,6 +41,7 @@ build32() {
   export ISALIST="$ISAPART"
   logcmd rm -rf ./.libs
   logcmd /usr/local/apache22/bin/i386/apxs -c mod_xsendfile.c
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/libexec/i386/
   logcmd cp ./.libs/mod_xsendfile.so $DESTDIR/usr/local/apache22/libexec/i386/
   popd > /dev/null
   unset ISALIST
@@ -52,6 +53,7 @@ build64() {
   logmsg "Building 64-bit"
   logcmd rm -rf ./.libs
   logcmd /usr/local/apache22/bin/amd64/apxs -c mod_xsendfile.c
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/libexec/amd64/
   logcmd cp ./.libs/mod_xsendfile.so $DESTDIR/usr/local/apache22/libexec/amd64/
   popd > /dev/null
 }
