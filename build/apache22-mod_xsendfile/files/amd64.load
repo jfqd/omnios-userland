@@ -1,0 +1,1 @@
+LoadModule xsendfile_module libexec/amd64/mod_xsendfile.so
