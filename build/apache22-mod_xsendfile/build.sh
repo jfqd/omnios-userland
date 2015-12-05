@@ -46,6 +46,9 @@ build32() {
   logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/i386
   logcmd cp $SRCDIR/files/i386.load \
       $DESTDIR/usr/local/apache22/conf/modules/i386/mod_xsendfile.load
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
+  logcmd cp $SRCDIR/files/xsendfile.conf \
+      $DESTDIR/usr/local/apache22/conf/conf.d/xsendfile.conf
   popd > /dev/null
   unset ISALIST
   export ISALIST
