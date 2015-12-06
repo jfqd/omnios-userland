@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=lzo
-VER=2.08
+VER=2.09
 VERHUMAN=$VER
 PKG=library/lzo
 SUMMARY="Lossless data compression library"
