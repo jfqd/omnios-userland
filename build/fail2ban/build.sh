@@ -56,6 +56,10 @@ service_configs() {
     logcmd mkdir -p $DESTDIR/lib/svc/method
     logcmd cp $SRCDIR/files/fail2ban.svc \
         $DESTDIR/lib/svc/method/fail2ban
+    logmsg "Installing extra config"
+    logcmd cp $SRCDIR/files/paths-omnios.conf \
+        $DESTDIR/etc/fail2ban/paths-omnios.conf
+    logcmd sed -i -e "s#paths-debian.conf#paths-omnios.conf#g" $DESTDIR/etc/fail2ban/jail.conf
 }
 
 init
