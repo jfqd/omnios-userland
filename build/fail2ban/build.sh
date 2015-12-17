@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://github.com/fail2ban/fail2ban/archive/0.9.1.tar.gz
+# https://github.com/fail2ban/fail2ban/archive/0.9.3.tar.gz
 PROG=fail2ban   # App name
-VER=0.9.1       # App version
+VER=0.9.3       # App version
 VERHUMAN=$VER   # Human-readable version
 PKG=network/fail2ban   # Package name (e.g. library/foo)
 SUMMARY="Ban IPs that make too many password failures"
@@ -48,11 +48,22 @@ PYTHON=/usr/bin/python
 
 TAR=/usr/gnu/bin/tar
 
+service_configs() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/var/svc/manifest/network
+    logcmd cp $SRCDIR/files/fail2ban.xml \
+        $DESTDIR/lib/svc/manifest/network/fail2ban.xml
+    logcmd mkdir -p $DESTDIR/lib/svc/method/
+    logcmd cp $SRCDIR/files/fail2ban.svc \
+        $DESTDIR/llib/svc/method/fail2ban
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 python_build
+service_configs
 make_package
 clean_up
 
