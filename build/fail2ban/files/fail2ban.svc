@@ -1,0 +1,48 @@
+#!/usr/bin/bash -e
+#
+# fail2ban		This init.d script is used to start fail2ban.
+# (C) by Hanno Wagner <wagner@rince.de>, License is GPL
+ 
+#set -x
+
+. /lib/svc/share/smf_include.sh
+
+set -e
+
+F2B_CONF="/etc/fail2ban/fail2ban.conf"
+if [ -n "$2" ] && [ -f "$F2B_CONF" ]; then
+  F2B_CONF="$2"
+fi
+
+ENV="/usr/bin/env -i LANG=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+/usr/bin/mkdir -p /var/run/fail2ban
+
+case $1 in
+	start)
+		[ -f /etc/fail2ban/fail2ban.conf ] || touch /etc/fail2ban/fail2ban.conf
+		echo "Starting fail2ban-server with $F2B_CONF"
+		eval $ENV /usr/bin/fail2ban-client start 2>/dev/null &
+	;;
+	stop)
+		echo "Stopping fail2ban-server with $F2B_CONF"
+		eval $ENV /usr/bin/fail2ban-client stop &
+	;;
+	reload | refresh )
+		echo "Reloading fail2ban-server with $F2B_CONF"
+		eval $ENV /usr/bin/fail2ban-client reload &
+	;;
+	restart | force-reload)
+		echo "Forcing reload of fail2ban-server with $F2B_CONF"
+		eval $ENV /usr/bin/fail2ban-client stop &
+		sleep 2
+		eval $ENV /usr/bin/fail2ban-client start &
+	;;
+	status)
+		/usr/bin/fail2ban-client status &
+	;;
+	*)
+		echo "Usage: /lib/svc/method/fail2ban start|stop|status|refresh|restart|reload|force-reload" >&2
+		exit 2
+	;;
+esac
