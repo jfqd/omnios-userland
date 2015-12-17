@@ -60,6 +60,8 @@ service_configs() {
     logcmd cp $SRCDIR/files/paths-omnios.conf \
         $DESTDIR/etc/fail2ban/paths-omnios.conf
     logcmd sed -i -e "s#paths-debian.conf#paths-omnios.conf#g" $DESTDIR/etc/fail2ban/jail.conf
+    logcmd cp $SRCDIR/files/ipfilter.conf \
+        $DESTDIR/etc/fail2ban/action.d/ipfilter.conf
 }
 
 init
