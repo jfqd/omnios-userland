@@ -50,12 +50,12 @@ TAR=/usr/gnu/bin/tar
 
 service_configs() {
     logmsg "Installing SMF"
-    logcmd mkdir -p $DESTDIR/var/svc/manifest/network
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
     logcmd cp $SRCDIR/files/fail2ban.xml \
         $DESTDIR/lib/svc/manifest/network/fail2ban.xml
-    logcmd mkdir -p $DESTDIR/lib/svc/method/
+    logcmd mkdir -p $DESTDIR/lib/svc/method
     logcmd cp $SRCDIR/files/fail2ban.svc \
-        $DESTDIR/llib/svc/method/fail2ban
+        $DESTDIR/lib/svc/method/fail2ban
 }
 
 init
