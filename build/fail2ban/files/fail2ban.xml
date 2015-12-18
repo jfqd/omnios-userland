@@ -25,6 +25,10 @@
        <service_fmri value='svc:/network/loopback' />
     </dependency>
 
+    <method_context>
+      <method_credential user="fail2ban" group="fail2ban"/>
+    </method_context>
+    
     <exec_method
        type='method'
        name='start'
