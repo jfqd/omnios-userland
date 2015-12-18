@@ -1,2 +1,0 @@
-group gid=6004 groupname=fail2ban
-user ftpuser=false gcos-field="fail2ban Reserved UID" group=fail2ban password=NP uid=6004 username=fail2ban home-dir=/
