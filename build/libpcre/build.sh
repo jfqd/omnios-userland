@@ -41,10 +41,20 @@ CONFIGURE_OPTS="--prefix=$PREFIX
     --enable-unicode-properties
     --enable-newline-is-anycrlf"
 
+configure_test() {
+  if [ ! -f $TMPDIR/$BUILDDIR/configure ]; then
+    pushd  $TMPDIR/$BUILDDIR >/dev/null || logerr "can't cd to $TMPDIR/$BUILDDIR"
+    logmsg "Create missing configure file"
+    logcmd /usr/bin/autoreconf -i
+    popd >/dev/null
+  fi
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+configure_test
 build
 make_isa_stub
 make_package
