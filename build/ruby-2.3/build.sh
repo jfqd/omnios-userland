@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.bz2
+# https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2
 PROG=ruby
-VER=2.3.0-preview2
+VER=2.3.0
 MAIN_VER=2.3
 VERHUMAN=$VER
 PKG=runtime/ruby-2.3
@@ -43,8 +43,8 @@ PREFIX="$PREFIX/$PROG/$MAIN_VER"
 
 # Ruby doesn't have the concept of library paths,
 #   so only one arch can be installed in $PREFIX
-# Default to 32-bit
-[[ "$BUILDARCH" == "both" ]] && BUILDARCH=32
+# Default to 64-bit
+[[ "$BUILDARCH" == "both" ]] && BUILDARCH=64
 
 CONFIGURE_OPTS="--prefix=$PREFIX \
     --enable-shared \
@@ -52,6 +52,7 @@ CONFIGURE_OPTS="--prefix=$PREFIX \
     ac_cv_func_dl_iterate_phdr=no"
 
 CONFIGURE_OPTS_32=
+CONFIGURE_OPTS_64=
 
 # https://bugs.ruby-lang.org/issues/10460
 export CFLAGS="-O2"
