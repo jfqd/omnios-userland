@@ -29,7 +29,7 @@
 . ../../lib/gem-functions.sh
 
 PROG=passenger
-VER=5.0.22
+VER=5.0.24
 VERHUMAN=$VER
 PKG=runtime/ruby-2.1/passenger5
 SUMMARY="Gem install of the passenger gem"
@@ -59,6 +59,7 @@ compile_apache22_module() {
   RUBY_HOME=${PREFIX}/ruby/${RUBY_VER}
   ln -nfs ${PREFIX}/apache22/bin/i386/apxs /usr/local/bin/apxs
   export LANG=en_US.UTF-8
+  # export VERBOSE=1
   logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
   logmsg "Remove docs cause of pkgmogrify issue with spaces in filenames."
   GEM_HOME=${DESTDIR}${RUBY_HOME}/lib/ruby/gems/${RUBY_VER}.0
