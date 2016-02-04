@@ -1,0 +1,5 @@
+group gid=6005 groupname=rundeck
+user ftpuser=false gcos-field="rundeck UID" group=rundeck login-shell=/usr/bin/bash password=NP uid=6005 username=rundeck home-dir=/opt/rundeck
+
+<transform dir path=opt/rundeck -> set owner rundeck>
+<transform dir path=opt/rundeck -> set group rundeck>
