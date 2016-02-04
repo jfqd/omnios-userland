@@ -27,7 +27,7 @@
           <envvar name='HOME' value='/opt/rundeck'/>
         </method_environment>
       </method_context>
-      <exec_method name='start' type='method' exec='/lib/svc/method/rundeck' timeout_seconds='120'>
+      <exec_method name='start' type='method' exec='/lib/svc/method/rundeck start' timeout_seconds='0'>
         <method_context/>
       </exec_method>
       <exec_method name='stop' type='method' exec=':kill' timeout_seconds='900'>
