@@ -30,7 +30,7 @@
 # https://github.com/goochjj/pound/archive/stage_for_upstream/v2.8a.zip
 PROG=pound
 VER=2.7
-TARVER=2.8.a
+TARVER=2.8.b
 VERHUMAN=$VER
 PKG=network/pound27
 SUMMARY="Reverse proxy, load balancer and HTTPS front-end"
