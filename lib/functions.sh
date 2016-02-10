@@ -76,9 +76,12 @@ process_opts() {
                     show_usage
                     exit 2
                 fi
-		;;
+                ;;
             d)
-	        DEPVER=$OPTARG
+                DEPVER=$OPTARG
+                ;;
+            y)
+                CONTINUE=1
                 ;;
         esac
     done
@@ -95,6 +98,7 @@ show_usage() {
     echo "  -h        : print this help text"
     echo "  -a ARCH   : build 32/64 bit only, or both (default: both)"
     echo "  -d DEPVER : specify an extra dependency version (no default)"
+    echo "  -y        : answer yes to continue package upload"
 }
 
 #############################################################################
@@ -542,6 +546,7 @@ make_package() {
     if [[ -n "$FLAVORSTR" ]]; then
         DESCSTR="$DESCSTR ($FLAVOR)"
     fi
+    
     PKGSEND=/usr/bin/pkgsend
     PKGMOGRIFY=/usr/bin/pkgmogrify
     PKGFMT=/usr/bin/pkgfmt
@@ -611,9 +616,11 @@ make_package() {
     $PKGMOGRIFY $P5M_INT $MY_MOG_FILE $GLOBAL_MOG_FILE $LOCAL_MOG_FILE $* | $PKGFMT -u > $P5M_FINAL
     logmsg "--- Publishing package"
     logmsg "Intentional pause: Last chance to sanity-check before publication!"
-    ask_to_continue
+    if [[ -z $CONTINUE ]]; then
+      ask_to_continue
+    fi
     if [[ -n "$DESTDIR" ]]; then
-        logcmd $PKGSEND -s $PKGSRVR publish -d $DESTDIR -d $TMPDIR/$BUILDDIR \
+        logcmd $PFEXEC $PKGSEND -s $PKGSRVR publish -d $DESTDIR -d $TMPDIR/$BUILDDIR \
             -d $SRCDIR $P5M_FINAL || logerr "------ Failed to publish package"
     else
         # If we're a metapackage (no DESTDIR) then there are no directories to check
