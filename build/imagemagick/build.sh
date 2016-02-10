@@ -29,7 +29,7 @@
 
 # http://mirror.checkdomain.de/imagemagick/ImageMagick-6.9.1-10.tar.gz
 PROG=ImageMagick
-VER=6.9.1-10
+VER=6.9.3-3
 VERHUMAN=$VER
 PKG=image/imagemagick
 SUMMARY="software suite to create, edit, compose, or convert bitmap images"
