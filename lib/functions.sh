@@ -45,7 +45,7 @@ process_opts() {
     OLDBUILDARCH=
     BATCH=
     DEPVER=
-    while getopts "bpf:ha:d:" opt; do
+    while getopts "bpf:ha:d:y:" opt; do
         case $opt in
             h)
                 show_usage
@@ -91,7 +91,7 @@ process_opts() {
 # Show usage information
 #############################################################################
 show_usage() {
-    echo "Usage: $0 [-b] [-p] [-f FLAVOR] [-h] [-a 32|64|both] [-d DEPVER]"
+    echo "Usage: $0 [-b] [-p] [-f FLAVOR] [-h] [-a 32|64|both] [-d DEPVER] [-y]"
     echo "  -b        : batch mode (exit on errors without asking)"
     echo "  -p        : output all commands to the screen as well as log file"
     echo "  -f FLAVOR : build a specific package flavor"
