@@ -45,7 +45,8 @@ process_opts() {
     OLDBUILDARCH=
     BATCH=
     DEPVER=
-    while getopts "bpf:ha:d:y:" opt; do
+    CONTINUE=
+    while getopts "bypf:ha:d:" opt; do
         case $opt in
             h)
                 show_usage
