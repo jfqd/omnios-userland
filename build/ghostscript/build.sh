@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=ghostscript
-VER=9.16
+VER=9.18
 VERHUMAN=$VER
 PKG=print/filter/ghostscript
 SUMMARY="Ghostscript, a Postscript and PDF interpreter"
