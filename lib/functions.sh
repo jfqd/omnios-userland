@@ -461,7 +461,7 @@ download_source() {
         # Try all possible archive names
         logmsg "--- Archive not found."
         logmsg "Downloading archive"
-        URLPREFIX=http://$MIRROR/$DLDIR/$ARCHIVEPREFIX
+        URLPREFIX=https://$MIRROR/$DLDIR/$ARCHIVEPREFIX
         $WGET -a $LOGFILE $URLPREFIX.tar.gz || \
             $WGET -a $LOGFILE $URLPREFIX.tar.bz2 || \
             $WGET -a $LOGFILE $URLPREFIX.tar.xz || \
@@ -616,8 +616,8 @@ make_package() {
     logmsg "--- Applying transforms"
     $PKGMOGRIFY $P5M_INT $MY_MOG_FILE $GLOBAL_MOG_FILE $LOCAL_MOG_FILE $* | $PKGFMT -u > $P5M_FINAL
     logmsg "--- Publishing package"
-    logmsg "Intentional pause: Last chance to sanity-check before publication!"
     if [[ -z $CONTINUE ]]; then
+      logmsg "Intentional pause: Last chance to sanity-check before publication!"
       ask_to_continue
     fi
     if [[ -n "$DESTDIR" ]]; then
