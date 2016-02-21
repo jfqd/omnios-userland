@@ -36,10 +36,15 @@ DESC="Tungsten Replicator is an open source replication engine supporting a vari
 
 export JAVA_HOME=/opt/java/jdk
 export ANT_HOME=/opt/java/ant
+export PATH=/opt/java/ant/bin:/opt/java/jdk1.8.0_74/bin/amd64:$PATH
 
 build() {
   pushd ${TMPDIR}/${BUILDDIR}/builder >/dev/null
   sh build.sh
+  mkdir -p ${DESTDIR}/opt/java
+  mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
+  cd ${DESTDIR}/opt
+  ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
   popd >/dev/null
 }
 
