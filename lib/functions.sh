@@ -548,6 +548,7 @@ make_package() {
         DESCSTR="$DESCSTR ($FLAVOR)"
     fi
     
+    PFEXEC=/usr/bin/pfexec
     PKGSEND=/usr/bin/pkgsend
     PKGMOGRIFY=/usr/bin/pkgmogrify
     PKGFMT=/usr/bin/pkgfmt
