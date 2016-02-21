@@ -40,14 +40,13 @@ export PATH=/opt/java/ant/bin:/opt/java/jdk1.8.0_74/bin/amd64:$PATH
 
 build() {
   pushd ${TMPDIR}/${BUILDDIR}/builder >/dev/null
-  sh build.sh
-  mkdir -p ${DESTDIR}/opt/java
-  mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
+  logcmd ./build.sh
+  logcmd mkdir -p ${DESTDIR}/opt
+  logcmd mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
   cd ${DESTDIR}/opt
-  ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
+  logcmd ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
   popd >/dev/null
 }
-
 
 init
 download_source $PROG $PROG $VER
