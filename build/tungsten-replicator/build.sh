@@ -27,6 +27,8 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/vmware/tungsten-replicator
+# http://pubs.vmware.com/continuent/continuent-replicator-5.0/index.html
 PROG=tungsten-replicator
 VER=5.0.0
 VERHUMAN=$VER
@@ -36,10 +38,10 @@ DESC="Tungsten Replicator is an open source replication engine supporting a vari
 
 export JAVA_HOME=/opt/java/jdk
 export ANT_HOME=/opt/java/ant
-export PATH=/opt/java/ant/bin:/opt/java/jdk1.8.0_74/bin/amd64:$PATH
 
 build() {
   pushd ${TMPDIR}/${BUILDDIR}/builder >/dev/null
+  export PATH=$ANT_HOME/bin:$JAVA_HOME/bin/amd64:$PATH
   logcmd ./build.sh
   logcmd mkdir -p ${DESTDIR}/opt
   logcmd mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
