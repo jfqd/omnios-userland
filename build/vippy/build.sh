@@ -33,8 +33,8 @@ PKG=runtime/node/$PROG
 SUMMARY="VIP management (juggler of IPs)"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS="runtime/nodejs"
-DEPENDS_IPS="runtime/nodejs"
+BUILD_DEPENDS_IPS="runtime/nodejs@0.10.42"
+DEPENDS_IPS="runtime/nodejs@0.10.42"
 
 BUILDARCH=64
 
