@@ -31,19 +31,19 @@
                 type="method" 
                 name="start" 
                 exec="/lib/svc/method/mysql_56 start"
-                timeout_seconds="30" />
+                timeout_seconds="120" />
 
         <exec_method 
                 type="method" 
                 name="stop" 
                 exec="/lib/svc/method/mysql_56 stop" 
-                timeout_seconds="30" />
+                timeout_seconds="120" />
 
         <exec_method 
                 type="method" 
                 name="refresh" 
                 exec="/lib/svc/method/mysql_56 reload" 
-                timeout_seconds="30" />
+                timeout_seconds="120" />
 
         <!-- Other properties and configs -->
         <property_group name="general" type="framework">
