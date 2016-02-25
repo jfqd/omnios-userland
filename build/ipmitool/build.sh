@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=ipmitool
-VER=1.8.16
+VER=1.8.13
 VERHUMAN=$VER
 PKG=monitoring/ipmitool
 SUMMARY="IPMItool provides a simple command-line interface to IPMI-enabled devices"
