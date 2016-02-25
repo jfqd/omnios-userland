@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://www.dest-unreach.org/socat/download/socat-1.7.3.1.tar.gz
 PROG=socat
-VER=-1.7.3.1
+VER=1.7.3.1
 VERHUMAN=$VER
 PKG=network/socat
 SUMMARY="socat is a relay for bidirectional data transfer between two independent data channels."
