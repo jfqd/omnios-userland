@@ -53,6 +53,10 @@ build() {
   logcmd cp $SRCDIR/files/solaris.rb ${DESTDIR}/opt/tungsten-replicator-${VER}/cluster-home/lib/ruby/ipparse/platforms/solaris.rb
   logcmd cp $SRCDIR/files/validation_deployment.rb ${DESTDIR}/opt/tungsten-replicator-${VER}/tools/ruby-tpm/configure/modules/validation_deployment.rb
   logcmd touch ${DESTDIR}/opt/tungsten-replicator-${VER}/RELEASE_NOTES
+  logcmd /usr/gnu/bin/sed -i -e "s#LANG=en_US;#LANG=en_US.UTF-8;#g" ${DESTDIR}/opt/tungsten-replicator-${VER}/cluster-home/lib/ruby/tungsten/datasources/mysql.rb
+  logcmd /usr/gnu/bin/sed -i -e "s#LANG=en_US;#LANG=en_US.UTF-8;#g" ${DESTDIR}/opt/tungsten-replicator-${VER}/cluster-home/lib/ruby/tungsten/exec.rb
+  logcmd /usr/gnu/bin/sed -i -e "s#LANG=en_US;#LANG=en_US.UTF-8;#g" ${DESTDIR}/opt/tungsten-replicator-${VER}/tools/ruby-tpm/configurator.rb
+  logcmd /usr/gnu/bin/sed -i -e "s#LANG=en_US;#LANG=en_US.UTF-8;#g" ${DESTDIR}/opt/tungsten-replicator-${VER}/tools/ruby-tpm/configure/keytool.rb
   cd ${DESTDIR}/opt
   logcmd ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
   popd >/dev/null
