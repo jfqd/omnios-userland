@@ -48,11 +48,11 @@ build() {
   export PATH=$ANT_HOME/bin:$JAVA_HOME/bin/amd64:$PATH
   logcmd ./build.sh
   logcmd mkdir -p ${DESTDIR}/opt
-  logcmd mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
-  logcmd cp extra/tools/accept_release_notes ${DESTDIR}/opt/tungsten-replicator-5.0.0/tools/accept_release_notes
-  logcmd cp $SRCDIR/files/solaris.rb ${DESTDIR}/opt/tungsten-replicator-5.0.0/cluster-home/lib/ruby/ipparse/platforms/solaris.rb
-  logcmd cp $SRCDIR/files/validation_deployment.rb ${DESTDIR}/opt/tungsten-replicator-5.0.0/tools/ruby-tpm/configure/validation_deployment.rb
-  logcmd touch ${DESTDIR}/opt/tungsten-replicator-5.0.0/RELEASE_NOTES
+  logcmd mv build/tungsten-replicator-${VER} ${DESTDIR}/opt/tungsten-replicator-${VER}
+  logcmd cp extra/tools/accept_release_notes ${DESTDIR}/opt/tungsten-replicator-${VER}/tools/accept_release_notes
+  logcmd cp $SRCDIR/files/solaris.rb ${DESTDIR}/opt/tungsten-replicator-${VER}/cluster-home/lib/ruby/ipparse/platforms/solaris.rb
+  logcmd cp $SRCDIR/files/validation_deployment.rb ${DESTDIR}/opt/tungsten-replicator-${VER}/tools/ruby-tpm/configure/modules/validation_deployment.rb
+  logcmd touch ${DESTDIR}/opt/tungsten-replicator-${VER}/RELEASE_NOTES
   cd ${DESTDIR}/opt
   logcmd ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
   popd >/dev/null

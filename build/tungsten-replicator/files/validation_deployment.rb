@@ -350,7 +350,7 @@ class RubyVersionCheck < ConfigureValidationCheck
       debug "Ruby version (#{ruby_version}) OK"
     elsif ruby_version =~ /^2\.0/
       debug "Ruby version (#{ruby_version}) OK"
-    elsif ruby_version =~ /^2\.1/
+    elsif ruby_version.include?("2.1.")
       debug "Ruby version (#{ruby_version}) OK"
     else
       error "Unrecognizable Ruby version: #{ruby_version}"
