@@ -49,6 +49,7 @@ build() {
   logcmd mkdir -p ${DESTDIR}/opt
   logcmd mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
   logcmd cp extra/tools/accept_release_notes ${DESTDIR}/opt/tungsten-replicator-5.0.0/tools/accept_release_notes
+  logcmd cp $SRCDIR/files/solaris.rb ${DESTDIR}/opt/tungsten-replicator-5.0.0/cluster-home/lib/ruby/ipparse/platforms/solaris.rb
   logcmd touch ${DESTDIR}/opt/tungsten-replicator-5.0.0/RELEASE_NOTES
   cd ${DESTDIR}/opt
   logcmd ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
