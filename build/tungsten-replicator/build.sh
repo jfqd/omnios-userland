@@ -37,7 +37,8 @@ SUMMARY="Tungsten Replicator is an open source replication engine supporting a v
 DESC="Tungsten Replicator is an open source replication engine supporting a variety of different extractor and applier modules. Data can be extracted from MySQL, Oracle and Amazon RDS, and applied to transactional stores, including MySQL, Oracle, and Amazon RDS; NoSQL stores such as MongoDB, and datawarehouse stores such as Vertica, Hadoop, and Amazon rDS."
 
 BUILD_DEPENDS_IPS="runtime/ruby-2.1"
-DEPENDS_IPS="runtime/ruby-2.1"
+DEPENDS_IPS="runtime/ruby-2.1
+             network/rsync"
 
 export JAVA_HOME=/opt/java/jdk
 export ANT_HOME=/opt/java/ant
@@ -50,6 +51,7 @@ build() {
   logcmd mv build/tungsten-replicator-5.0.0 ${DESTDIR}/opt/tungsten-replicator-5.0.0
   logcmd cp extra/tools/accept_release_notes ${DESTDIR}/opt/tungsten-replicator-5.0.0/tools/accept_release_notes
   logcmd cp $SRCDIR/files/solaris.rb ${DESTDIR}/opt/tungsten-replicator-5.0.0/cluster-home/lib/ruby/ipparse/platforms/solaris.rb
+  logcmd cp $SRCDIR/files/validation_deployment.rb ${DESTDIR}/opt/tungsten-replicator-5.0.0/tools/ruby-tpm/configure/validation_deployment.rb
   logcmd touch ${DESTDIR}/opt/tungsten-replicator-5.0.0/RELEASE_NOTES
   cd ${DESTDIR}/opt
   logcmd ln -nfs tungsten-replicator-5.0.0 tungsten-replicator
