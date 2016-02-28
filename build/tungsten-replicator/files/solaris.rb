@@ -15,7 +15,7 @@
 #
 # Initial developer(s): Jeff Mace
 
-class DarwinIPParsePlatform < IPParsePlatform
+class SolarisIPParsePlatform < IPParsePlatform
   def self.supports_platform?(platform)
     if platform.downcase() =~ /solaris/
       true
