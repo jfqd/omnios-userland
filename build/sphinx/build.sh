@@ -37,6 +37,9 @@ DESC="Sphinx is an open source full text search server, designed from the ground
 CONFIGURE_OPTS="--with-mysql-lib=/usr/local/lib \
     --with-mysql-includes=/usr/local/include/mysql"
 
+BUILD_DEPENDS_IPS="library/unixodbc"
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
+
 BUILDARCH=32
 
 init
