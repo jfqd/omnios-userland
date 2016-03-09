@@ -33,8 +33,14 @@ VERHUMAN=$VER
 PKG=runtime/python27
 SUMMARY="Python is a programming language that lets you work quickly and integrate systems more effectively."
 DESC=$SUMMARY
+VERMAJOR=${VER%.*}
 
 BUILDARCH=64
+NOSCRIPTSTUB=1
+make_install64() {
+    logmsg '--- make install'
+    logcmd $MAKE DESTDIR=$DESTDIR DESTSHARED=${PREFIX}/lib/python${VERMAJOR}/lib-dynload install || logerr '--- make install failed'
+}
 
 init
 download_source $PROG $PROG $VER
