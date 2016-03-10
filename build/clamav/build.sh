@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://sourceforge.net/projects/clamav/files/clamav/0.98.5/clamav-0.98.5.tar.gz/download
+# http://downloads.sourceforge.net/project/clamav/clamav/0.99.1/clamav-0.99.1.tar.gz
 PROG=clamav
-VER=0.98.5
+VER=0.99.1
 VERHUMAN=$VER
 PKG=service/network/clamav
 SUMMARY="ClamAV is an open source antivirus engine"
@@ -40,9 +40,8 @@ BUILD_DEPENDS_IPS=""
 DEPENDS_IPS="system/library/gcc-4-runtime"
 
 CONFIGURE_OPTS="--sysconfdir=/etc/$PROG
-    --localstatedir=/var/$PROG
-    --mandir=$PREFIX/man"
-#    --disable-clamav"
+                --localstatedir=/var/$PROG
+                --mandir=$PREFIX/share/man"
 
 init
 download_source $PROG $PROG $VER
