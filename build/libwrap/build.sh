@@ -56,7 +56,7 @@ build32() {
     logcmd gmake sunos5-sharedext
     logcmd mkdir -p $DESTDIR/usr/local/lib/i386
     logcmd cp libwrap.so.1 $DESTDIR/usr/local/lib/i386/
-    logcmd ln -s $DESTDIR/usr/local/lib/i386/libwrap.so.1 $DESTDIR/usr/local/lib/i386/libwrap.so
+    logcmd ln -s libwrap.so.1 $DESTDIR/usr/local/lib/i386/libwrap.so
     popd > /dev/null
     unset ISALIST
     export ISALIST
@@ -70,7 +70,7 @@ build64() {
     logcmd gmake sunos5-sharedext64
     logcmd mkdir -p $DESTDIR/usr/local/lib/amd64
     logcmd cp libwrap.so.1 $DESTDIR/usr/local/lib/amd64/
-    logcmd ln -s $DESTDIR/usr/local/lib/amd64/libwrap.so.1 $DESTDIR/usr/local/lib/amd64/libwrap.so
+    logcmd ln -s libwrap.so.1 $DESTDIR/usr/local/lib/amd64/libwrap.so
     popd > /dev/null
     unset CFLAGS
 }
