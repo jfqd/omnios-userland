@@ -35,7 +35,16 @@ SUMMARY="Python is a programming language that lets you work quickly and integra
 DESC=$SUMMARY
 VERMAJOR=${VER%.*}
 
-BUILDARCH=64
+# system ffi is required for 64bit ctypes module
+#BUILD_DEPENDS_IPS='library/libffi'
+
+#CONFIGURE_OPTS="$CONFIGURE_OPTS --with-system-ffi"
+
+# ncurses
+#LDFLAGS64="$LDFLAGS64 -L/usr/gnu/lib/$ISAPART64 -R/usr/gnu/lib/$ISAPART64"
+#CPPFLAGS="$CPPFLAGS -I/usr/include/ncurses"
+
+BUILDARCH=32
 NOSCRIPTSTUB=1
 make_install64() {
     logmsg '--- make install'
