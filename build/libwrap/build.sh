@@ -38,36 +38,48 @@ DESC="Socket wrappers for pre-screening tcp connections (ipv6.4 patched)"
 
 BUILDDIR=tcp_wrappers_$VER-$RELEASE
 
+MAKE="gmake"
+
+# thanks to OpenCSW for the good work
+# https://buildfarm.opencsw.org/source/xref/opencsw/csw/mgar/pkg/tcpwrappers/trunk/files/sharedlib.patch
+
+export CC=/opt/gcc-4.8.1/bin/gcc
+export REAL_DAEMON_DIR=/usr/local/sbin
+export STYLE=-DPROCESS_OPTIONS
+# export LIBS="-lsocket -lnsl"
+
+build32() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 32-bit"
+    export ISALIST="$ISAPART"
+    make_clean
+    logcmd gmake sunos5-sharedext
+    logcmd mkdir -p $DESTDIR/usr/local/lib/i386
+    logcmd cp libwrap.so.1 $DESTDIR/usr/local/lib/i386/
+    logcmd ln -s ../lib/node_modules/.bin/vippyctl $DESTDIR$PREFIX/bin/vippyctl \
+    popd > /dev/null
+    unset ISALIST
+    export ISALIST
+}
+
+build64() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 64-bit"
+    make_clean
+    export CFLAGS="-m64"
+    logcmd gmake sunos5-sharedext64
+    logcmd mkdir -p $DESTDIR/usr/local/lib/amd64
+    logcmd cp libwrap.so.1 $DESTDIR/usr/local/lib/amd64/
+    popd > /dev/null
+    unset CFLAGS
+}
+
 init
 download_source tcp_wrappers $BUILDDIR
+logcmd chmod u+w $BUILDDIR/*
 patch_source
 prep_build
-
-pushd $TMPDIR/$BUILDDIR > /dev/null
-export CC=/opt/gcc-4.8.1/bin/gcc
-logcmd gmake REAL_DAEMON_DIR=/usr/local/sbin STYLE=-DPROCESS_OPTIONS LIBS="-lsocket -lnsl" sunos5
-logcmd mkdir -p $DESTDIR/usr/local/sbin
-logcmd mkdir -p $DESTDIR/usr/local/lib
-logcmd mkdir -p $DESTDIR/usr/local/include
-logcmd mkdir -p $DESTDIR/usr/local/share/man/man3
-logcmd mkdir -p $DESTDIR/usr/local/share/man/man5
-logcmd mkdir -p $DESTDIR/usr/local/share/man/man8
-logcmd cp try-from $DESTDIR/usr/local/sbin/
-logcmd cp tcpdmatch $DESTDIR/usr/local/sbin/
-logcmd cp tcpdchk $DESTDIR/usr/local/sbin/
-logcmd cp tcpd $DESTDIR/usr/local/sbin/
-logcmd cp safe_finger $DESTDIR/usr/local/sbin/
-logcmd cp libwrap.a $DESTDIR/usr/local/lib/
-logcmd cp hosts_access.3 $DESTDIR/usr/local/share/man/man3/
-logcmd cp hosts_access.5 $DESTDIR/usr/local/share/man/man5/
-logcmd cp hosts_options.5 $DESTDIR/usr/local/share/man/man5/
-logcmd cp tcpdmatch.8 $DESTDIR/usr/local/share/man/man8/
-logcmd cp tcpdchk.8 $DESTDIR/usr/local/share/man/man8/
-logcmd cp tcpd.8 $DESTDIR/usr/local/share/man/man8/
-logcmd cp tcpd.h $DESTDIR/usr/local/include/
-popd > /dev/null
-
-# build
+build
 make_isa_stub
 make_package
 clean_up
