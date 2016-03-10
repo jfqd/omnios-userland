@@ -1,0 +1,18 @@
+199a200,208
+> sunos5-sharedext:
+>       @$(MAKE) REAL_DAEMON_DIR=$(REAL_DAEMON_DIR) STYLE=$(STYLE) \
+>       LIBS="-lsocket -lnsl" RANLIB=/bin/true \
+>       AR=ld ARFLAGS="-G -h libwrap.so.1 -lsocket -lnsl -o " \
+>       LIB=libwrap.so.1 VSYSLOG= STYLE=-DPROCESS_OPTIONS \
+>       NETGROUP=-DNETGROUP AUX_OBJ="setenv.o" TLI=-DTLI \
+>       BUGS="$(BUGS) -DSOLARIS_24_GETHOSTBYNAME_BUG" IPV6="$(IPV6)" \
+>       EXTRA_CFLAGS="-DUSE_STRERROR" all
+> 
+530c539
+< FACILITY= LOG_MAIL    # LOG_MAIL is what most sendmail daemons use
+---
+> FACILITY= LOG_LOCAL1  # LOG_MAIL is what most sendmail daemons use
+728c737
+<       $(CC) $(CFLAGS) -o $@ safe_finger.o $(LIB) $(LIBS)
+---
+>       $(CC) $(CFLAGS) -o $@ safe_finger.o $(LIBS)
