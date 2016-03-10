@@ -35,7 +35,7 @@ PKG=service/network/clamav
 SUMMARY="ClamAV is an open source antivirus engine"
 DESC="$SUMMARY ($VER)"
 
-BUILDARCH=32
+BUILDARCH=64
 BUILD_DEPENDS_IPS=""
 DEPENDS_IPS="system/library/gcc-4-runtime"
 
