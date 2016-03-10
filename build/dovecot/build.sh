@@ -35,10 +35,13 @@ SUMMARY="Dovecot is an open source IMAP and POP3 email server."
 DESC="$SUMMARY ($VER)"
 
 BUILDARCH=64
-BUILD_DEPENDS_IPS=""
+BUILD_DEPENDS_IPS="library/libwrap"
 
-DEPENDS_IPS="system/library/gcc-4-runtime database/bdb library/libmysqlclient18
-             library/security/cyrus-sasl"
+DEPENDS_IPS="system/library/gcc-4-runtime
+             database/bdb
+             library/libmysqlclient18
+             library/security/cyrus-sasl
+             library/libwrap"
 
 CPPFLAGS="-I/usr/local/include -I/usr/local/include/mysql"
 LDFLAGS="-L/usr/local/lib -R/usr/local/lib"
