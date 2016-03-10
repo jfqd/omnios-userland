@@ -42,7 +42,32 @@ init
 download_source tcp_wrappers $BUILDDIR
 patch_source
 prep_build
-build
+
+pushd $TMPDIR/$BUILDDIR > /dev/null
+export CC=/opt/gcc-4.8.1/bin/gcc
+logcmd gmake REAL_DAEMON_DIR=/usr/local/sbin STYLE=-DPROCESS_OPTIONS LIBS="-lsocket -lnsl" sunos5
+logcmd mkdir -p $DESTDIR/usr/local/sbin
+logcmd mkdir -p $DESTDIR/usr/local/lib
+logcmd mkdir -p $DESTDIR/usr/local/include
+logcmd mkdir -p $DESTDIR/usr/local/share/man/man3
+logcmd mkdir -p $DESTDIR/usr/local/share/man/man5
+logcmd mkdir -p $DESTDIR/usr/local/share/man/man8
+logcmd cp try-from $DESTDIR/usr/local/sbin/
+logcmd cp tcpdmatch $DESTDIR/usr/local/sbin/
+logcmd cp tcpdchk $DESTDIR/usr/local/sbin/
+logcmd cp tcpd $DESTDIR/usr/local/sbin/
+logcmd cp safe_finger $DESTDIR/usr/local/sbin/
+logcmd cp libwrap.a $DESTDIR/usr/local/lib/
+logcmd cp hosts_access.3 $DESTDIR/usr/local/share/man/man3/
+logcmd cp hosts_access.5 $DESTDIR/usr/local/share/man/man5/
+logcmd cp hosts_options.5 $DESTDIR/usr/local/share/man/man5/
+logcmd cp tcpdmatch.8 $DESTDIR/usr/local/share/man/man8/
+logcmd cp tcpdchk.8 $DESTDIR/usr/local/share/man/man8/
+logcmd cp tcpd.8 $DESTDIR/usr/local/share/man/man8/
+logcmd cp tcpd.h $DESTDIR/usr/local/include/
+popd > /dev/null
+
+# build
 make_isa_stub
 make_package
 clean_up
