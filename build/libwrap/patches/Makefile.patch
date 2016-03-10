@@ -1,18 +1,44 @@
-199a200,208
-> sunos5-sharedext:
->       @$(MAKE) REAL_DAEMON_DIR=$(REAL_DAEMON_DIR) STYLE=$(STYLE) \
->       LIBS="-lsocket -lnsl" RANLIB=/bin/true \
->       AR=ld ARFLAGS="-G -h libwrap.so.1 -lsocket -lnsl -o " \
->       LIB=libwrap.so.1 VSYSLOG= STYLE=-DPROCESS_OPTIONS \
->       NETGROUP=-DNETGROUP AUX_OBJ="setenv.o" TLI=-DTLI \
->       BUGS="$(BUGS) -DSOLARIS_24_GETHOSTBYNAME_BUG" IPV6="$(IPV6)" \
->       EXTRA_CFLAGS="-DUSE_STRERROR" all
-> 
-530c539
-< FACILITY= LOG_MAIL    # LOG_MAIL is what most sendmail daemons use
----
-> FACILITY= LOG_LOCAL1  # LOG_MAIL is what most sendmail daemons use
-728c737
-<       $(CC) $(CFLAGS) -o $@ safe_finger.o $(LIB) $(LIBS)
----
->       $(CC) $(CFLAGS) -o $@ safe_finger.o $(LIBS)
+--- tcp_wrappers_7.6-ipv6.4/Makefile.orig       2016-03-10 15:55:45.487162630 +0100
++++ tcp_wrappers_7.6-ipv6.4/Makefile            2016-03-10 15:55:05.369029030 +0100
+@@ -197,6 +197,24 @@
+        BUGS="$(BUGS) -DSOLARIS_24_GETHOSTBYNAME_BUG" IPV6="$(IPV6)" \
+        EXTRA_CFLAGS=-DUSE_STRERROR all
+ 
++sunos5-sharedext:
++	@$(MAKE) REAL_DAEMON_DIR=$(REAL_DAEMON_DIR) STYLE=$(STYLE) \
++	LIBS="-lsocket -lnsl" RANLIB=/bin/true \
++	AR=ld ARFLAGS="-G -h libwrap.so.1 -lsocket -lnsl -o " \
++	LIB=libwrap.so.1 VSYSLOG= STYLE=-DPROCESS_OPTIONS \
++	NETGROUP=-DNETGROUP AUX_OBJ="setenv.o" TLI=-DTLI \
++	BUGS="$(BUGS) -DSOLARIS_24_GETHOSTBYNAME_BUG" IPV6="$(IPV6)" \
++	EXTRA_CFLAGS="-DUSE_STRERROR" all
++
++sunos5-sharedext64:
++	@$(MAKE) REAL_DAEMON_DIR=$(REAL_DAEMON_DIR) STYLE=$(STYLE) \
++	LIBS="-lsocket -lnsl" RANLIB=/bin/true \
++	AR=ld ARFLAGS="-G -m64 -h libwrap.so.1 -lsocket -lnsl -o " \
++	LIB=libwrap.so.1 VSYSLOG= STYLE=-DPROCESS_OPTIONS \
++	NETGROUP=-DNETGROUP AUX_OBJ="setenv.o" TLI=-DTLI \
++	BUGS="$(BUGS) -DSOLARIS_24_GETHOSTBYNAME_BUG" IPV6="$(IPV6)" \
++	EXTRA_CFLAGS="-m64 -DUSE_STRERROR" all
++
+ # Generic SYSV40
+ esix sysv4:
+        @make REAL_DAEMON_DIR=$(REAL_DAEMON_DIR) STYLE=$(STYLE) \
+@@ -527,7 +545,7 @@
+ #
+ # The LOG_XXX names below are taken from the /usr/include/syslog.h file.
+ 
+-FACILITY= LOG_MAIL	# LOG_MAIL is what most sendmail daemons use
++FACILITY= LOG_LOCAL1	# LOG_MAIL is what most sendmail daemons use
+ 
+ # The syslog priority at which successful connections are logged.
+ 
+@@ -725,7 +743,7 @@
+        $(CC) $(CFLAGS) -o $@ miscd.o $(LIB) $(LIBS)
+ 
+ safe_finger: safe_finger.o $(LIB)
+-	$(CC) $(CFLAGS) -o $@ safe_finger.o $(LIB) $(LIBS)
++	$(CC) $(CFLAGS) -o $@ safe_finger.o $(LIBS)
+ 
+ TCPDMATCH_OBJ = tcpdmatch.o fakelog.o inetcf.o scaffold.o
