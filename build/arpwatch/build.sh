@@ -27,17 +27,40 @@
 # Load support functions
 . ../../lib/functions.sh
 
-BUILD_DEPENDS_IPS="library/pcap"
-DEPENDS_IPS="library/pcap"
-
-CFLAGS="-std=gnu99"
-
 PROG=arpwatch
-VER=2.1a15
+VER=2.1a11
 VERHUMAN=$VER
 PKG=network/arpwatch
 SUMMARY="the ethernet monitor program"
 DESC="the ethernet monitor program; for keeping track of ethernet/ip address pairings"
+
+BUILD_DEPENDS_IPS="system/library/pcap"
+DEPENDS_IPS="system/library/pcap"
+
+CONFIGURE_OPTS="--sysconfdir=/etc --localstatedir=/var"
+BUILDARCH=32
+CFLAGS="-std=c99"
+USER=`/usr/bin/whoami`
+
+build() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 32-bit"
+    export ISALIST="$ISAPART"
+    make_clean
+    configure32
+    make_prog32
+    logcmd /usr/gnu/bin/sed -i -e "s#-o bin -g bin#-o ${USER} -g ${USER}#g" Makefile
+    logcmd mkdir -p $DESTDIR$PREFIX/sbin/i386
+    logcmd mkdir -p $DESTDIR$PREFIX/var/arpwatch
+    logcmd touch $DESTDIR$PREFIX/var/arpwatch/arp.dat
+    make_install32
+    logcmd mkdir -p $DESTDIR$PREFIX/share/man/man8
+    logcmd cp arpsnmp.8 $DESTDIR$PREFIX/share/man/man8
+    logcmd cp arpwatch.8 $DESTDIR$PREFIX/share/man/man8
+    popd > /dev/null
+    unset ISALIST
+    export ISALIST
+}
 
 init
 download_source $PROG $PROG $VER
@@ -45,6 +68,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+VER=${VER//[a]/.}
 make_package
 clean_up
 
