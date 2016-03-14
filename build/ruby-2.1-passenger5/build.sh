@@ -42,8 +42,7 @@ BUILD_DEPENDS_IPS="custom/server/apache22
              library/libssh2
              library/libldap
              library/security/cyrus-sasl
-             developer/object-file
-             developer/gcc48"
+             developer/object-file"
 
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
