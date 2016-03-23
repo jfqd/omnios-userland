@@ -43,6 +43,7 @@ build() {
     logcmd mkdir -p $DESTDIR/etc/consul.d
     logcmd mkdir -p $DESTDIR/var/consul
     logmsg "Create logfile"
+    logcmd mkdir -p $DESTDIR/var/log
     logcmd touch $DESTDIR/var/log/consul.log
     popd > /dev/null
     logmsg "Install SMF"
