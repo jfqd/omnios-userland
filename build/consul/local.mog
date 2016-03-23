@@ -7,3 +7,4 @@ user ftpuser=false gcos-field="consul Reserved UID" group=consul password=NP uid
 <transform dir path=var/consul -> set group consul>
 <transform file path=etc/consul.d/.* -> set preserve true>
 <transform file path=var/consul/.* -> set preserve true>
+<transform file path==var/log/consul.log -> set preserve true>
