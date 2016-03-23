@@ -42,11 +42,11 @@ build() {
     logmsg "Create config and persistence direcory"
     logcmd mkdir -p $DESTDIR/etc/consul.d
     logcmd mkdir -p $DESTDIR/var/consul
+    popd > /dev/null
     logmsg "Install SMF"
     logcmd mkdir -p $DESTDIR/lib/svc/manifest/monitoring
     logcmd cp $SRCDIR/files/consul.xml \
         $$DESTDIR//lib/svc/manifest/monitoring/consul.xml
-    popd > /dev/null
 }
 
 init
