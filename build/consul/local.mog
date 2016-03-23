@@ -1,0 +1,8 @@
+group gid=205 groupname=consul
+user ftpuser=false gcos-field="consul Reserved UID" group=consul password=NP uid=205 username=consul home-dir=/var/consul
+<transform dir path=etc/consul.d -> set user consul>
+<transform dir path=etc/consul.d -> set group consul>
+<transform dir path=var/consul -> set user consul>
+<transform dir path=var/consul -> set group consul>
+<transform file path=etc/consul.d/.* -> set preserve true>
+<transform file path=var/consul/.* -> set preserve true>
