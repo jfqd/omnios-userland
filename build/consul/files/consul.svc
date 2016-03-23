@@ -1,0 +1,39 @@
+#!/usr/bin/bash -e
+
+. /lib/svc/share/smf_include.sh
+
+set -e
+
+CONFDIR="/etc/consul.d"
+LOGFILE="/var/log/consul.log"
+ZONENAME=`/usr/bin/zonename`
+
+ENV="/usr/bin/env -i LANG=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+case $1 in
+  start)
+    echo "Starting consul with confdir: $CONFDIR"
+    eval $ENV /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" > "$LOGFILE" 2>&1 &
+  ;;
+  stop)
+    echo "Stopping consul"
+    eval $ENV /usr/bin/pkill -z ZONENAME consul
+  ;;
+  reload | refresh )
+    echo "Reloading consul"
+    eval $ENV /usr/local/bin/amd64/consul reload &
+  ;;
+  restart | force-reload)
+    echo "Forcing reload of consul with confdir: $CONFDIR"
+    stop
+    sleep 2
+    start
+  ;;
+  status)
+    /usr/local/bin/amd64/consul members
+  ;;
+  *)
+    echo "Usage: /lib/svc/method/consul start|stop|status|refresh|restart|reload|force-reload" >&2
+    exit 2
+  ;;
+esac

@@ -24,7 +24,7 @@
     <exec_method
        type='method'
        name='start'
-       exec='/usr/local/bin/amd64/consul agent -config-dir /etc/consul.d >/var/log/consul.log 2>&1'
+       exec='/lib/svc/method/consul start'
        timeout_seconds='-1'>
        <method_context>
          <method_credential user='consul' group='consul' />
@@ -34,21 +34,28 @@
     <exec_method
       type='method'
       name='stop'
-      exec=":kill"
+      exec="/lib/svc/method/consul stop"
       timeout_seconds='-1'>
     </exec_method>
     
     <exec_method
       type='method'
       name='reload'
-      exec='/usr/local/bin/amd64/consul reload'
+      exec='/lib/svc/method/consul reload'
       timeout_seconds='-1'>
     </exec_method>
     
     <exec_method
       type='method'
       name='refresh'
-      exec='/usr/local/bin/amd64/consul reload'
+      exec='/lib/svc/method/consul restart'
+      timeout_seconds='-1'>
+    </exec_method>
+    
+    <exec_method
+      type='method'
+      name='restart'
+      exec='/lib/svc/method/consul restart'
       timeout_seconds='-1'>
     </exec_method>
   
