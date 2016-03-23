@@ -17,7 +17,7 @@ case $1 in
   ;;
   stop)
     echo "Stopping consul"
-    eval $ENV /usr/bin/pkill -z ZONENAME consul
+    eval $ENV /usr/bin/pkill -z "$ZONENAME" consul
   ;;
   reload | refresh )
     echo "Reloading consul"
