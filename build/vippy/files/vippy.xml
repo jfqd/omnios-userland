@@ -16,11 +16,11 @@
     <dependency name='config-file' grouping='require_all' restart_on='refresh' type='path'>
       <service_fmri value='file://localhost/etc/vippy.conf'/>
     </dependency>
-    <exec_method name='start' type='method' exec='/opt/niksula/sbin/vippyd &amp;' timeout_seconds='60'>
+    <exec_method name='start' type='method' exec='/usr/local/sbin/vippyd &amp;' timeout_seconds='60'>
       <method_context>
         <method_credential user='root' group='root' privileges='basic,net_privaddr,sys_ip_config' />
         <method_environment>
-          <envvar name='PATH' value='/usr/bin:/usr/sbin:/sbin:/opt/niksula/bin'/>
+          <envvar name='PATH' value='/usr/bin:/usr/sbin:/sbin:/usr/local/bin'/>
         </method_environment>
       </method_context>
     </exec_method>
