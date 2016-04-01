@@ -1,7 +1,5 @@
-$NetBSD: patch-configure,v 1.2 2016/03/05 05:20:17 taca Exp $
-
---- configure.orig	2015-12-01 13:36:27.000000000 +0000
-+++ configure
+--- php-7.0.5/configure.orig	2015-12-01 13:36:27.000000000 +0000
++++ php-7.0.5/configure
 @@ -6862,27 +6862,6 @@ EOF
      ;;
    esac

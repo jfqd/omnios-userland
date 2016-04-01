@@ -1,7 +1,5 @@
-$NetBSD: patch-acinclude.m4,v 1.1 2015/12/06 15:17:31 taca Exp $
-
---- acinclude.m4.orig	2015-06-23 17:33:33.000000000 +0000
-+++ acinclude.m4
+--- php-7.0.5/acinclude.m4.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.5/acinclude.m4
 @@ -2354,7 +2354,7 @@ AC_DEFUN([PHP_SETUP_OPENSSL],[
    if test "$found_openssl" = "no"; then
    

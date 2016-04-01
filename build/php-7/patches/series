@@ -1,0 +1,6 @@
+acinclude.m4
+configure
+makedist
+php.ini-development
+php.ini-production
+run-tests.php
