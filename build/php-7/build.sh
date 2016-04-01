@@ -29,7 +29,7 @@
 
 # http://de1.php.net/get/php-5.6.17.tar.gz/from/this/mirror
 PROG=php
-VER=7.0.4
+VER=7.0.5
 PKG=runtime/php7
 SUMMARY="PHP Server 7"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
