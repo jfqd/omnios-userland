@@ -29,7 +29,7 @@
 
 # ftp://ftp.netclusive.de/pub/postfix//postfix-release/official/postfix-2.11.6.tar.gz
 PROG=postfix
-VER=2.11.6
+VER=2.11.7
 VERHUMAN=$VER
 PKG=service/network/smtp/postfix
 SUMMARY="Postfix Mail Transport Agent"
