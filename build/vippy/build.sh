@@ -57,6 +57,7 @@ build_npm() {
 init
 prep_build
 build_npm
+
 logcmd mkdir -p $DESTDIR$PREFIX/bin || logerr "mkdir bin failed"
 logcmd mkdir -p $DESTDIR$PREFIX/sbin || logerr "mkdir sbin failed"
 logcmd ln -s ../lib/node_modules/.bin/vippyctl $DESTDIR$PREFIX/bin/vippyctl \
@@ -67,6 +68,11 @@ logcmd mkdir -p $DESTDIR/lib/svc/manifest/network \
 	|| logerr "Failed to mkdir for SMF manifest"
 logcmd cp $SRCDIR/files/vippy.xml $DESTDIR/lib/svc/manifest/network/vippy.xml \
 	|| logerr "Failed to place SMF manifest"
+logcmd mkdir -p $DESTDIR/lib/svc/method \
+	|| logerr "Failed to mkdir for SVC file"
+logcmd cp $SRCDIR/files/vippy-svc $DESTDIR/lib/svc/method/vippy \
+	|| logerr "Failed to place SVC file"
+
 make_package
 clean_up
 

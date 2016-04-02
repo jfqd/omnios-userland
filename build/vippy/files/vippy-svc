@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+export PATH=/usr/local/sbin:/usr/local/bin:/opt/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin
+
+socket="/var/run/vippy.socket"
+name="/etc/vippy.node"
+conf="/etc/vippy.conf"
+
+if [ -e "$name" ] ; then
+    node=$(/usr/bin/cat $name)
+    start_cmd="/usr/local/sbin/vippyd -c $conf -n $node"
+else
+    start_cmd="/usr/local/sbin/vippyd -c $conf"
+fi
+
+case $1 in
+    start)
+       if [ ! -e $socket ] ; then
+           $start_cmd &
+           exit 0
+       else
+           echo "ERROR: vippy $socket found, exiting.."
+           exit 1
+       fi
+    ;;
+    stop)
+       pkill -2 -f .*vippy.* && rm -f $socket
+    ;;
+esac
