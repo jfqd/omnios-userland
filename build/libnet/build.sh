@@ -31,6 +31,7 @@ PROG=libnet
 VER=1.1.6
 VERHUMAN=$VER
 PKG=library/libnet
+DOWNLOADURL="https://github.com/sam-github/libnet/archive/libnet-1.1.6.tar.gz"
 SUMMARY="libnet provides a portable framework for low-level network packet construction"
 DESC="libnet provides a portable framework for low-level network packet construction ($VER)"
 
@@ -40,7 +41,7 @@ CONFIGURE_OPTS="--with-pic --enable-maintainer-mode --enable-dependency-tracking
 MAKE=gmake
 
 create_configure() {
-  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR/libnet"
   pushd $TMPDIR/$BUILDDIR/libnet >/dev/null
   logcmd /usr/sfw/bin/autoreconf --install
   popd >/dev/null
