@@ -44,6 +44,7 @@ create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR/libnet"
   pushd $TMPDIR/$BUILDDIR/libnet >/dev/null
   logcmd /usr/sfw/bin/autoreconf --install
+  logcmd sed -i -e "s#define DLPI_DEV_PREFIX \"/dev\"#define DLPI_DEV_PREFIX \"/dev/net\"#g" ./src/libnet_link_dlpi.c
   popd >/dev/null
 }
 
