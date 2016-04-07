@@ -36,6 +36,7 @@ SUMMARY="Arp ping utility"
 DESC="Arping is a util to find out it a specific IP address on the LAN is taken"
 
 BUILD_DEPENDS_IPS='library/libnet system/library/pcap'
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR/libnet"
