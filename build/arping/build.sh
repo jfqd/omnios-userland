@@ -37,10 +37,18 @@ DESC="Arping is a util to find out it a specific IP address on the LAN is taken"
 
 BUILD_DEPENDS_IPS='library/libnet system/library/pcap'
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR/libnet"
+  pushd $TMPDIR/$BUILDDIR >/dev/null
+  logcmd /usr/sfw/bin/autoreconf --install
+  popd >/dev/null
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 make_isa_stub
 make_package
