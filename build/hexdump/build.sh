@@ -37,7 +37,7 @@ DESC="SUMMARY ($VER)"
 
 build() {
     pushd $TMPDIR/$BUILDDIR > /dev/null
-    logcmd GCC -DRELEASE=$VER -O hexdump.c -o hexdump
+    logcmd $CC -DRELEASE=\"$(VER)\" -O hexdump.c -o hexdump
     logcmd mkdir -p $DESTDIR$PREFIX/bin
     logcmd cp hexdump $DESTDIR$PREFIX/bin
     logcmd mkdir -p $DESTDIR$PREFIX/share/man/man1
