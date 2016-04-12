@@ -35,12 +35,21 @@ DOWNLOADURL="http://www.catb.org/~esr/hexdump/hexdump-1.8.tar.gz"
 SUMMARY="Dump binary files in a CP/M-like hex format"
 DESC="SUMMARY ($VER)"
 
+build() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logcmd GCC -DRELEASE=$VER -O hexdump.c -o hexdump
+    logcmd mkdir -p $DESTDIR$PREFIX/bin
+    logcmd cp hexdump $DESTDIR$PREFIX/bin
+    logcmd mkdir -p $DESTDIR$PREFIX/share/man/man1
+    logcmd cp hexdump.1 $DESTDIR$PREFIX/share/man/man1
+    popd > /dev/null
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
-make_isa_stub
 make_package
 clean_up
 
