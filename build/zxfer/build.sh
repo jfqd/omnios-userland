@@ -31,8 +31,11 @@ PROG=zxfer
 VER=1.1.6
 VERHUMAN=$VER
 PKG=service/backup/zxfer
+DOWNLOADURL="https://github.com/allanjude/zxfer/archive/1.1.6.tar.gz"
 SUMMARY="Script for managing ZFS snapshot replication"
 DESC="$SUMMARY ($VER)"
+
+TAR=gtar
 
 build() {
   pushd $TMPDIR/$BUILDDIR > /dev/null
