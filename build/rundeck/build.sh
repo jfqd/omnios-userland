@@ -49,7 +49,7 @@ build() {
       || logerr "cannot make SMF dir"
   logcmd cp $SRCDIR/files/smf-rundeck.xml $DESTDIR/lib/svc/manifest/application/rundeck.xml \
       || logerr "cannot install SMF manifest"
-  logcmd sed -i -e "s#@VER@#${VER}#g" $DESTDIR/lib/svc/method/rundeck
+  logcmd sed -i -e "s#@VER@#${VER}#g" $DESTDIR/lib/svc/method/rundeck \
       || logerr "cannot set rundeck version"
 }
 
