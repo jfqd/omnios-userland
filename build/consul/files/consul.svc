@@ -12,7 +12,7 @@ ENV="/usr/bin/env -i LANG=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/b
 
 start() {
   echo "Starting consul with confdir: $CONFDIR"
-  eval $ENV /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" > "$LOGFILE" 2>&1 &
+  eval $ENV /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" >> "$LOGFILE" 2>&1 &
 }
 
 stop() {
