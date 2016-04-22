@@ -5,6 +5,7 @@
 set -e
 
 CONFDIR="/etc/consul.d"
+DATADIR="/var/consul"
 LOGFILE="/var/log/consul.log"
 ZONENAME=`/usr/bin/zonename`
 
@@ -12,6 +13,7 @@ ENV="/usr/bin/env -i LANG=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/b
 
 start() {
   echo "Starting consul with confdir: $CONFDIR"
+  eval /usr/bin/rm "$DATADIR/serf/local.keyring" 2>/dev/null
   eval $ENV /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" >> "$LOGFILE" 2>&1 &
 }
 
