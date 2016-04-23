@@ -27,12 +27,11 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://storage.googleapis.com/golang/go1.3.3.src.tar.gz
 PROG=go
-VER=1.3.1
-VERHUMAN=$VER   # Human-readable version
-#PVER=          # Branch (set in config.sh, override here if needed)
+VER=1.4.3
+VERHUMAN=$VER
 PKG=runtime/go
+DOWNLOADURL="https://storage.googleapis.com/golang/go1.4.3.src.tar.gz"
 SUMMARY="An open source programming language."
 DESC="$SUMMARY ($VER)"
 
@@ -40,7 +39,7 @@ BUILDDIR=$PROG
 BUILDARCH=64
 
 # Tricks so we can make the installation land in the right place.
-export GOROOT_FINAL=/opt/go
+export GOROOT_FINAL=/usr/local/go14
 
 make_clean() {
     cd $TMPDIR/$BUILDDIR/src
@@ -73,12 +72,12 @@ make_prog64() {
 
 make_install64() {
     logmsg "Installing libraries (64)"
-    logcmd mv $TMPDIR/$BUILDDIR $DESTDIR/opt/go || logerr "Failed to install Go"
+    logcmd mv $TMPDIR/$BUILDDIR $DESTDIR$GOROOT_FINAL || logerr "Failed to install Go"
     # For packaging purposes...
-    ln -s $DESTDIR/opt/go $TMPDIR/$BUILDDIR
+    ln -s $DESTDIR$GOROOT_FINAL $TMPDIR/$BUILDDIR
     # Required packages:  godoc and vet
-    GOROOT=$DESTDIR/opt/go $DESTDIR/opt/go/bin/amd64/go get code.google.com/p/go.tools/cmd/godoc
-    GOROOT=$DESTDIR/opt/go $DESTDIR/opt/go/bin/amd64/go get code.google.com/p/go.tools/cmd/vet
+    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR/opt/go/bin/go get code.google.com/p/go.tools/cmd/godoc
+    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR/opt/go/bin/go get code.google.com/p/go.tools/cmd/vet
 }
 
 init
