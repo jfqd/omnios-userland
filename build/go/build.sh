@@ -39,7 +39,7 @@ BUILDDIR=$PROG
 BUILDARCH=64
 
 # Tricks so we can make the installation land in the right place.
-export GOROOT_FINAL=/usr/local/go14
+export GOROOT_FINAL=$PREFIX/go14
 
 make_clean() {
     cd $TMPDIR/$BUILDDIR/src
@@ -59,13 +59,14 @@ make_install32() {
 }
 
 configure64() {
-    logcmd mkdir -p $DESTDIR$GOROOT_FINAL || \
+    logcmd mkdir -p $DESTDIR$PREFIX || \
     logerr "Failed to create Go install directory."
 }
 
 make_prog64() {
     logmsg "Making libraries (64)"
     cd $TMPDIR/$BUILDDIR/src
+    # logcmd export CGO_ENABLED=1
     logcmd ./all.bash || logerr "build failed"
     cd ..
 }
@@ -76,8 +77,8 @@ make_install64() {
     # For packaging purposes...
     ln -s $DESTDIR$GOROOT_FINAL $TMPDIR/$BUILDDIR
     # Required packages:  godoc and vet
-    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/godoc
-    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/vet
+    # GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/godoc
+    # GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/vet
 }
 
 init
