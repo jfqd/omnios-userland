@@ -28,18 +28,24 @@
 . ../../lib/functions.sh
 
 PROG=go
-VER=1.4.3
+VER=1.5.4
 VERHUMAN=$VER
 PKG=runtime/go
-DOWNLOADURL="https://storage.googleapis.com/golang/go1.4.3.src.tar.gz"
-SUMMARY="An open source programming language."
+DOWNLOADURL="https://storage.googleapis.com/golang/go1.5.4.src.tar.gz"
+SUMMARY="An open source programming language"
 DESC="$SUMMARY ($VER)"
 
 BUILDDIR=$PROG
 BUILDARCH=64
 
+# go > 1.4 need an existing go version >= 1.4 to build
+BUILD_DEPENDS_IPS="runtime/go@1.4.3"
+
+export USER=`whoami`
+
 # Tricks so we can make the installation land in the right place.
-export GOROOT_FINAL=$PREFIX/go14
+export GOROOT_FINAL=$PREFIX/go16
+export GOROOT_BOOTSTRAP=$PREFIX/go14
 
 make_clean() {
     cd $TMPDIR/$BUILDDIR/src
@@ -61,24 +67,25 @@ make_install32() {
 configure64() {
     logcmd mkdir -p $DESTDIR$PREFIX || \
     logerr "Failed to create Go install directory."
+    # thanks to pkgsrc :)
+    pushd $TMPDIR/$BUILDDIR/src/syscall >/dev/null
+    export GOOS=solaris
+    export GOARCH=amd64
+    env perl mksyscall_solaris.pl syscall_solaris.go syscall_solaris_amd64.go > zsyscall_solaris_amd64.go
+    popd >/dev/null
 }
 
 make_prog64() {
     logmsg "Making libraries (64)"
     cd $TMPDIR/$BUILDDIR/src
-    # logcmd export CGO_ENABLED=1
-    logcmd ./all.bash || logerr "build failed"
+    logcmd pfexec ./make.bash || logerr "build failed"
     cd ..
 }
 
 make_install64() {
     logmsg "Installing libraries (64)"
     logcmd mv $TMPDIR/$BUILDDIR $DESTDIR$GOROOT_FINAL || logerr "Failed to install Go"
-    # For packaging purposes...
-    ln -s $DESTDIR$GOROOT_FINAL $TMPDIR/$BUILDDIR
-    # Required packages:  godoc and vet
-    # GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/godoc
-    # GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/vet
+    logcmd pfexec chown -R $USER:$USER $DESTDIR$GOROOT_FINAL
 }
 
 init
