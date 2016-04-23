@@ -59,7 +59,7 @@ make_install32() {
 }
 
 configure64() {
-    logcmd mkdir -p $DESTDIR/opt || \
+    logcmd mkdir -p $DESTDIR$GOROOT_FINAL || \
     logerr "Failed to create Go install directory."
 }
 
@@ -76,8 +76,8 @@ make_install64() {
     # For packaging purposes...
     ln -s $DESTDIR$GOROOT_FINAL $TMPDIR/$BUILDDIR
     # Required packages:  godoc and vet
-    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR/opt/go/bin/go get code.google.com/p/go.tools/cmd/godoc
-    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR/opt/go/bin/go get code.google.com/p/go.tools/cmd/vet
+    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/godoc
+    GOROOT=$DESTDIR$GOROOT_FINAL $DESTDIR$GOROOT_FINAL/bin/go get code.google.com/p/go.tools/cmd/vet
 }
 
 init
