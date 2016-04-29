@@ -34,8 +34,8 @@ PKG=runtime/python27/mysql
 SUMMARY="MySQL support for Python"
 DESC="$SUMMARY ($VER)"
 
-BUILD_DEPENDS_IPS="runtime/python27"
-DEPENDS_IPS="runtime/python27"
+BUILD_DEPENDS_IPS="runtime/python27 library/libmysqlclient18"
+DEPENDS_IPS="runtime/python27 library/libmysqlclient18"
 
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
