@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=lxml
-VER=8.1.1
+VER=3.6.0
 VERHUMAN=$VER
 PKG=runtime/python27/lxml
 DOWNLOADURL="https://github.com/lxml/lxml/archive/lxml-3.6.0.tar.gz"
