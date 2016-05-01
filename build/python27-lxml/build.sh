@@ -41,6 +41,9 @@ PYTHON=/usr/local/bin/python2.7
 DEPENDS_IPS="runtime/python27"
 BUILD_DEPENDS_IPS="$DEPENDS_IPS"
 
+# Cython need to be installed on the build machine
+# pip install Cython
+
 init
 download_source $PROG $PROG $VER
 patch_source
