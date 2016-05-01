@@ -38,7 +38,7 @@ DESC="automx is a $SUMMARY ($VER)"
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
 
-DEPENDS_IPS="runtime/python27 python27/lxml python27/mysql python27/m2mcrypto"
+DEPENDS_IPS="runtime/python27 runtime/python27/lxml@3.6.0 runtime/python27/mysql runtime/python27/m2mcrypto"
 BUILD_DEPENDS_IPS="runtime/python27"
 
 # Additionally we need the following libraries.
