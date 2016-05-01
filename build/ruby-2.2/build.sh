@@ -29,7 +29,7 @@
 
 # http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.2.tar.bz2
 PROG=ruby
-VER=2.2.4
+VER=2.2.5
 MAIN_VER=2.2
 VERHUMAN=$VER
 PKG=runtime/ruby-2.2
