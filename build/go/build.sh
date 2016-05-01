@@ -28,10 +28,10 @@
 . ../../lib/functions.sh
 
 PROG=go
-VER=1.5.4
+VER=1.6.2
 VERHUMAN=$VER
 PKG=runtime/go
-DOWNLOADURL="https://storage.googleapis.com/golang/go1.5.4.src.tar.gz"
+DOWNLOADURL="https://storage.googleapis.com/golang/go1.6.2.src.tar.gz"
 SUMMARY="An open source programming language"
 DESC="$SUMMARY ($VER)"
 
