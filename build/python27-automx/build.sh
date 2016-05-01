@@ -39,7 +39,7 @@ BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
 
 DEPENDS_IPS="runtime/python27 python27/lxml python27/mysql python27/m2mcrypto"
-BUILD_DEPENDS_IPS="$DEPENDS_IPS"
+BUILD_DEPENDS_IPS="runtime/python27"
 
 # Additionally we need the following libraries.
 # Later we will build a package for each.
