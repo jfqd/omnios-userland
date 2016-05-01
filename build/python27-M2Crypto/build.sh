@@ -34,8 +34,8 @@ PKG=runtime/python27/m2mcrypto
 SUMMARY="A Python crypto and SSL toolkit"
 DESC="$SUMMARY ($VER)"
 
-BUILD_DEPENDS_IPS="runtime/python27"
-DEPENDS_IPS="$BUILD_DEPENDS_IPS"
+BUILD_DEPENDS_IPS="runtime/python27 developer/swig"
+DEPENDS_IPS="runtime/python27"
 
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
