@@ -25,7 +25,7 @@
 # Use is subject to license terms.
 #
 
-# Adapted from ms branch build/chef/build.sh 
+# Adapted from ms branch build/chef/build.sh
 
 RUBY_VER=2.1
 
@@ -63,7 +63,7 @@ build32(){
       GVER=${i##[^0-9.]*-}
       logmsg "--- gem install $GEM-$GVER"
       logcmd $GEM_BIN --config-file $GEMRC install \
-        -r --no-rdoc --no-ri -i ${GEM_HOME} -v $GVER $GEM || \
+        -r --no-rdoc --no-ri -i ${GEM_HOME} -v $GVER $GEM $GEM_BUILD_OPTIONS || \
         logerr "Failed to install $GEM-$GVER"
     done
     logmsg "--- gem install $PROG-$VER"
