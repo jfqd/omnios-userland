@@ -72,7 +72,7 @@ CONFIGURE_OPTS="
     --with-nagios-group=${USER}
     --with-httpd-conf=$PREFIX/etc
     --with-htmurl=
-    --with-cgiurl=/cgi-bin
+    --with-cgiurl=/nagios/cgi-bin
     --with-gd-inc=/usr/local/include
     --enable-embedded-perl
     --with-perlcache"
@@ -104,11 +104,17 @@ add_configuration() {
   logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/i386
   logcmd cp $SRCDIR/files/nagios.load \
       $DESTDIR/usr/local/apache22/conf/modules/i386/nagios.load
+  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/amd64
+  logcmd cp $SRCDIR/files/nagios-amd64.load \
+      $DESTDIR/usr/local/apache22/conf/modules/amd64/nagios.load
   logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
   logcmd cp $SRCDIR/files/httpd-nagios.conf \
       $DESTDIR/usr/local/apache22/conf/conf.d/httpd-nagios.conf
   logcmd cp $SRCDIR/files/htpasswd.users \
       $DESTDIR/etc/nagios/htpasswd.users
+  # logcmd cp $SRCDIR/files/config.inc.php \
+  #     $DESTDIR/usr/local/nagios/share/config.inc.php
+  # logcmd ln -s /etc/nagios $DESTDIR/usr/local/nagios/etc
 }
 
 smf_support() {
