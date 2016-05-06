@@ -27,9 +27,8 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://mirror.checkdomain.de/imagemagick/ImageMagick-6.9.1-10.tar.gz
 PROG=ImageMagick
-VER=6.9.3-3
+VER=6.9.1-4
 VERHUMAN=$VER
 PKG=image/imagemagick
 SUMMARY="software suite to create, edit, compose, or convert bitmap images"
@@ -38,7 +37,7 @@ DESC="$SUMMARY"
 BUILD_DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff"
 DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff"
 
-CFLAGS="-I/opt/omni/include -I/usr/local/include"
+CFLAGS="-I/usr/local/include"
 LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
