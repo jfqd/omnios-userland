@@ -43,11 +43,17 @@ LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
 CONFIGURE_OPTS="--disable-openmp --disable-static --without-x"
 
+fix_cve() {
+    logcmd cp $SRCDIR/files/policy.xml \
+        $DESTDIR/usr/local/etc/ImageMagick-6/policy.xml
+}
+
 init
 download_source imagemagick $PROG $VER
 patch_source
 prep_build
 build
+fix_cve
 make_isa_stub
 PROG=imagemagick
 VER=${VER//-/.}
