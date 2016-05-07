@@ -35,6 +35,12 @@ DOWNLOADURL="https://github.com/wiedi/free"
 SUMMARY="Display amount of free and used memory on the illumos"
 DESC="$SUMMARY ($VER)"
 
+BUILDARCH=64
+
+configur64() {
+  # no configure
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
