@@ -37,8 +37,14 @@ DESC="$SUMMARY ($VER)"
 
 BUILDARCH=64
 
-configur64() {
-  logmsg "no configure"
+build64() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 64-bit"
+    make_clean
+    make_prog64
+    logcmd mkdir -p $DESTDIR$PREFIX/bin
+    logcmd cp $TMPDIR/$BUILDDIR/free $DESTDIR$PREFIX/bin/free
+    popd > /dev/null
 }
 
 init
