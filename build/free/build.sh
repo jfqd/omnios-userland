@@ -38,7 +38,7 @@ DESC="$SUMMARY ($VER)"
 BUILDARCH=64
 
 configur64() {
-  # no configure
+  logmsg "no configure"
 }
 
 init
