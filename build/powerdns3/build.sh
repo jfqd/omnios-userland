@@ -57,11 +57,25 @@ CONFIGURE_OPTS="\
     --with-mysql-lib=/usr/local/lib \
     --with-boost=/include"
 
+add_smf_support() {
+  logmsg "Create config directory"
+  logcmd mkdir -p $DESTDIR/etc/powerdns/
+  logcmd touch $DESTDIR/etc/powerdns/pdns.conf
+  logmsg "Installing SMF"
+  logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+  logcmd cp $SRCDIR/files/powerdns.xml \
+      $DESTDIR/lib/svc/manifest/network/powerdns.xml
+  logcmd mkdir -p $DESTDIR/lib/svc/method
+  logcmd cp $SRCDIR/files/powerdns.svc \
+      $DESTDIR/lib/svc/method/powerdns
+}
+
 init
 download_source $PROG pdns $VER
 patch_source
 prep_build
 build
+add_smf_support
 make_isa_stub
 make_package
 clean_up
