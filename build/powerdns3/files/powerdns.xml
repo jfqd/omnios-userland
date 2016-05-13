@@ -20,9 +20,9 @@
       <service_fmri value='file://localhost/etc/powerdns/pdns.conf' />
     </dependency>
 
-    <exec_method type='method' name='start' exec='/lib/svc/method/pdns start' timeout_seconds='10' />
-    <exec_method type='method' name='stop' exec='/lib/svc/method/pdns stop' timeout_seconds='10' />
-    <exec_method type='method' name='refresh' exec='/lib/svc/method/pdns refresh' timeout_seconds='10' />
+    <exec_method type='method' name='start' exec='/lib/svc/method/powerdns start' timeout_seconds='10' />
+    <exec_method type='method' name='stop' exec='/lib/svc/method/powerdns stop' timeout_seconds='10' />
+    <exec_method type='method' name='refresh' exec='/lib/svc/method/powerdns refresh' timeout_seconds='10' />
 
     <template>
       <common_name>
