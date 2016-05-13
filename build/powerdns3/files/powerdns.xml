@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='pdns'>
+
+<service name='network/powerdns' type='service' version='1'>
+  
+  <single_instance />
+   
+  <dependency name='fs-local' grouping='require_all' restart_on='none' type='service'>
+    <service_fmri value='svc:/system/filesystem/local' />
+  </dependency>
+
+  <dependency name='network-service' grouping='require_all' restart_on='none' type='service'>
+    <service_fmri value='svc:/network/service' />
+  </dependency>
+
+  <instance name='powerdns' enabled='true'>
+    
+    <dependency name='pdns_configuration' grouping='require_all' restart_on='refresh' type='path'>
+      <service_fmri value='file://localhost/etc/powerdns/pdns.conf' />
+    </dependency>
+
+    <exec_method type='method' name='start' exec='/lib/svc/method/pdns start' timeout_seconds='10' />
+    <exec_method type='method' name='stop' exec='/lib/svc/method/pdns stop' timeout_seconds='10' />
+    <exec_method type='method' name='refresh' exec='/lib/svc/method/pdns refresh' timeout_seconds='10' />
+
+    <template>
+      <common_name>
+        <loctext xml:lang='C'>PowerDNS DNS server</loctext>
+      </common_name>
+    </template>
+    
+  </instance>
+
+</service>
+</service_bundle>
