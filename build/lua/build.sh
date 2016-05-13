@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=lua
-VER=5.3.0
+VER=5.3.2
 VERHUMAN=$VER
 PKG=runtime/lua
 SUMMARY="Scripting language"
