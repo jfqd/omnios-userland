@@ -38,7 +38,7 @@ DESC="PowerDNS is a fast Authoritative DNS Server with a MySQL backend-, DNSSEC-
 BUILDARCH=32
 BUILDDIR="pdns-$VER"
 
-DEPENDS_IPS="library/libmysqlclient18 runtime/lua"
+DEPENDS_IPS="library/libmysqlclient18 runtime/lua library/boost"
 
 # https://github.com/PowerDNS/pdns/issues/1876
 AR=/usr/bin/gar
@@ -46,7 +46,7 @@ CC=/opt/gcc-4.8.1/bin/gcc
 CXX=/opt/gcc-4.8.1/bin/g++
 CPP=/opt/gcc-4.8.1/bin/cpp
 CXXFLAGS="-I/include -I/usr/local/include/mysql"
-LDFLAGS="-L/include -R/include -L/usr/local/lib -R/usr/local/lib"
+LDFLAGS="-L/include -R/include -L/usr/local/lib -R/usr/local/lib -lsocket -lnsl -lcrypto -lmysqlclient -lm -lssl"
 
 CONFIGURE_OPTS="\
     --with-modules='gmysql' \
@@ -58,9 +58,6 @@ CONFIGURE_OPTS="\
     --with-boost=/include"
 
 add_smf_support() {
-  logmsg "Create config directory"
-  logcmd mkdir -p $DESTDIR/etc/powerdns/
-  logcmd touch $DESTDIR/etc/powerdns/pdns.conf
   logmsg "Installing SMF"
   logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
   logcmd cp $SRCDIR/files/powerdns.xml \
