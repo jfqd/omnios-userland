@@ -9,17 +9,15 @@ DATADIR="/var/consul"
 LOGFILE="/var/log/consul.log"
 ZONENAME=`/usr/bin/zonename`
 
-ENV="/usr/bin/env -i LANG=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-
 start() {
   echo "Starting consul with confdir: $CONFDIR"
-  eval /usr/bin/rm "$DATADIR/serf/local.keyring" 2>/dev/null
-  eval $ENV /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" >> "$LOGFILE" 2>&1 &
+  /usr/bin/rm "$DATADIR/serf/local.keyring" 2>/dev/null
+  /usr/local/bin/amd64/consul agent -config-dir "$CONFDIR" >> "$LOGFILE" 2>&1 &
 }
 
 stop() {
   echo "Stopping consul"
-  eval $ENV /usr/bin/pkill -z "$ZONENAME" consul &
+  /usr/bin/pkill -z "$ZONENAME" consul &
 }
 
 case $1 in
@@ -31,7 +29,7 @@ case $1 in
   ;;
   reload | refresh )
     echo "Reloading consul"
-    eval $ENV /usr/local/bin/amd64/consul reload &
+    /usr/local/bin/amd64/consul reload &
   ;;
   restart | force-reload)
     echo "Forcing reload of consul with confdir: $CONFDIR"
