@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=rundeck
-VER=2.6.7
+VER=2.6.8
 VERHUMAN=$VER
 PKG=automation/rundeck
 SUMMARY="Turn your operations procedures into self-service jobs"
