@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://github.com/kamailio/kamailio/archive/4.3.5.tar.gz
+# https://github.com/kamailio/kamailio/archive/4.3.6.tar.gz
 PROG=kamailio
-VER=4.3.5
+VER=4.3.6
 VERHUMAN=$VER
 PKG=service/network/kamailio
 SUMMARY="Open Source SIP Server"
