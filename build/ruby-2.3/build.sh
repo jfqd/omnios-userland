@@ -27,10 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2
+# https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.bz2
 PROG=ruby
-VER=2.3.0
-MAIN_VER=2.3.1
+VER=2.3.1
+MAIN_VER=2.3
 VERHUMAN=$VER
 PKG=runtime/ruby-2.3
 SUMMARY="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write."
