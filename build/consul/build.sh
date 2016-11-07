@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=consul
-VER=0.6.4
+VER=0.7.0
 VERHUMAN=$VER
 PKG=monitoring/consul
 SUMMARY="Service Discovery and configuration made easy."
