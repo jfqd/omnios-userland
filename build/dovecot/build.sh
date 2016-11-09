@@ -64,6 +64,8 @@ CONFIGURE_OPTS="--sysconfdir=/etc
     --with-libwrap
     --with-ssl=openssl
     "
+# if used in chroot add the following option:
+# --with-ioloop=poll
 
 service_configs() {
     logmsg "Installing SMF"
