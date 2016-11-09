@@ -28,10 +28,10 @@
 . ../../lib/functions.sh
 
 # https://github.com/fail2ban/fail2ban/archive/0.9.3.tar.gz
-PROG=fail2ban   # App name
-VER=0.9.3       # App version
-VERHUMAN=$VER   # Human-readable version
-PKG=network/fail2ban   # Package name (e.g. library/foo)
+PROG=fail2ban
+VER=0.9.3
+VERHUMAN=$VER
+PKG=network/fail2ban
 SUMMARY="Ban IPs that make too many password failures"
 DESC="Fail2ban scans log files like /var/log/pwdfail or \
 /var/log/apache/error_log and bans IP that makes too many password \
