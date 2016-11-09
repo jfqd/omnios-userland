@@ -17,11 +17,6 @@
         <dependency name="filesystem" grouping="require_all" restart_on="error" type="service">
             <service_fmri value="svc:/system/filesystem/local"/>
         </dependency>
-
-
-        
-        
-        
         
         <method_context>
             <!-- We run as cupsd user for now; if we wanted to give cupsd write
