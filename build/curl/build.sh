@@ -29,7 +29,7 @@
 
 # http://curl.haxx.se/download/curl-7.47.1.tar.gz
 PROG=curl
-VER=7.50.3
+VER=7.51.0
 PKG=local/web/curl
 SUMMARY="$PROG - command line tool for transferring data with URL syntax"
 DESC="$SUMMARY"
