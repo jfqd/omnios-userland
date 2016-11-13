@@ -1,2 +1,4 @@
 license COPYING license="copyright notice"
 license COPYRIGHT.GPL license="GNU Public License, Version 2"
+group gid=6007 groupname=openvpn
+user ftpuser=false gcos-field="OpenVPN Reserved UID" group=openvpn password=NP uid=6007 username=openvpn home-dir=/
