@@ -34,7 +34,11 @@ PKG=local/web/curl
 SUMMARY="$PROG - command line tool for transferring data with URL syntax"
 DESC="$SUMMARY"
 
-DEPENDS_IPS="web/ca-bundle library/security/openssl local/library/zlib library/libidn"
+DEPENDS_IPS="web/ca-bundle
+             library/security/openssl
+             local/library/zlib
+             library/libidn
+             library/libnet"
 
 CONFIGURE_OPTS="--enable-thread --with-ca-bundle=/etc/ssl/cacert.pem"
 # curl actually has arch-dependent headers. Boo.

@@ -56,9 +56,7 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/libtiff
     library/security/cyrus-sasl
     library/mhash
-    library/libmysqlclient18
-    library/harfbuzz
-    library/libnet"
+    library/libmysqlclient18"
 
 # Though not strictly needed since we override build(), still nice to set
 BUILDARCH=64
