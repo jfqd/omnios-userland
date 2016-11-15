@@ -37,7 +37,7 @@ DESC="The PyPA recommended tool for installing Python packages."
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
 
-BUILD_DEPENDS_IPS="$DEPENDS_IPS runtime/python27/setuptools"
+BUILD_DEPENDS_IPS="runtime/python27/setuptools"
 DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 init
