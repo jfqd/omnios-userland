@@ -27,7 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://de1.php.net/get/php-5.6.17.tar.gz/from/this/mirror
+# http://de1.php.net/get/php-5.6.28.tar.gz/from/this/mirror
 PROG=php
 VER=5.6.28
 PKG=runtime/php56
@@ -56,7 +56,9 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/libtiff
     library/security/cyrus-sasl
     library/mhash
-    library/libmysqlclient18"
+    library/libmysqlclient18
+    library/harfbuzz
+    library/libnet"
 
 # Though not strictly needed since we override build(), still nice to set
 BUILDARCH=64
