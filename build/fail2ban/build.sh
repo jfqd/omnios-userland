@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://github.com/fail2ban/fail2ban/archive/0.9.3.tar.gz
+# https://github.com/fail2ban/fail2ban/archive/0.9.5.tar.gz
 PROG=fail2ban
-VER=0.9.3
+VER=0.9.5
 VERHUMAN=$VER
 PKG=network/fail2ban
 SUMMARY="Ban IPs that make too many password failures"
