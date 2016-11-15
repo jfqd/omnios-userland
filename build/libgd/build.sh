@@ -27,7 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# 
+# https://github.com/libgd/libgd/releases/download/gd-2.2.3/libgd-2.2.3.tar.gz
 PROG=libgd
 VER=2.2.3
 PKG=library/libgd
@@ -40,7 +40,8 @@ CONFIGURE_OPTS="--with-png=$PREFIX \
     --with-freetype=$PREFIX \
     --with-jpeg=$PREFIX \
     --with-tiff=$PREFIX \
-    --without-xpm" 
+    --without-xpm \
+    --disable-werror" 
 #    --with-vpx=$PREFIX"
 
 init
