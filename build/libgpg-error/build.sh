@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2
 PROG=libgpg-error
-VER=1.19
+VER=1.25
 VERHUMAN=$VER
 PKG=library/security/libgpg-error
 SUMMARY="Libgpg-error is a small library with error codes and descriptions shared by most GnuPG related software."
@@ -40,7 +41,7 @@ patch_source
 prep_build
 build
 # fix install issues with nano
-logcmd mv $DESTDIR/usr/local/share/info/dir $DESTDIR/usr/local/share/info/dir.bak
+logcmd mv $DESTDIR/usr/local/share/info/dir $DESTDIR/usr/local/share/info/dir.libgpg-error-bak
 #
 make_isa_stub
 make_package
