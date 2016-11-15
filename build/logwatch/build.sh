@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://downloads.sourceforge.net/project/logwatch/logwatch-7.4.3/logwatch-7.4.3.tar.gz
 PROG=logwatch
-VER=7.4.1
+VER=7.4.3
 VERHUMAN=$VER
 PKG=monitoring/logwatch
 SUMMARY="Logwatch is a customizable log analysis system."
