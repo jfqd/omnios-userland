@@ -29,7 +29,7 @@
 
 # 
 PROG=libgd
-VER=2.1.1
+VER=2.2.3
 PKG=library/libgd
 SUMMARY="$PROG - GD Graphics Library"
 DESC="$SUMMARY ($VER)"
