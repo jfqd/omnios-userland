@@ -28,14 +28,19 @@
 . ../../lib/functions.sh
 
 PROG=fontconfig
-VER=2.11.1
+VER=2.12.1
 VERHUMAN=$VER
 PKG=library/fontconfig
-DOWNLOADURL="https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.bz2"
+DOWNLOADURL="https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.bz2"
 SUMMARY="library for configuring and customizing font access"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS='library/freetype2'
+BUILD_DEPENDS_IPS='library/freetype2
+                   python27/lxml
+                   python27/six'
+
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
+
 # fonts are not strictly required, but most people who install font libraries
 # probably want at least one font
 RUN_DEPENDS_IPS='font/truetype/dejavu'
