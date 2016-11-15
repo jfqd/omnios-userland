@@ -72,6 +72,10 @@ default_config() {
     logcmd mkdir -p /var/run/munin
 }
 
+fix_plugins() {
+  logmsg "Copying fixed plugins"
+  logcmd cp $SRCDIR/files/plugins/* $DESTDIR/usr/local/munin/lib/plugins/
+}
 
 init
 download_source $PROG $PROG $VER
@@ -81,6 +85,7 @@ build
 make_isa_stub
 service_configs
 default_config
+fix_plugins
 make_package
 clean_up
 

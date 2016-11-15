@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# Wildcard-script to monitor utilisation of network interfaces. To monitor a
+# network interface, link if_utilisation_<network interface> to this file. E.g.
+#
+#    ln -s /usr/share/munin/plugins/if_utilisation_ /etc/munin/plugins/if_utilisation_igb0
+#
+# ...will monitor utilisation of igb0 network interface
+
+#%# family=auto
+#%# capabilities=autoconf suggest
+
+
+myname=`/usr/bin/basename $0 | sed 's/^if_utilisation_//g'`
+
+name="${name-\<$myname\>}"
+
+if [ "$1" = "autoconf" ]; then
+  echo yes
+  exit 0
+fi
+
+if [ "$1" = "suggest" ]; then
+  exit 0
+fi
+
+if [ "$1" = "config" ]; then
+  echo 'graph_category network'
+  echo "graph_title Utilisation of $myname interface"
+  echo 'graph_args --upper-limit 100 -l 0'
+  echo 'graph_category network'
+  echo 'graph_vlabel %'
+  echo "count.label $myname"
+  exit 0
+fi
+
+float_value=`/usr/local/bin/nicstat -i $myname 1 2 | /usr/bin/tail -n1 | /usr/bin/awk '{print $9}'`
+printf "count.value ${float_value/\.*}"

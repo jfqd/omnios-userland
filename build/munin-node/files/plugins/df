@@ -1,0 +1,49 @@
+#!/bin/sh
+
+#%# family=auto
+#%# capabilities=autoconf
+
+MAXLABEL=20
+
+if [ `uname -s` = SunOS ]; then
+	DF="/usr/gnu/bin/df"
+else
+	DF="df"
+fi
+
+if [ "$1" = "autoconf" ]; then
+	if [ `uname -s` = SunOS ]; then
+		echo no
+		exit 1
+	else
+		echo yes
+		exit 0
+	fi
+fi
+
+if [ "$1" = "config" ]; then
+	echo 'graph_category disk'
+	echo 'graph_title Filesystem usage (in %)'
+	echo 'graph_args --upper-limit 100 -l 0'
+	echo 'graph_vlabel %'
+	$DF -F zfs -P -l | sed 1d | grep -v "//" | grep -v "libc_hwcap1" | sort | while read i; do
+		name=`echo $i | sed 's/[\/.-]/_/g'| awk '{ print $6 }'`
+		printf "$name.label "
+		echo $i | awk "{
+			dir=\$6
+			if (length(dir) <= $MAXLABEL)
+				print dir
+			else
+		 		printf (\"...%s\n\", substr (dir, length(dir)-$MAXLABEL+4, $MAXLABEL-3))
+		}"
+		echo "$name.warning 92"
+		echo "$name.critical 98"
+	done
+	exit 0
+fi
+
+$DF -F zfs -P -l | sed 1d | grep -v "//" | grep -v "libc_hwcap1" | while read i; do
+	name=`echo $i | sed 's/[\/.-]/_/g'| awk '{ print $6 ".value " }'`
+	printf "$name "
+	echo $i | awk '{ print $5 }' | cut -f1 -d%
+done
