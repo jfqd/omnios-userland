@@ -27,10 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://downloads.sourceforge.net/project/pcre/pcre/8.37/pcre-8.37.zip
-# v8.37 was copied directly from svn repo with CVE-2015-3210 fix included
+# http://downloads.sourceforge.net/project/pcre/pcre/8.39/pcre-8.39.zip
 PROG=pcre
-VER=8.38
+VER=8.39
 VERHUMAN=$VER
 PKG=custom/library/pcre
 SUMMARY="Perl Compatible Regular Expressions"
