@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=pip
-VER=8.1.1
+VER=9.0.1
 VERHUMAN=$VER
 PKG=runtime/python27/pip
 SUMMARY="The PyPA recommended tool for installing Python packages."
@@ -37,8 +37,8 @@ DESC="The PyPA recommended tool for installing Python packages."
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
 
-DEPENDS_IPS="runtime/python27"
 BUILD_DEPENDS_IPS="$DEPENDS_IPS runtime/python27/setuptools"
+DEPENDS_IPS=$BUILD_DEPENDS_IPS
 
 init
 download_source $PROG $PROG $VER
