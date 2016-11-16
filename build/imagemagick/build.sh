@@ -34,8 +34,8 @@ PKG=image/imagemagick
 SUMMARY="software suite to create, edit, compose, or convert bitmap images"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff library/fontconfig"
-DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff library/fontconfig"
+BUILD_DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff library/fontconfig library/harfbuzz"
+DEPENDS_IPS="library/freetype2 library/libjpeg library/libpng library/libtiff library/fontconfig library/harfbuzz"
 
 CFLAGS="-I/usr/local/include"
 LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib -lsocket -lnsl"
