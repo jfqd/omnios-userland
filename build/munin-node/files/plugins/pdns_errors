@@ -37,4 +37,4 @@ if [ "$1" = "config" ]; then
         exit 0
 fi
 
-$command | /usr/gnu/bin/sed 's/=\([0-9]\+\),/.value \1\n/g' | /usr/gnu/bin/sed corrupt'\|'servfail'\|'timedout | /usr/gnu/bin/sed 's/-/_/g'
+$command | /usr/gnu/bin/sed 's/=\([0-9]\+\),/.value \1\n/g' | /usr/gnu/bin/grep corrupt'\|'servfail'\|'timedout | /usr/gnu/bin/sed 's/-/_/g'
