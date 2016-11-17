@@ -1,5 +1,5 @@
---- php-7.0.5/makedist.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/makedist
+--- php-7.0.13/makedist.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/makedist
 @@ -35,7 +35,7 @@ if test "${1}" = "1" -a "${2}" -lt "28";
  fi
  IFS="$old_IFS"
@@ -8,4 +8,3 @@
 +if test "x$PHPROOT" = "x"; then
      PHPROOT=git@git.php.net:php-src.git;
  fi
- 

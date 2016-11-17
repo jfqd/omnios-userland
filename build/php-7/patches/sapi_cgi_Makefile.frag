@@ -1,5 +1,5 @@
---- php-7.0.5/sapi/cgi/Makefile.frag.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/sapi/cgi/Makefile.frag
+--- php-7.0.13/sapi/cgi/Makefile.frag.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/sapi/cgi/Makefile.frag
 @@ -4,9 +4,9 @@ $(SAPI_CGI_PATH): $(PHP_GLOBAL_OBJS) $(P
  	$(BUILD_CGI)
  

@@ -1,5 +1,5 @@
---- php-7.0.5/ext/standard/basic_functions.c.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/ext/standard/basic_functions.c
+--- php-7.0.13/ext/standard/basic_functions.c.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/ext/standard/basic_functions.c
 @@ -3499,7 +3499,7 @@ PHPAPI double php_get_nan(void) /* {{{ *
  
  PHPAPI double php_get_inf(void) /* {{{ */

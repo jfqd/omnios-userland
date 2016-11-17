@@ -1,5 +1,5 @@
---- php-7.0.5/sapi/fpm/fpm/events/port.c.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/sapi/fpm/fpm/events/port.c
+--- php-7.0.13/sapi/fpm/fpm/events/port.c.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/sapi/fpm/fpm/events/port.c
 @@ -124,6 +124,7 @@ static int fpm_event_port_wait(struct fp
  	t.tv_nsec = (timeout % 1000) * 1000 * 1000;
  

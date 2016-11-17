@@ -1,5 +1,5 @@
---- php-7.0.5/ext/pdo/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/ext/pdo/config.m4
+--- php-7.0.13/ext/pdo/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/ext/pdo/config.m4
 @@ -37,20 +37,6 @@ if test "$PHP_PDO" != "no"; then
  
    PHP_PDO_PEAR_CHECK

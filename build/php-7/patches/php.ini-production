@@ -1,5 +1,5 @@
---- php-7.0.5/php.ini-production.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/php.ini-production
+--- php-7.0.13/php.ini-production.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/php.ini-production
 @@ -697,7 +697,7 @@ default_charset = "UTF-8"
  ;;;;;;;;;;;;;;;;;;;;;;;;;
  

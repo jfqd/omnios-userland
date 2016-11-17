@@ -1,5 +1,5 @@
---- php-7.0.5/ext/pdo_mysql/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/ext/pdo_mysql/config.m4
+--- php-7.013/ext/pdo_mysql/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.013/ext/pdo_mysql/config.m4
 @@ -156,7 +156,7 @@ if test "$PHP_PDO_MYSQL" != "no"; then
    fi
  

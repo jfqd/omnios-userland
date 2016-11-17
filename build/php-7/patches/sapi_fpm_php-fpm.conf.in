@@ -1,5 +1,5 @@
---- php-7.0.5/sapi/fpm/php-fpm.conf.in.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/sapi/fpm/php-fpm.conf.in
+--- php-7.0.13/sapi/fpm/php-fpm.conf.in.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/sapi/fpm/php-fpm.conf.in
 @@ -14,7 +14,7 @@
  ; Pid file
  ; Note: the default prefix is @EXPANDED_LOCALSTATEDIR@

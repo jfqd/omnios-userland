@@ -1,5 +1,5 @@
---- php-7.0.5/ext/imap/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/ext/imap/config.m4
+--- php-7.0.13/ext/imap/config.m4.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/ext/imap/config.m4
 @@ -48,6 +48,14 @@ AC_DEFUN([PHP_IMAP_TEST_BUILD], [
    ])
  ])

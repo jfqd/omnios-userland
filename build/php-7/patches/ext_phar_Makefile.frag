@@ -1,5 +1,5 @@
---- php-7.0.5/ext/phar/Makefile.frag.orig	2015-06-23 17:33:33.000000000 +0000
-+++ php-7.0.5/ext/phar/Makefile.frag
+--- php-7.0.13/ext/phar/Makefile.frag.orig	2015-06-23 17:33:33.000000000 +0000
++++ php-7.0.13/ext/phar/Makefile.frag
 @@ -18,7 +18,7 @@ PHP_PHARCMD_EXECUTABLE = ` \
  	else \
  		$(top_srcdir)/build/shtool echo -n -- "$(PHP_EXECUTABLE)"; \

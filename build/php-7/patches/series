@@ -7,7 +7,7 @@ ext_pdo__mysql_config.m4
 ext_pdo_config.m4
 ext_phar_Makefile.frag
 ext_phar_phar_phar.php
-ext_sockets_config.m4
+ext_recode_recode.c
 ext_sqlite3_libsqlite_sqlite3.c
 ext_standard_basic__functions.c
 makedist
@@ -15,5 +15,6 @@ php.ini-development
 php.ini-production
 run-tests.php
 sapi_cgi_Makefile.frag
+sapi_cli_Makefile.frag
 sapi_fpm_fpm_events_port.c
 sapi_fpm_php-fpm.conf.in
