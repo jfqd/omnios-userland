@@ -27,15 +27,15 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://downloads.powerdns.com/releases/pdns-4.0.0.tar.bz2
+# https://downloads.powerdns.com/releases/pdns-4.0.1.tar.bz2
 PROG=powerdns
-VER=4.0.0
+VER=4.0.1
 VERHUMAN=$VER
 PKG=service/network/dns/powerdns4
 SUMMARY="DNS Authoritative Server"
 DESC="PowerDNS is a fast Authoritative DNS Server with a MySQL backend-, DNSSEC- and lua-support"
 
-BUILDARCH=32
+BUILDARCH=64
 BUILDDIR="pdns-$VER"
 
 DEPENDS_IPS="library/libmysqlclient18 runtime/lua library/boost"
@@ -49,8 +49,8 @@ CXXFLAGS="-I/include -I/usr/local/include/mysql"
 LDFLAGS="-L/include -R/include -L/usr/local/lib -R/usr/local/lib -lsocket -lnsl -lcrypto -lmysqlclient -lm -lssl"
 
 CONFIGURE_OPTS="\
-    --with-modules='gmysql' \
-    --with-dynmodules='pipe' \
+    --with-modules=gmysql \
+    --with-dynmodules=pipe \
     --localstatedir=/var/run \
     --enable-shared \
     --with-mysql-includes=/usr/local/include/mysql \
