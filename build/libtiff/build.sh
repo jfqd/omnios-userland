@@ -30,7 +30,7 @@
 # http://www.simplesystems.org/libtiff/
 # http://download.osgeo.org/libtiff/tiff-4.0.6.tar.gz
 PROG=libtiff
-VER=4.0.6
+VER=4.0.7
 PKG=library/libtiff
 SUMMARY="$PROG - for reading and writing TIFF"
 DESC="$SUMMARY ($VER)"
