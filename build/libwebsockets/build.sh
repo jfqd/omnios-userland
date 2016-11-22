@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libwebsockets
-VER=library/libwebsockets
+VER=2.1.0
 VERHUMAN=$VER
 PKG=library/libwebsockets
 SUMMARY="canonical websocket library"
