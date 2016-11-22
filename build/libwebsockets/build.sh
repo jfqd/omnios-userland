@@ -34,6 +34,16 @@ PKG=library/libwebsockets
 SUMMARY="canonical websocket library"
 DESC="$SUMMARY ($VER)"
 
+build() {
+  pushd $TMPDIR/$BUILDDIR >/dev/null
+  logmsg "--- Build with cmake $TMPDIR/$BUILDDIR"
+  logcmd mkdir build && cd build
+  logcmd cmake .. -DCMAKE_C_FLAGS=-m64 -DCMAKE_EXE_LINKER_FLAGS="-lsocket -lnsl"
+  logcmd make
+  logcmd make install
+  popd >/dev/null
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
