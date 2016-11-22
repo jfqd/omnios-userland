@@ -24,6 +24,8 @@
 # Copyright 2011-2012 OmniTI Computer Consulting, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Set Ruby version
+RUBY_VER=2.2
 # Load support functions
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
@@ -35,7 +37,6 @@ PKG=runtime/ruby-2.2/gemenv
 SUMMARY="Gem install of the gemenv gem"
 DESC="$SUMMARY"
 
-RUBY_VER=2.2
 GEM_DEPENDS=""
 
 init

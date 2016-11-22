@@ -29,7 +29,7 @@
 . ../../lib/gem-functions.sh
 
 PROG=consul-client
-VER=0.1.1
+VER=0.1.2
 VERHUMAN=$VER
 PKG=runtime/ruby-2.1/consul-client
 SUMMARY="Gem install of the $PROG gem"

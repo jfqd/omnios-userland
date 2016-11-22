@@ -24,6 +24,8 @@
 # Copyright 2011-2012 OmniTI Computer Consulting, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Set Ruby version
+RUBY_VER=2.2
 # Load support functions
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
@@ -46,7 +48,6 @@ BUILD_DEPENDS_IPS="custom/server/apache22
 
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
-RUBY_VER=2.2
 GEM_DEPENDS=""
 
 # export CC=/opt/gcc-4.8.1/bin/gcc

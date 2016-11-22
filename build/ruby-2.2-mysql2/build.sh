@@ -24,6 +24,8 @@
 # Copyright 2011-2012 OmniTI Computer Consulting, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Set Ruby version
+RUBY_VER=2.2
 # Load support functions
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
@@ -37,7 +39,6 @@ DESC="$SUMMARY"
 
 DEPENDS_IPS="library/libmysqlclient18"
 
-RUBY_VER=2.2
 GEM_DEPENDS=""
 
 init
