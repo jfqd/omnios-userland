@@ -27,7 +27,9 @@
 
 # Adapted from ms branch build/chef/build.sh
 
-RUBY_VER=${RUBY_VER:2.1}
+if [ -z $RUBY_VER ]; then
+  RUBY_VER=2.1
+fi
 
 BUILDARCH=32
 DEPENDS_IPS="runtime/ruby-${RUBY_VER}"
