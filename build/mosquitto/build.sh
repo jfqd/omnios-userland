@@ -54,9 +54,25 @@ configure64() {
 }
 
 make_install() {
-    logmsg "--- make install"
-    logcmd $MAKE DESTDIR=${DESTDIR} install binary || \
+    logmsg "--- make install (with fake man pages)"
+    # use http://mosquitto.org/man/ instead!
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto.8
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto.conf.5
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto_passwd.1
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto_pub.1
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto_sub.1
+    logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto-tls.7
+    logcmd touch $TMPDIR/$BUILDDIR/man/mqtt.7
+    logcmd touch $TMPDIR/$BUILDDIR/man/libmosquitto.3
+    logcmd $MAKE DESTDIR=${DESTDIR} install || \
         logerr "--- Make install failed"
+    logmsg "--- remove fake man pages in $DESTDIR/usr/local/share"
+    if [ -n $DESTDIR ]; then
+      logcmd rm -rf $DESTDIR/usr/local/share || \
+        logerr "--- Remove fake man pages failed"
+    else
+      logerr "--- Remove fake man pages failed, empty DESTDIR variable"
+    fi
 }
 
 init
