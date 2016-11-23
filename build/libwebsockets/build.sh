@@ -27,6 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/warmcat/libwebsockets/archive/v2.1.0.tar.gz
 PROG=libwebsockets
 VER=2.1.0
 VERHUMAN=$VER
@@ -38,7 +39,7 @@ build() {
   pushd $TMPDIR/$BUILDDIR >/dev/null
   logmsg "--- Build with cmake $TMPDIR/$BUILDDIR"
   logcmd mkdir build && cd build
-  logcmd cmake .. -DCMAKE_C_FLAGS=-m64 -DCMAKE_EXE_LINKER_FLAGS="-lsocket -lnsl"
+  logcmd cmake .. -DCMAKE_C_FLAGS=-m64 -DCMAKE_EXE_LINKER_FLAGS="-lsocket -lnsl" -DCMAKE_INSTALL_PREFIX="$DESTDIR/$PREFIX"
   logcmd make
   logcmd make install
   popd >/dev/null
@@ -52,6 +53,5 @@ build
 make_isa_stub
 make_package
 clean_up
-
 # Vim hints
 # vim:ts=4:sw=4:et:
