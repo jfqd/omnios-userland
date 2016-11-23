@@ -43,6 +43,21 @@ BUILD_DEPENDS_IPS="library/libwrap
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
 BUILDARCH=64
+MAKE_JOBS=binary
+
+export CC=/opt/gcc-4.8.1/bin/gcc
+export CFLAGS="-m64"
+export LDFLAGS="-m64 -R/usr/local/lib/amd64 -L/usr/local/lib/amd64 -lcares"
+
+configure64() {
+  logmsg "Skip configure script"
+}
+
+make_install() {
+    logmsg "--- make install"
+    logcmd $MAKE DESTDIR=${DESTDIR} install binary || \
+        logerr "--- Make install failed"
+}
 
 init
 download_source $PROG $PROG $VER
