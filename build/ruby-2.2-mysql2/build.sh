@@ -31,7 +31,7 @@ RUBY_VER=2.2
 . ../../lib/gem-functions.sh
 
 PROG=mysql2
-VER=0.3.19
+VER=0.4.5
 VERHUMAN=$VER
 PKG=runtime/ruby-2.2/mysql2
 SUMMARY="Gem install of the mysql2 gem"
