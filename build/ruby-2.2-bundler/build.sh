@@ -44,7 +44,7 @@ download_source
 patch_source
 prep_build
 build
-make_isa_stub
+# make_isa_stub
 make_package
 clean_up
 
