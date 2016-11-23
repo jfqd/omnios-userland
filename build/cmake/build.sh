@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz
+# https://cmake.org/files/v3.4/cmake-3.4.3.tar.gz
+# sha256sum: b73f8c1029611df7ed81796bf5ca8ba0ef41c6761132340c73ffe42704f980fa
 PROG=cmake
-VER=2.8.11.2
+VER=3.4.3
 VERHUMAN=$VER
 PKG="developer/build/cmake"
 SUMMARY="cmake"
