@@ -1,5 +1,5 @@
---- /Users/jerry/Desktop/php-7.0.13/Zend/zend.h.orig	2016-11-08 16:07:38.000000000 +0100
-+++ /Users/jerry/Desktop/php-7.0.13/Zend/zend.h	2016-11-17 21:57:10.000000000 +0100
+--- php-7.0.13/Zend/zend.h.orig	2016-11-08 16:07:38.000000000 +0100
++++ php-7.0.13/Zend/zend.h	2016-11-17 21:57:10.000000000 +0100
 @@ -28,6 +28,16 @@
  
  #define ZEND_MAX_RESERVED_RESOURCES	4

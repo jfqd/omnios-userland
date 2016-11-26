@@ -65,13 +65,8 @@ reset_configure_opts
 
 # CFLAGS="-O2 -DZLIB_INTERNAL=1 -std=gnu99"
 
-#CPPFLAGS="-I/usr/local/include"
-
-#LDFLAGS="-L/usr/local/lib -R/usr/local/lib -L$PREFIX/lib -R$PREFIX/lib"
-
-#CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql"
-
-#LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 -L$PREFIX/lib -R$PREFIX/lib"
+CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql"
+LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 -L$PREFIX/lib -R$PREFIX/lib"
 
 # https://www.mail-archive.com/php-install@lists.php.net/msg16137.html
 #export PHP_MYSQLND_ENABLED=yes
@@ -132,29 +127,10 @@ CONFIGURE_OPTS="
         --without-iconv
         --with-ldap=shared,/usr/local"
 
-# CFLAGS="$CFLAGS -D_XOPEN_SOURCE=1 -D_XOPEN_SOURCE_EXTENDED=1 -DHAVE_STRINGS_H"
-
-# https://lucamerello.wordpress.com/2015/01/29/solaris-10-how-to-build-and-install-php/
-# https://bugs.php.net/bug.php?id=66013
-create_configure() {
-  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
-  pushd $TMPDIR/$BUILDDIR >/dev/null
-  logcmd /usr/bin/aclocal
-  logcmd /usr/bin/libtoolize
-  logcmd /usr/bin/autoreconf -vi
-  popd >/dev/null
-}
-
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
-# create_configure
-
-CFLAGS="-D__EXTENSIONS__ -D_XOPEN_SOURCE=500 -D_XOPEN_SOURCE_EXTENDED=1 -D_POSIX_PTHREAD_SEMANTICS -DHAVE_STRINGS_H"
-#CFLAGS="-D_XOPEN_SOURCE=500 -DHAVE_STRINGS_H"
-# CFLAGS="-D__EXTENSIONS__ -D_XOPEN_SOURCE=500 -D_XOPEN_SOURCE_EXTENDED=1"
-
 build
 
 # Vim hints

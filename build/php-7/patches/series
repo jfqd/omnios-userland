@@ -18,4 +18,5 @@ sapi_cgi_Makefile.frag
 sapi_cli_Makefile.frag
 sapi_fpm_fpm_events_port.c
 sapi_fpm_php-fpm.conf.in
+sockets_config.m4
 zend.h
