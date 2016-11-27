@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=Python
-VER=2.7.11
+VER=2.7.12
 VERHUMAN=$VER
 PKG=runtime/python27
 SUMMARY="Python is a programming language that lets you work quickly and integrate systems more effectively."
@@ -38,7 +38,7 @@ VERMAJOR=${VER%.*}
 # system ffi is required for 64bit ctypes module
 #BUILD_DEPENDS_IPS='library/libffi'
 
-#CONFIGURE_OPTS="$CONFIGURE_OPTS --with-system-ffi"
+# CONFIGURE_OPTS="$CONFIGURE_OPTS --with-system-ffi --enable-shared --enable-unicode=ucs4"
 
 # ncurses
 #LDFLAGS64="$LDFLAGS64 -L/usr/gnu/lib/$ISAPART64 -R/usr/gnu/lib/$ISAPART64"
