@@ -1,0 +1,16 @@
+#!/bin/bash
+
+./build-libgmp.sh
+pkg install developer/gcc48/libgmp-gcc48
+
+./build-libmpfr.sh
+pkg install developer/gcc48/libmpfr-gcc48
+
+./build-libmpc.sh
+pkg install developer/gcc48/libmpc-gcc48
+
+./build.sh
+
+./build-libstdc++.sh
+
+./build-libgcc_s.sh

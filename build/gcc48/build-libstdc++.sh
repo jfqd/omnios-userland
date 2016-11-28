@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libstdc++
-VER=4.8.1
+VER=4.8.5
 VERHUMAN=$VER
 PKG=system/library/g++-4-runtime
 SUMMARY="g++ runtime dependencis libstc++/libssp"

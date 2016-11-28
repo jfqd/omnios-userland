@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=gcc
-VER=4.8.1
+VER=4.8.5
 VERHUMAN=$VER
 PKG=developer/gcc48/gccgo
 SUMMARY="gcc ${VER}"

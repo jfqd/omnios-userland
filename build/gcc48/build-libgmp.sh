@@ -27,7 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
-GCCVER=4.8.1
+GCCVER=4.8.5
 PATH=/opt/gcc-${GCCVER}/bin:$PATH
 export LD_LIBRARY_PATH=/opt/gcc-${GCCVER}/lib
 

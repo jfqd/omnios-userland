@@ -40,7 +40,7 @@ DEPENDS_IPS="developer/gcc48/libgmp-gcc48 developer/gcc48/libmpfr-gcc48"
 PKGPREFIX=""
 
 [[ "$BUILDARCH" == "both" ]] && BUILDARCH=32
-GCCVER=4.8.1
+GCCVER=4.8.5
 PREFIX=/opt/gcc-${GCCVER}
 CC=gcc
 CONFIGURE_OPTS="--with-gmp=/opt/gcc-${GCCVER} --with-mpfr=/opt/gcc-${GCCVER}"

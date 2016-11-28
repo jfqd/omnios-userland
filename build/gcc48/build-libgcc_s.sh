@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=libgcc_s
-VER=4.8.1
+VER=4.8.5
 VERHUMAN=$VER
 PKG=system/library/gcc-4-runtime
 SUMMARY="gcc 4.8 runtime"
