@@ -63,18 +63,8 @@ BUILDARCH=64
 PREFIX=$PREFIX/php7
 reset_configure_opts
 
-# CFLAGS="-O2 -DZLIB_INTERNAL=1 -std=gnu99"
-
 CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 -L$PREFIX/lib -R$PREFIX/lib"
-
-# https://www.mail-archive.com/php-install@lists.php.net/msg16137.html
-#export PHP_MYSQLND_ENABLED=yes
-#export PHP_LIBXML_SHARED="1"
-
-# LDFLAGS="$LDFLAGS -lsocket -lnsl -lcrypto -lmysqlclient -lm -lssl"
-
-#export EXTENSION_DIR=$PREFIX/lib/modules
 
 CONFIGURE_OPTS_32=""
 CONFIGURE_OPTS_64=""
@@ -127,10 +117,27 @@ CONFIGURE_OPTS="
         --without-iconv
         --with-ldap=shared,/usr/local"
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  pushd $TMPDIR/$BUILDDIR >/dev/null
+  logcmd /usr/bin/autoconf
+  popd >/dev/null
+}
+
+make_install() {
+    logmsg "--- make install"
+    logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
+        logerr "--- Make install failed"
+    logmsg "--- copy php.ini examples"
+    logcmd cp $TMPDIR/$BUILDDIR/php.ini-production $DESTDIR/$PREFIX/etc/php.ini-production
+    logcmd cp $TMPDIR/$BUILDDIR/php.ini-development $DESTDIR/$PREFIX/etc/php.ini-development
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 build
 
 # Vim hints
