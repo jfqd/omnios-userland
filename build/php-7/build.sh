@@ -81,23 +81,13 @@ CONFIGURE_OPTS="
         --libexecdir=$PREFIX/libexec
         --datarootdir=$PREFIX/share
         --mandir=$PREFIX/man
+        --enable-dtrace
         --enable-fpm
         --enable-xml
+        --enable-pcntl
+        --enable-sockets
         --enable-simplexml
         --enable-zip=shared
-        --with-zlib=shared
-        --with-zlib-dir=/usr/local
-        --with-sqlite3=shared
-        --without-mysqli
-        --enable-mbstring=shared
-        --with-mhash=shared
-        --with-mcrypt=shared
-        --with-gd=shared
-        --with-jpeg-dir=shared
-        --with-png-dir=shared
-        --with-freetype-dir=shared
-        --disable-pdo
-        --disable-posix
         --enable-gd-native-ttf
         --enable-exif=shared
         --enable-bcmath=shared
@@ -105,17 +95,28 @@ CONFIGURE_OPTS="
         --enable-ftp=shared
         --enable-mbstring=shared
         --enable-soap=shared
+        --enable-pdo=shared
+        --enable-mbstring=shared
+        --with-pear=$PREFIX/pear
+        --with-pdo-sqlite=shared
+        --with-mysql=shared,mysqlnd
+        --with-mysqli=shared,mysqlnd
+        --with-zlib=shared
+        --with-zlib-dir=/usr/local
+        --with-sqlite3=shared
+        --with-mhash=shared
+        --with-mcrypt=shared
+        --with-gd=shared
+        --with-jpeg-dir=shared
+        --with-png-dir=shared
+        --with-tiff-dir=shared
+        --with-freetype-dir=shared
         --with-curl=shared
         --with-openssl
-        --enable-pcntl
         --with-gettext
         --with-iconv
-        --enable-sockets
-        --enable-mysqlnd
-        --enable-xml
-        --without-pear
-        --without-iconv
-        --with-ldap=shared,/usr/local"
+        --with-ldap=shared,/usr/local
+        --disable-cgi"
 
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
