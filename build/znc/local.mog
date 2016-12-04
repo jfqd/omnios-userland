@@ -1,0 +1,2 @@
+group gid=6007 groupname=znc
+user ftpuser=false gcos-field="znc UID" group=varnish password=NP uid=6007 username=znc home-dir=/var/lib/znc
