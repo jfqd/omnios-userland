@@ -1,2 +1,4 @@
 group gid=6008 groupname=znc
 user ftpuser=false gcos-field="znc UID" group=znc password=NP uid=6008 username=znc home-dir=/var/lib/znc
+<transform dir path=var/lib/znc -> set owner znc>
+<transform dir path=var/lib/znc -> set group znc>
