@@ -34,17 +34,17 @@ PKG=service/network/znc
 SUMMARY="Advanced IRC bouncer"
 DESC="ZNC is an advanced IRC bouncer that is left connected so an IRC client can disconnect/reconnect without losing the chat session."
 
-# service_configs() {
-#     logmsg "Installing SMF"
-#     logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
-#     logcmd cp $SRCDIR/files/manifest-znc.xml \
-#         $DESTDIR/lib/svc/manifest/network/znc.xml
-# }
+service_configs() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+    logcmd cp $SRCDIR/files/manifest-znc.xml \
+        $DESTDIR/lib/svc/manifest/network/znc.xml
+}
 
 sample_config() {
     logmsg "Copying sample configuration file"
     logcmd mkdir -p $DESTDIR/var/lib/znc/
-    # logcmd cp $SRCDIR/files/znc.config $DESTDIR/var/lib/znc/znc.sample
+    logcmd cp $SRCDIR/files/znc.config $DESTDIR/var/lib/znc/znc.sample
 }
 
 init
@@ -54,7 +54,7 @@ prep_build
 build
 make_isa_stub
 sample_config
-# service_configs
+service_configs
 make_package
 clean_up
 

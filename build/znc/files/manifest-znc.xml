@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type="manifest" name="znc">
+  
+  <service name="network/znc" type="service" version="1">
+
+    <create_default_instance enabled="false" />
+    <single_instance />
+
+    <!-- Wait for network interfaces to be initialized -->
+    <dependency name="network" 
+                grouping="require_all" 
+                restart_on="error" 
+                type="service">
+        <service_fmri value="svc:/milestone/network:default" />
+    </dependency>
+
+    <!-- Wait for local filesystems to be mounted -->
+    <dependency name="filesystem" 
+                grouping="require_all" 
+                restart_on="error" 
+                type="service">
+        <service_fmri value="svc:/system/filesystem/local" />
+    </dependency>
+
+    <exec_method type='method'
+                 name='start'
+                 exec='/usr/local/bin/znc --datadir=/var/lib/znc'
+                 timeout_seconds='60'>
+       <method_context>
+         <method_credential user='znc' group='znc' />
+       </method_context>
+    </exec_method>
+
+    <exec_method type="method" 
+                 name="stop"
+                 exec=":kill" 
+                 timeout_seconds="60" />
+
+    <template>
+        <common_name>
+            <loctext xml:lang="C">znc - Advanced IRC bouncer</loctext>
+        </common_name>
+    </template>
+
+  </service>
+</service_bundle>
