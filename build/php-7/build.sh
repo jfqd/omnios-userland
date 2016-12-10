@@ -62,7 +62,7 @@ BUILDARCH=64
 PREFIX=$PREFIX/php7
 reset_configure_opts
 
-CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql"
+CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql -I$TMPDIR/$PROG-$VER/ext"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 -L$PREFIX/lib -R$PREFIX/lib"
 
 export EXTENSION_DIR=$PREFIX/lib/modules
@@ -102,6 +102,7 @@ CONFIGURE_OPTS="
         --with-pdo-sqlite=shared
         --with-mysql=shared,mysqlnd
         --with-mysqli=shared,mysqlnd
+        --with-pdo-mysql=shared,mysqlnd
         --with-zlib=shared
         --with-zlib-dir=/usr/local
         --with-sqlite3=shared
@@ -134,6 +135,12 @@ make_install() {
     logmsg "--- copy php.ini examples"
     logcmd cp $TMPDIR/$BUILDDIR/php.ini-production $DESTDIR/$PREFIX/etc/php.ini-production
     logcmd cp $TMPDIR/$BUILDDIR/php.ini-development $DESTDIR/$PREFIX/etc/php.ini-development
+}
+
+# Create extension dir
+create_extension_dir() {
+    logmsg "--- Create extension directory"
+    logcmd mkdir -p $DESTDIR/$EXTENSION_DIR
 }
 
 # PHP bcmath extension
@@ -410,7 +417,7 @@ make_package ext.mog
 DESTDIR=$INSTALLDIR
 PROG=php
 PKG=runtime/php7
-SUMMARY="PHP Server 5.6"
+SUMMARY="PHP Server 7"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
 DEPENDS_IPS="database/sqlite-3
     database/bdb
