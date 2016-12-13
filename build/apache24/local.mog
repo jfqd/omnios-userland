@@ -1,0 +1,3 @@
+<transform file path=usr/local/apache24/conf/httpd.conf -> set preserve true>
+<transform file path=lib/svc/manifest/network/httpd-24.xml -> set mode 0444>
+license LICENSE license=Apache
