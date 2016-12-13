@@ -1,3 +1,7 @@
+group gid=204 groupname=httpd24
+user ftpuser=false gcos-field="Httpd UID" group=httpd24 password=NP uid=204 username=httpd24 home-dir=/
 <transform file path=usr/local/apache24/conf/httpd.conf -> set preserve true>
 <transform file path=lib/svc/manifest/network/httpd-24.xml -> set mode 0444>
+<transform file path=(usr/local/apache24/bin/httpd|lib/svc/manifest/network/httpd-24.xml)$ -> set restart_fmri svc:/network/http:apache22>
+<transform file path=lib/svc/manifest/network/httpd-24.xml -> set restart_fmri svc:/system/manifest-import:default>
 license LICENSE license=Apache

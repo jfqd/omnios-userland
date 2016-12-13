@@ -23,7 +23,7 @@
       <exec_method name='refresh' type='method' exec='/usr/local/apache24/bin/amd64/apachectl -f /usr/local/apache24/conf/httpd.conf -k graceful' timeout_seconds='60' />
 
       <property_group name='general' type='framework'>
-        <propval name='action_authorization' type='astring' value='custom.smf.manage.http/apache' />
+        <propval name='action_authorization' type='astring' value='custom.smf.manage.http/apache24' />
       </property_group>
 
     </instance>
