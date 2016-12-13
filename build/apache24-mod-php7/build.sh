@@ -63,6 +63,7 @@ BUILDARCH=64
 PREFIX=$PREFIX/php7
 reset_configure_opts
 
+CFLAGS="-O2 -std=gnu99"
 CPPFLAGS64="-I/usr/local/include/$ISAPART64 -I/usr/local/include/$ISAPART64/curl -I/usr/local/include -I /usr/local/include/mysql -I$TMPDIR/$PROG-$VER/ext"
 LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64 -L$PREFIX/lib -R$PREFIX/lib"
 
@@ -90,7 +91,7 @@ CONFIGURE_OPTS="
         --enable-dtrace
         --enable-xml
         --enable-simplexml
-        --with-apxs2=/usr/local/apache22/bin/amd64/apxs"
+        --with-apxs2=/usr/local/apache24/bin/amd64/apxs"
 
 create_configure() {
   logmsg "Create configure file in $TMPDIR/$BUILDDIR"
@@ -121,12 +122,12 @@ make_install() {
     logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
         logerr "--- Make install failed"
     logmsg "--- copy configuration"
-    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules
-    logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
+    logcmd mkdir -p $DESTDIR/usr/local/apache2/conf/modules
+    logcmd mkdir -p $DESTDIR/usr/local/apache24/conf/conf.d
     logcmd cp $SRCDIR/files/php7.load \
-        $DESTDIR/usr/local/apache22/conf/modules/php7.load
+        $DESTDIR/usr/local/apache24/conf/modules/php7.load
     logcmd cp $SRCDIR/files/php7.conf \
-        $DESTDIR/usr/local/apache22/conf/conf.d/php7.conf
+        $DESTDIR/usr/local/apache24/conf/conf.d/php7.conf
 }
 
 # There are some dotfiles/dirs that look like noise
