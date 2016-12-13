@@ -122,7 +122,7 @@ make_install() {
     logcmd $MAKE DESTDIR=${DESTDIR} INSTALL_ROOT=${DESTDIR} install || \
         logerr "--- Make install failed"
     logmsg "--- copy configuration"
-    logcmd mkdir -p $DESTDIR/usr/local/apache2/conf/modules
+    logcmd mkdir -p $DESTDIR/usr/local/apache24/conf/modules
     logcmd mkdir -p $DESTDIR/usr/local/apache24/conf/conf.d
     logcmd cp $SRCDIR/files/php7.load \
         $DESTDIR/usr/local/apache24/conf/modules/php7.load
