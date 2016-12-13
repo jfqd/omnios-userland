@@ -92,6 +92,13 @@ CONFIGURE_OPTS="
         --enable-simplexml
         --with-apxs2=/usr/local/apache22/bin/amd64/apxs"
 
+create_configure() {
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
+  pushd $TMPDIR/$BUILDDIR >/dev/null
+  logcmd /usr/bin/autoconf
+  popd >/dev/null
+}
+
 # We need to make a fake httpd.conf so apxs in make install
 make_httpd_conf() {
     logmsg "Generating fake httpd.conf file"
@@ -135,6 +142,7 @@ init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+create_configure
 make_httpd_conf
 build
 remove_httpd_conf
