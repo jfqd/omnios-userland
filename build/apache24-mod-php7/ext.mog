@@ -1,0 +1,2 @@
+license LICENSE license="The PHP License, version 3.01"
+<transform pkg -> emit depend fmri=runtime/php7 type=require>
