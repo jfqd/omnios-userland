@@ -35,7 +35,7 @@ PKG=service/network/dns/powerdns4
 SUMMARY="DNS Authoritative Server"
 DESC="PowerDNS is a fast Authoritative DNS Server with a MySQL backend-, DNSSEC- and lua-support"
 
-BUILDARCH=64
+BUILDARCH=32
 BUILDDIR="pdns-$VER"
 
 DEPENDS_IPS="library/libmysqlclient18 runtime/lua library/boost"
@@ -45,6 +45,7 @@ AR=/usr/bin/gar
 CC=/opt/gcc-4.8.1/bin/gcc
 CXX=/opt/gcc-4.8.1/bin/g++
 CPP=/opt/gcc-4.8.1/bin/cpp
+
 CXXFLAGS="-I/include -I/usr/local/include/mysql"
 LDFLAGS="-L/include -R/include -L/usr/local/lib -R/usr/local/lib -lsocket -lnsl -lcrypto -lmysqlclient -lm -lssl"
 
