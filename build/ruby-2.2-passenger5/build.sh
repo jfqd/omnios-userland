@@ -40,7 +40,7 @@ DESC="$SUMMARY"
 BUILD_DEPENDS_IPS="custom/server/apache22
              local/web/curl
              custom/library/apr
-             runtime/ruby-2.1/rack
+             runtime/ruby-2.2/rack
              library/libssh2
              library/libldap
              library/security/cyrus-sasl
