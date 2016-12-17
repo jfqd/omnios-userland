@@ -25,7 +25,7 @@
 # Use is subject to license terms.
 #
 # Set Ruby version
-RUBY_VER=2.2
+RUBY_VER=2.3
 # Load support functions
 . ../../lib/functions.sh
 . ../../lib/gem-functions.sh
@@ -49,6 +49,8 @@ BUILD_DEPENDS_IPS="custom/server/apache24
 DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
 GEM_DEPENDS=""
+
+[[ "$BUILDARCH" == "both" ]] && BUILDARCH=64
 
 # export CC=/opt/gcc-4.8.1/bin/gcc
 # export CXX=/opt/gcc-4.8.1/bin/g++
