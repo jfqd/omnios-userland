@@ -50,8 +50,6 @@ DEPENDS_IPS="$BUILD_DEPENDS_IPS"
 
 GEM_DEPENDS=""
 
-[[ "$BUILDARCH" == "both" ]] && BUILDARCH=64
-
 # export CC=/opt/gcc-4.8.1/bin/gcc
 # export CXX=/opt/gcc-4.8.1/bin/g++
 # export CPP=/opt/gcc-4.8.1/bin/cpp
