@@ -27,7 +27,7 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://de1.php.net/get/php-5.6.17.tar.gz/from/this/mirror
+# http://de1.php.net/get/php-7.0.14.tar.gz/from/this/mirror
 PROG=php
 VER=7.0.14
 PKG=runtime/php7
@@ -219,9 +219,7 @@ install_ext_mcrypt() {
 install_ext_mysql() {
     create_extension_dir
     logmsg "--- Moving files for mysql extensions"
-    logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.a $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysql.so $DESTDIR/$EXTENSION_DIR/ && \
-        logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
+    logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.a $DESTDIR/$EXTENSION_DIR/ && \
         logcmd mv $INSTALLDIR/$EXTENSION_DIR/mysqli.so $DESTDIR/$EXTENSION_DIR/ && \
         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.a $DESTDIR/$EXTENSION_DIR/ && \
         logcmd mv $INSTALLDIR/$EXTENSION_DIR/pdo_mysql.so $DESTDIR/$EXTENSION_DIR/ || \
