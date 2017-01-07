@@ -1,0 +1,54 @@
+#/bin/bash
+
+PROGNAME=`/usr/bin/basename $0`
+
+print_usage() {
+    echo "Usage: $PROGNAME -p poolname -w warning -c critical"
+    echo "Usage: $PROGNAME -h"
+}
+
+if [ $# -lt 1 ]; then
+    print_usage
+    exit 1
+fi
+
+while test -n "$1"; do
+    case "$1" in
+        -h)
+            print_help
+            exit 1
+            ;;
+        -p)
+            pool=$2
+            shift
+            ;;
+        -w)
+            warning=$2
+            shift
+            ;;
+        -c)
+            critical=$2
+            shift
+            ;;
+    esac
+    shift
+done
+
+warning=${warning:-85}
+critical=${critical:-90}
+
+/usr/sbin/zpool list -H -o name,capacity | while read name capacity; do
+  if [ $name = $pool ]; then
+    cap=$(echo $capacity | /usr/gnu/bin/cut -f1 -d%)
+    if [ $cap -ge $warning ]; then
+      echo "WARNING $pool= $cap%"
+      exit 1
+    elif [ $cap -ge $critical ]; then
+      echo "CRITICAL $pool=$cap%"
+      exit 1
+    else
+      echo "OK $pool=$cap"
+      exit 0
+    fi
+  fi
+done
