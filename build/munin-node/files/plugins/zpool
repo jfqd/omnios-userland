@@ -1,0 +1,28 @@
+#/bin/bash
+
+warning=${warning:-85}
+critical=${critical:-90}
+
+if [ "$1" = 'autoconf' ]; then
+    echo yes
+    exit 0
+fi
+
+if [ "$1" = "config" ]; then
+    echo 'graph_title Pool usage (in %)'
+    echo 'graph_args --upper-limit 100'
+    echo 'graph_category disk'
+    echo 'graph_scale no'
+
+    for NAME in $(/usr/sbin/zpool list -H -o name); do
+      echo "$NAME.label $NAME"
+      echo "$NAME.warning $warning"
+      echo "$NAME.critical $critical"
+    done
+    
+    exit 0
+fi
+
+/usr/sbin/zpool list -H -o name,capacity | while read name capacity; do
+  echo "$name.value $capacity" | /usr/gnu/bin/cut -f1 -d%
+done
