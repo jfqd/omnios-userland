@@ -32,9 +32,9 @@
 # ./build.sh -f libs
 # ./build.sh -f client
 
-# http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.34.tar.gz
+# http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.35.tar.gz
 PROG=mysql
-VER=5.6.34
+VER=5.6.35
 VERHUMAN=$VER
 
 BUILD_DEPENDS_IPS="developer/build/cmake system/library/g++-4-runtime system/library/gcc-4-runtime"
