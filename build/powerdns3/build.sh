@@ -27,7 +27,8 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://downloads.powerdns.com/releases/pdns-3.4.10.tar.bz2
+# https://downloads.powerdns.com/releases/pdns-3.4.11.tar.bz2
+# https://downloads.powerdns.com/releases/pdns-3.4.11.tar.bz2.sig
 PROG=powerdns
 VER=3.4.11
 VERHUMAN=$VER

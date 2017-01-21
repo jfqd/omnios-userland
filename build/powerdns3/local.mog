@@ -1,0 +1,2 @@
+group gid=208 groupname=pdns
+user ftpuser=false gcos-field="PowerDNS Reserved UID" group=pdns password=NP uid=208 username=pdns home-dir=/
