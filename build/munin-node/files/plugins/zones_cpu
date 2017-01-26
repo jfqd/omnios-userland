@@ -15,7 +15,7 @@ fi
 
 if [ "$1" = "config" ]; then
 	echo 'graph_category system'
-	echo 'graph_title Zone-Memory usage (in %)'
+	echo 'graph_title Zone-CPU usage (in %)'
 	echo 'graph_args --upper-limit 100 -l 0'
 	echo 'graph_vlabel %'
 	/usr/sbin/zoneadm list cv -H | /usr/gnu/bin/awk '{print $1 ".label " $1}'
