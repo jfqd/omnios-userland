@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#%# family=auto
+#%# capabilities=autoconf
+
+if [ "$1" = "autoconf" ]; then
+	if [ `uname -s` = SunOS ]; then
+		echo no
+		exit 1
+	else
+		echo yes
+		exit 0
+	fi
+fi
+
+if [ "$1" = "config" ]; then
+	echo 'graph_category system'
+	echo 'graph_title Zone-Memory usage (in %)'
+	echo 'graph_args --upper-limit 100 -l 0'
+	echo 'graph_vlabel %'
+	/usr/sbin/zoneadm list cv -H | /usr/gnu/bin/awk '{print $1 ".label " $1}'
+	exit 0
+fi
+
+/usr/bin/prstat -Zcn 0,100 2 1 | /usr/gnu/bin/tail -n +2 | /usr/gnu/bin/head -n -1 | /usr/gnu/bin/sed 's/%//g' | /usr/gnu/bin/awk '{print $8 ".value " int($7)}'
