@@ -22,4 +22,4 @@ if [ "$1" = "config" ]; then
 	exit 0
 fi
 
-/usr/bin/prstat -Zcn 0,100 2 1 | /usr/gnu/bin/tail -n +2 | /usr/gnu/bin/head -n -1 | /usr/gnu/bin/sed 's/%//g' | /usr/gnu/bin/awk '{print $8 ".value " int($7)}'
+/usr/bin/prstat -Zcn 0,100 2 1 | /usr/gnu/bin/tail -n +2 | /usr/gnu/bin/head -n -1 | /usr/gnu/bin/sed 's/%//g' | /usr/gnu/bin/awk '{printf "%s.value %.0f\n", $8, $7}'
