@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# 2010-03-12 Peter Bonivart
+
+prog="clamd"
+progdir="/usr/local/sbin"
+
+conffile="/etc/clamd.conf"
+if [ ! -f "$conffile" ]; then
+  echo "ERROR: can not find clamd.conf"
+  exit 1
+fi
+
+pidfile=`grep '^PidFile' $conffile | awk '{print $2}'`
+piddir=`dirname $pidfile`
+if [ ! -d $piddir ]; then
+  clamuser=`grep '^User' $conffile | awk '{print $2}'`
+  mkdir -p $piddir
+  chown $clamuser $piddir
+fi
+
+PATH=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+case "$1" in
+  start)
+    echo "Starting $prog ..."
+    $progdir/$prog &
+  ;;
+  stop)
+    echo "Stopping $prog ..."
+    /usr/bin/pkill -x $prog
+  ;;
+  restart)
+    $0 stop
+    echo "Waiting for $prog to stop.\c"
+    while ( /usr/bin/pgrep -x $prog > /dev/null )
+    do
+       echo ".\c"
+       sleep 1
+    done
+    echo
+    sleep 1
+    $0 start
+  ;;
+  refresh|reload)
+    echo "Reloading $prog configuration ..."
+    /usr/bin/pkill -HUP -x $prog
+  ;;
+  *)
+    echo "Usage: $0 { start|stop|refresh|reload|restart }"
+    exit 1
+esac
+
+exit 0

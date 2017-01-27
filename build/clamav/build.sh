@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://downloads.sourceforge.net/project/clamav/clamav/0.99.1/clamav-0.99.1.tar.gz
+# http://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz
+# http://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz.sig
 PROG=clamav
-VER=0.99.1
+VER=0.99.2
 VERHUMAN=$VER
 PKG=service/network/clamav
 SUMMARY="ClamAV is an open source antivirus engine"
@@ -43,12 +44,23 @@ CONFIGURE_OPTS="--sysconfdir=/etc/$PROG
                 --localstatedir=/var/$PROG
                 --mandir=$PREFIX/share/man"
 
+add_smf_support() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
+    logcmd cp $SRCDIR/files/manifest-clamav.xml \
+        $DESTDIR/lib/svc/manifest/network/clamav.xml
+    logcmd mkdir -p $DESTDIR/lib/svc/method
+    logcmd cp $SRCDIR/files/clamav \
+        $DESTDIR/lib/svc/method/clamav
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
 build
 make_isa_stub
+add_smf_support
 make_package
 clean_up
 
