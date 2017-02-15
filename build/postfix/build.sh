@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://de.postfix.org/ftpmirror/official/postfix-2.11.8.tar.gz
+# https://de.postfix.org/ftpmirror/official/postfix-2.11.9.tar.gz
 PROG=postfix
-VER=2.11.8
+VER=2.11.9
 VERHUMAN=$VER
 PKG=service/network/smtp/postfix
 SUMMARY="Postfix Mail Transport Agent"
