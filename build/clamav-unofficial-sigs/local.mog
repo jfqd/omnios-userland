@@ -5,3 +5,4 @@
 <transform dir path=var/db/clamav-unofficial-sigs -> set owner clamav>
 <transform dir path=var/db/clamav-unofficial-sigs -> set group clamav>
 <transform dir path=var/db/clamav-unofficial-sigs -> set mode 0755>
+<transform dir path=var/db -> set group sys>
