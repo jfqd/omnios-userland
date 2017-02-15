@@ -52,6 +52,10 @@ add_smf_support() {
     logcmd mkdir -p $DESTDIR/lib/svc/method
     logcmd cp $SRCDIR/files/clamav \
         $DESTDIR/lib/svc/method/clamav
+    logmsg "Create Database dir"
+    logcmd mkdir -p $DESTDIR/usr/local/share/clamav
+    logmsg "Create run dir"
+    logcmd mkdir -p $DESTDIR/var/run/clamd
 }
 
 init
