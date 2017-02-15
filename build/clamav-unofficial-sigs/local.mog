@@ -1,0 +1,7 @@
+<transform file path=usr/local/bin/clamav-unofficial-sigs -> set mode 0755>
+<transform file path=var/log/clamav-unofficial-sigs.log -> set owner clamav>
+<transform file path=var/log/clamav-unofficial-sigs.log -> set group clamav>
+<transform file path=var/log/clamav-unofficial-sigs.log -> set mode 0644>
+<transform dir path=var/db/clamav-unofficial-sigs -> set owner clamav>
+<transform dir path=var/db/clamav-unofficial-sigs -> set group clamav>
+<transform dir path=var/db/clamav-unofficial-sigs -> set mode 0755>
