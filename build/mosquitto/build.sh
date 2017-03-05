@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=mosquitto
-VER=1.4.10
+VER=1.4.11
 VERHUMAN=$VER
 PKG=service/network/mosquitto
 SUMMARY="Mosquitto is implementation of the MQTT protocol"
