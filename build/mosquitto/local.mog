@@ -1,0 +1,5 @@
+group gid=6009 groupname=mqtt
+user ftpuser=false gcos-field="mqtt reserved uid" group=mqtt password=NP uid=6009 username=mqtt home-dir=/
+license COPYING license="GNU General Public License Version 2"
+<transform dir path=var/lib/mosquitto -> set owner mqtt>
+<transform dir path=var/lib/mosquitto -> set group mqtt>

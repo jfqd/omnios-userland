@@ -54,6 +54,7 @@ configure64() {
 }
 
 make_install() {
+    logcmd mkdir -p $DESTDIR/var/lib/mosquitto
     logmsg "--- make install (with fake man pages)"
     # use http://mosquitto.org/man/ instead!
     logcmd touch $TMPDIR/$BUILDDIR/man/mosquitto.8
