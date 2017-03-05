@@ -35,10 +35,16 @@ PKG=library/libconfig
 SUMMARY="C/C++ library for processing configuration files"
 DESC="$SUMMARY ($VER)"
 
+fix_code() {
+  # https://github.com/hyperrealm/libconfig/issues/47
+  rm $TMPDIR/$BUILDDIR/lib/scanner.{c,h}
+}
+
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
+fix_code
 build
 make_isa_stub
 make_package
