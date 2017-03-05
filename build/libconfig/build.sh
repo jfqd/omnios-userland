@@ -35,17 +35,30 @@ PKG=library/libconfig
 SUMMARY="C/C++ library for processing configuration files"
 DESC="$SUMMARY ($VER)"
 
-fix_code() {
-  # https://github.com/hyperrealm/libconfig/issues/47
-  rm $TMPDIR/$BUILDDIR/lib/scanner.{c,h}
+
+build32() {
+    pushd $TMPDIR/$BUILDDIR > /dev/null
+    logmsg "Building 32-bit"
+    export ISALIST="$ISAPART"
+    make_clean
+    configure32
+    logcmd $MAKE $MAKE_JOBS
+    logcmd rm $TMPDIR/$BUILDDIR/lib/scanner.{c,h}
+    make_prog32
+    make_install32
+    popd > /dev/null
+    unset ISALIST
+    export ISALIST
 }
 
 init
 download_source $PROG $PROG $VER
 patch_source
 prep_build
-fix_code
 build
+
+logcmd rm -rf $DESTDIR/usr/local/share/info/dir
+
 make_isa_stub
 make_package
 clean_up
