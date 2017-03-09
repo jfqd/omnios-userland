@@ -1,5 +1,5 @@
 group gid=98 groupname=clamav
-user ftpuser=false gcos-field="ClamAV Reserved UID" group=clamav password=NP uid=98 username=clamav home-dir=/var/clamav
+user ftpuser=false gcos-field="ClamAV Reserved UID" group=clamav password=NP uid=98 username=clamav login-shell=/bin/sh home-dir=/usr/local/share/clamav
 license COPYING license="GPLv2"
 <transform file path=usr/local/share/clamav -> set owner clamav>
 <transform file path=usr/local/share/clamav -> set group clamav>
