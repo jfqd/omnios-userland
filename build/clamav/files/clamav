@@ -5,7 +5,7 @@
 prog="clamd"
 progdir="/usr/local/sbin"
 
-conffile="/etc/clamd/clamd.conf"
+conffile="/etc/clamav/clamd.conf"
 if [ ! -f "$conffile" ]; then
   echo "ERROR: can not find clamd.conf"
   exit 1
