@@ -37,6 +37,7 @@ DESC="Six provides utility functions for smoothing over the differences between 
 BUILDARCH=32
 PYTHON=/usr/local/bin/python2.7
 
+DEPENDS_IPS="runtime/python27"
 BUILD_DEPENDS_IPS="$DEPENDS_IPS"
 
 init
