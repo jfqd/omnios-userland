@@ -51,10 +51,6 @@ build() {
       || logerr "cannot install SMF manifest"
 }
 
-make_bin_file_executable() {
-  logcmd chmod +x $DESTDIR/opt/openfire/bin/openfire.sh
-}
-
 fix_spaces_in_filenames() {
   logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google\ Android\ License.txt \
       $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google_Android_License.txt
@@ -73,7 +69,6 @@ download_source $PROG $PROG $VER
 prep_build
 build
 fix_spaces_in_filenames
-make_bin_file_executable
 make_isa_stub
 make_package
 clean_up
