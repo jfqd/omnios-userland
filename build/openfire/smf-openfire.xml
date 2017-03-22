@@ -27,10 +27,10 @@
           <envvar name='HOME' value='/export/home/jabber'/>
         </method_environment>
       </method_context>
-      <exec_method name='start' type='method' exec='/opt/openfire/bin/openfire start' timeout_seconds='120'>
+      <exec_method name='start' type='method' exec='/opt/openfire/bin/openfire.sh start' timeout_seconds='120'>
         <method_context/>
       </exec_method>
-      <exec_method name='stop' type='method' exec='/opt/openfire/bin/openfire stop' timeout_seconds='900'>
+      <exec_method name='stop' type='method' exec='/opt/openfire/bin/openfire.sh stop' timeout_seconds='900'>
         <method_context/>
       </exec_method>
       <property_group name='startd' type='framework'>

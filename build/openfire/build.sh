@@ -41,12 +41,18 @@ build() {
   logcmd mkdir -p $DESTDIR/opt || logerr "cannot make /opt"
   logcmd mv $TMPDIR/$BUILDDIR/src $DESTDIR/opt/openfire \
       || logerr "cannot move distribution into place"
+  logcmd mv $TMPDIR/$BUILDDIR/build/lib $DESTDIR/opt/openfire/lib \
+      || logerr "cannot move library files into place"
   logcmd cp $SRCDIR/openfire.xml $DESTDIR/opt/openfire/conf/ \
       || logerr "cannot install config"
   logcmd mkdir -p $DESTDIR/lib/svc/manifest/network \
       || logerr "cannot make SMF dir"
   logcmd cp $SRCDIR/smf-openfire.xml $DESTDIR/lib/svc/manifest/network/openfire.xml \
       || logerr "cannot install SMF manifest"
+}
+
+make_bin_file_executable() {
+  logcmd chmod +x $DESTDIR/opt/openfire/bin/openfire.sh
 }
 
 fix_spaces_in_filenames() {
@@ -67,6 +73,7 @@ download_source $PROG $PROG $VER
 prep_build
 build
 fix_spaces_in_filenames
+make_bin_file_executable
 make_isa_stub
 make_package
 clean_up
