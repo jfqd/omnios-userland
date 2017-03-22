@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=openfire
-VER=3.10.0
+VER=3.10.2
 VERHUMAN=$VER
 PKG=network/openfire
 SUMMARY="Openfire XMPP/Jabber Server"

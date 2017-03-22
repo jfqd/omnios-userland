@@ -21,13 +21,10 @@
       <dependency name='autofs' grouping='optional_all' restart_on='none' type='service'>
         <service_fmri value='svc:/system/filesystem/autofs'/>
       </dependency>
-      <dependency name='database' grouping='require_all' restart_on='none' type='service'>
-        <service_fmri value='svc:/database/postgres'/>
-      </dependency>
       <method_context project=':default' resource_pool=':default' working_directory='/opt/openfire'>
         <method_credential group='jabber' limit_privileges=':default' privileges=':default' supp_groups=':default' user='jabber'/>
         <method_environment>
-          <envvar name='HOME' value='/home/jabber'/>
+          <envvar name='HOME' value='/export/home/jabber'/>
         </method_environment>
       </method_context>
       <exec_method name='start' type='method' exec='/opt/openfire/bin/openfire start' timeout_seconds='120'>
