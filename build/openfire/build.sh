@@ -33,7 +33,6 @@ VERHUMAN=$VER
 PKG=network/openfire
 SUMMARY="Openfire XMPP/Jabber Server"
 DESC="$SUMMARY ($VER)"
-BUILDDIR=openfire_src
 
 DEPENDS_IPS="runtime/java"
 
