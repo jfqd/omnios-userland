@@ -52,14 +52,14 @@ build() {
 fix_spaces_in_filenames() {
   logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google\ Android\ License.txt \
       $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Droid-Sans-Mono/Google_Android_License.txt
-  logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Open-Sans/Apache\ License\ Version\ 2.txt
+  logcmd mv $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Open-Sans/Apache\ License\ Version\ 2.txt \
       $DESTDIR/opt/openfire/plugins/jmxweb/src/hawtio/app/themes/fonts/Open-Sans/Apache_License_Version_2.txt
-  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/build.txt\ -\ Shortcut.lnk
+  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/build.txt\ -\ Shortcut.lnk \
       $DESTDIR/opt/openfire/plugins/nodejs/build.txt_-_Shortcut.lnk
-  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/plugin-nodejs.cmd\ -\ Shortcut.lnk
+  logcmd mv $DESTDIR/opt/openfire/plugins/nodejs/plugin-nodejs.cmd\ -\ Shortcut.lnk \
       $DESTDIR/opt/openfire/plugins/nodejs/plugin-nodejs.cmd_-_Shortcut.lnk
-  logcmd mv $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Fonthead\ Standard\ EULA.txt
-      $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Font  
+  logcmd mv $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Fonthead\ Standard\ EULA.txt \
+      $DESTDIR/opt/openfire/plugins/ofmeet/src/apps/scrumblr/fonts/Font
 }
 
 init
