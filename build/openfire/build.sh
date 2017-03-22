@@ -45,6 +45,7 @@ build() {
       || logerr "cannot move library files into place"
   logcmd cp $SRCDIR/openfire.xml $DESTDIR/opt/openfire/conf/ \
       || logerr "cannot install config"
+  logcmd mkdir -p $DESTDIR/opt/openfire/var || logerr "cannot make var-dir"
   logcmd mkdir -p $DESTDIR/lib/svc/manifest/network \
       || logerr "cannot make SMF dir"
   logcmd cp $SRCDIR/smf-openfire.xml $DESTDIR/lib/svc/manifest/network/openfire.xml \

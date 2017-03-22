@@ -1,5 +1,5 @@
 group gid=5222 groupname=jabber
-user ftpuser=false gcos-field="Jabber UID" group=jabber login-shell=/usr/bin/pfksh password=NP uid=5222 username=jabber home-dir=/export/home/jabber
+user ftpuser=false gcos-field="Jabber UID" group=jabber login-shell=/usr/bin/pfksh password=NP uid=5222 username=jabber home-dir=/opt/openfire/var
 
 <transform dir path=opt/openfire -> set owner jabber>
 <transform dir path=opt/openfire -> set group jabber>

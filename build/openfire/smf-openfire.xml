@@ -22,9 +22,9 @@
         <service_fmri value='svc:/system/filesystem/autofs'/>
       </dependency>
       <method_context project=':default' resource_pool=':default' working_directory='/opt/openfire'>
-        <method_credential group='jabber' limit_privileges=':default' privileges=':default' supp_groups=':default' user='jabber'/>
         <method_environment>
-          <envvar name='HOME' value='/export/home/jabber'/>
+          <envvar name='HOME' value='/opt/openfire/var'/>
+          <envvar name='OPENFIRE_USER' value='jabber'/>
         </method_environment>
       </method_context>
       <exec_method name='start' type='method' exec='/opt/openfire/bin/openfirectl start' timeout_seconds='120'>
