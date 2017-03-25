@@ -42,12 +42,15 @@ create_configure() {
 }
 
 add_smf_support() {
-  logmsg "Installing SMF"
+  logmsg "Installing SMF and configuration"
   logcmd mkdir -p $DESTDIR/lib/svc/manifest/network
   logcmd cp $SRCDIR/files/manifest-twemproxy.xml \
       $DESTDIR/lib/svc/manifest/network/twemproxy.xml
   logcmd mkdir -p $DESTDIR/var/log
   logcmd touch $DESTDIR/var/log/twemproxy.log
+  logcmd mkdir -p $DESTDIR/etc/twemproxy
+  logcmd cp $SRCDIR/files/nutcracker.yml \
+      $DESTDIR/etc/twemproxy/nutcracker.yml.sample
 }
 
 init
