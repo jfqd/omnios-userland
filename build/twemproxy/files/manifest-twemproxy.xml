@@ -38,7 +38,7 @@
         <template>
             <common_name>
                 <loctext xml:lang="C">
-                    pound
+                    twemproxy
                 </loctext>
             </common_name>
             <documentation>
