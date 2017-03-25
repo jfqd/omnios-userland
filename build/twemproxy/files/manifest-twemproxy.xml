@@ -19,7 +19,7 @@
             <method_credential user="twemproxy" group="twemproxy" />
         </method_context>
 
-        <exec_method type="method" name="start" exec="/usr/local/bin/nutcracker -c %{config_file} -o %{log_file}" timeout_seconds="60"/>
+        <exec_method type="method" name="start" exec="/usr/local/sbin/amd64/nutcracker -c %{config_file} -o %{log_file}" timeout_seconds="60"/>
 
         <exec_method type="method" name="stop" exec=":kill" timeout_seconds="60"/>
 

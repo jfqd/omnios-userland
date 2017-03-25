@@ -35,7 +35,7 @@ SUMMARY="A fast, light-weight proxy for memcached and redis"
 DESC="$SUMMARY ($VER)"
 
 create_configure() {
-  logmsg "Create configure file in $TMPDIR/$BUILDDIR/libnet"
+  logmsg "Create configure file in $TMPDIR/$BUILDDIR"
   pushd $TMPDIR/$BUILDDIR >/dev/null
   logcmd /usr/sfw/bin/autoreconf -fvi
   popd >/dev/null
@@ -47,7 +47,7 @@ add_smf_support() {
   logcmd cp $SRCDIR/files/manifest-twemproxy.xml \
       $DESTDIR/lib/svc/manifest/network/twemproxy.xml
   logcmd mkdir -p $DESTDIR/var/log
-  logcmd touch -p $DESTDIR/var/log/twemproxy.log
+  logcmd touch $DESTDIR/var/log/twemproxy.log
 }
 
 init
