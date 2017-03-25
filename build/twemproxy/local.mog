@@ -1,0 +1,4 @@
+group gid=208 groupname=twemproxy
+user ftpuser=false gcos-field="twemproxy Reserved UID" group=twemproxy password=NP uid=208 username=unbound home-dir=/
+<transform file path=var/log/twemproxy.log -> set owner twemproxy>
+<transform file path=var/log/twemproxy.log -> set group twemproxy>
