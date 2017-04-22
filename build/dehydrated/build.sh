@@ -30,7 +30,7 @@
 PROG=dehydrated
 VER=0.4.0
 VERHUMAN=$VER
-PKG=
+PKG=network/dehydrated
 SUMMARY="letsencrypt/acme client implemented as a shell-script – just add water"
 DESC="$SUMMARY ($VER)"
 
