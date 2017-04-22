@@ -1,0 +1,2 @@
+group gid=210 groupname=dehydrated
+user ftpuser=false gcos-field="dehydrated Reserved UID" group=dehydrated password=NP uid=210 username=dehydrated home-dir=/var/www/dehydrated
