@@ -39,7 +39,6 @@ build() {
   logcmd mkdir -p $DESTDIR/usr/local/bin
   logcmd cp ${TMPDIR}/${BUILDDIR}/dehydrated \
       $DESTDIR/usr/local/bin/dehydrated
-  logcmd mkdir -p $DESTDIR/etc/dehydrated/config
   logcmd cp -R ${TMPDIR}/${BUILDDIR}/docs/examples \
       $DESTDIR/etc/dehydrated/examples
 }
