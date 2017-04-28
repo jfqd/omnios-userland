@@ -27,10 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://de1.php.net/get/php-7.0.17.tar.gz/from/this/mirror
-# http://de1.php.net/get/php-7.0.17.tar.gz.asc/from/this/mirror
+# http://de1.php.net/get/php-7.0.18.tar.gz/from/this/mirror
+# http://de1.php.net/get/php-7.0.18.tar.gz.asc/from/this/mirror
 PROG=php
-VER=7.0.17
+VER=7.0.18
 PKG=runtime/php7
 SUMMARY="PHP Server 7"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
