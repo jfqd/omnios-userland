@@ -28,9 +28,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://downloads.sourceforge.net/project/freetype/freetype2/2.7/freetype-2.7.tar.bz2
+# https://downloads.sourceforge.net/project/freetype/freetype2/2.7.1/freetype-2.7.1.tar.bz2
+# https://downloads.sourceforge.net/project/freetype/freetype2/2.7.1/freetype-2.7.1.tar.bz2.sig
 PROG=freetype
-VER=2.7
+VER=2.7.1
 VERHUMAN=$VER
 PKG=library/freetype2
 SUMMARY="A Free, High-Quality, and Portable Font Engine"
