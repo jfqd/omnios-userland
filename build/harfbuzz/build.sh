@@ -39,6 +39,8 @@ BUILD_DEPENDS_IPS='library/freetype2 library/cairo'
 PKG_CONFIG=${PREFIX}/bin/pkg-config
 export PKG_CONFIG
 
+TAR=/usr/gnu/bin/tar
+
 init
 download_source $PROG $PROG $VER
 patch_source
