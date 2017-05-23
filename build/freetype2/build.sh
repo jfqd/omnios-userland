@@ -38,9 +38,13 @@ PKG=library/freetype2
 SUMMARY="A Free, High-Quality, and Portable Font Engine"
 DESC="$SUMMARY ($VER)"
 
-DEPENDS_IPS="system/library/gcc-4-runtime library/libpng"
+DEPENDS_IPS="system/library/gcc-4-runtime library/libpng library/harfbuzz"
 
 export GNUMAKE=gmake
+
+CFLAGS="-I/usr/local/include"
+LDFLAGS32="$LDFLAGS32 -L/usr/local/lib -R/usr/local/lib"
+LDFLAGS64="$LDFLAGS64 -L/usr/local/lib/$ISAPART64 -R/usr/local/lib/$ISAPART64"
 
 init
 download_source $PROG $PROG $VER
