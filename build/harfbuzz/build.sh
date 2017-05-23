@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=harfbuzz
-VER=0.9.22
+VER=0.9.42
 VERHUMAN=$VER
 PKG=library/harfbuzz
 SUMMARY="OpenType text shaping engine"
