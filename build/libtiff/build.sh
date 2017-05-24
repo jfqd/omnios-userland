@@ -38,6 +38,8 @@ DESC="$SUMMARY ($VER)"
 DEPENDS_IPS="library/libjpeg"
 BUILDDIR=tiff-$VER
 
+TAR=/usr/gnu/bin/tar
+
 init
 download_source $PROG tiff $VER
 patch_source
