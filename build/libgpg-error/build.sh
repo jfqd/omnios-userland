@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2
+# https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2
 PROG=libgpg-error
-VER=1.25
+VER=1.27
 VERHUMAN=$VER
 PKG=library/security/libgpg-error
 SUMMARY="Libgpg-error is a small library with error codes and descriptions shared by most GnuPG related software."
