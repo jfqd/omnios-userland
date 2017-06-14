@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2
+# https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.7.tar.bz2
 PROG=libgcrypt
-VER=1.7.3
+VER=1.7.7
 VERHUMAN=$VER
 PKG=library/security/libgcrypt
 SUMMARY="Libgcrypt is GNU's basic cryptographic library."
