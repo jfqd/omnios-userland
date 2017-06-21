@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=openvpn
-VER=2.3.16
+VER=2.3.17
 VERHUMAN=$VER
 PKG=service/network/openvpn
 SUMMARY="Secure IP tunnel daemon"
