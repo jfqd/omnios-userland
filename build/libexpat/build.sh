@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://downloads.sourceforge.net/project/expat/expat/2.2.0/expat-2.2.0.tar.bz2
+# http://downloads.sourceforge.net/project/expat/expat/2.2.1/expat-2.2.1.tar.bz2
+# https://github.com/libexpat/libexpat/archive/R_2_2_1.tar.gz
 PROG=libexpat
-VER=2.2.0
+VER=2.2.1
 VERHUMAN=$VER
 PKG=custom/library/libexpat
 SUMMARY="XML parser library"
