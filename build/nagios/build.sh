@@ -27,6 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://www.nagios.org/downloads/nagios-core/thanks/?t=1487216873
+# https://assets.nagios.com/downloads/nagioscore/releases/nagios-3.5.1.tar.gz
+# https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz
+# https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.2.4.tar.gz
 PROG=nagios
 VER=3.5.1
 VERHUMAN=$VER
@@ -45,16 +49,11 @@ BUILD_DEPENDS_IPS="monitoring/nagios/nagios-plugins \
                    library/libgd \
                    library/libjpeg \
                    library/libpng \
-                   pkg:/omniti/incorporation/perl-516-incorporation \
                    runtime/perl"
 
-DEPENDS_IPS="monitoring/nagios/nagios-plugins \
-                   library/libgd \
-                   library/libjpeg \
-                   library/libpng \
-                   pkg:/omniti/incorporation/perl-516-incorporation \
-                   runtime/perl \
-                   custom/server/apache22"
+#                    pkg:/omniti/incorporation/perl-516-incorporation \
+
+DEPENDS_IPS="custom/server/apache22 ${BUILD_DEPENDS_IPS}"
 
 # Don't make a stub for p1.pl
 NOSCRIPTSTUB=1
