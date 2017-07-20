@@ -4,7 +4,7 @@
 . ../../lib/functions.sh
 
 PROG=httpd
-VER=2.2.32
+VER=2.2.34
 PKG=custom/server/apache22
 SUMMARY="$PROG - Apache Web Server ($VER)"
 DESC="$SUMMARY"
