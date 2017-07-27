@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://de1.php.net/get/php-5.6.30.tar.gz/from/this/mirror
+# http://de2.php.net/get/php-5.6.31.tar.bz2/from/this/mirror
+# http://de2.php.net/get/php-5.6.31.tar.bz2.asc/from/this/mirror
 PROG=php
-VER=5.6.30
+VER=5.6.31
 PKG=runtime/php56
 SUMMARY="PHP Server 5.6"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
