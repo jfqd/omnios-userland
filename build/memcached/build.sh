@@ -27,8 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# http://www.memcached.org/files/memcached-1.4.39.tar.gz
 PROG=memcached
-VER=1.4.34
+VER=1.4.39
 VERHUMAN=$VER
 PKG=server/memcached
 SUMMARY="$PROG - free & open source, high-performance, distributed memory object caching system"
