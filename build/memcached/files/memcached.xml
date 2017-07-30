@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+  <service_bundle type="manifest" name="memcached">
+    <service name="application/database/memcached" type="service" version="1">
+        <dependency name="network" grouping="require_all" restart_on="error" type="service">
+            <service_fmri value="svc:/milestone/network:default"/>
+        </dependency>
+        <instance name="default" enabled="true">
+            <method_context>
+                <method_credential user="memcache" group="memcache"/>
+            </method_context>
+            <!--  Add logging: -vv > /var/log/memcached.log 2>&1  -->
+            <!--  User is set via smf: -u nobody  -->
+            <exec_method type="method" name="start" exec="/usr/local/bin/memcached -d -U 0 -m 1024 -p 11211" timeout_seconds="60"/>
+            <exec_method type="method" name="stop" exec=":kill" timeout_seconds="60"/>
+            <property_group name="startd" type="framework">
+                <propval name="duration" type="astring" value="contract"/>
+                <propval name="ignore_error" type="astring" value="core,signal"/>
+            </property_group>
+            <property_group name="application" type="application">
+            </property_group>
+        </instance>
+        <template>
+            <common_name>
+                <loctext xml:lang="C">memcached</loctext>
+            </common_name>
+            <documentation>
+                <doc_link name='memcached Official' uri='http://memcached.org/'/>
+            </documentation>
+        </template>
+    </service>
+</service_bundle>

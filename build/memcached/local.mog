@@ -1,1 +1,5 @@
 license COPYING license=memcached
+group gid=211 groupname=memcache
+user ftpuser=false gcos-field="memcache UID" group=memcache password=NP uid=211 username=memcache home-dir=/
+<transform file path=(usr/local/bin/memcached|usr/local/bin/i386/memcached|usr/local/bin/amd64/memcached|var/svc/manifest/application/database/memcached.xml)$ -> set restart_fmri svc:/server/memcached>
+<transform file path=var/svc/manifest/application/database/memcached.xml -> set restart_fmri svc:/system/manifest-import:default>

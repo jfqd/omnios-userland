@@ -38,9 +38,12 @@ DESC="$SUMMARY"
 DEPENDS_IPS="library/libevent =library/libevent@2.0
              system/library/gcc-4-runtime"
 
-# CONFIGURE_OPTS="$CONFIGURE_OPTS --with-libevent=/opt/omni"
-# LDFLAGS32="$LDFLAGS32 -L/opt/omni/lib -R/opt/omni/lib"
-# LDFLAGS64="$LDFLAGS64 -L/opt/omni/lib/$ISAPART64 -R/opt/omni/lib/$ISAPART64"
+copy_manifest() {
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/var/svc/manifest/application/database/
+    logcmd cp $SRCDIR/files/memcached.xml \
+        $DESTDIR/var/svc/manifest/application/database/memcached.xml
+}
 
 init
 download_source $PROG $PROG $VER
@@ -48,6 +51,7 @@ patch_source
 prep_build
 build
 make_isa_stub
+copy_manifest
 make_package
 clean_up
 
