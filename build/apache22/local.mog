@@ -1,5 +1,5 @@
 group gid=203 groupname=httpd
 user ftpuser=false gcos-field="Httpd UID" group=httpd password=NP uid=203 username=httpd home-dir=/
-<transform file path=(usr/local/apache22/bin/amd64/httpd|/usr/local/apache22/bin/i386/httpd|lib/svc/manifest/network/http.xml)$ -> set restart_fmri svc:/network/http:apache22>
+<transform file path=(usr/local/apache22/bin/amd64/httpd|usr/local/apache22/bin/i386/httpd|lib/svc/manifest/network/http.xml)$ -> set restart_fmri svc:/network/http:apache22>
 <transform file path=lib/svc/manifest/network/http.xml -> set restart_fmri svc:/system/manifest-import:default>
 license LICENSE license=Apache
