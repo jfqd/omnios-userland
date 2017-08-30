@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://curl.haxx.se/download/curl-7.54.0.tar.gz
+# https://curl.haxx.se/download/curl-7.55.1.tar.bz2
+# https://curl.haxx.se/download/curl-7.55.1.tar.bz2.asc
 PROG=curl
-VER=7.54.1
+VER=7.55.1
 PKG=local/web/curl
 SUMMARY="$PROG - command line tool for transferring data with URL syntax"
 DESC="$SUMMARY"
