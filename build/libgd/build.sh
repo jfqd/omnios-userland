@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://github.com/libgd/libgd/releases/download/gd-2.2.3/libgd-2.2.3.tar.gz
+# https://github.com/libgd/libgd/releases/download/gd-2.2.5/libgd-2.2.5.tar.xz
 PROG=libgd
-VER=2.2.3
+VER=2.2.5
 PKG=library/libgd
 SUMMARY="$PROG - GD Graphics Library"
 DESC="$SUMMARY ($VER)"
