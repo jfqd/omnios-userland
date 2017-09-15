@@ -31,7 +31,7 @@ RUBY_VER=2.2
 . ../../lib/gem-functions.sh
 
 PROG=bundler
-VER=1.13.6
+VER=1.15.4
 VERHUMAN=$VER
 PKG=runtime/ruby-2.2/bundler
 SUMMARY="Gem install of the bundler gem"
