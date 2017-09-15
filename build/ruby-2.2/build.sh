@@ -43,15 +43,15 @@ PREFIX="$PREFIX/$PROG/$MAIN_VER"
 
 # Ruby doesn't have the concept of library paths,
 #   so only one arch can be installed in $PREFIX
-# Default to 32-bit
-[[ "$BUILDARCH" == "both" ]] && BUILDARCH=32
+# Default to 64-bit
+[[ "$BUILDARCH" == "both" ]] && BUILDARCH=64
 
 CONFIGURE_OPTS="--prefix=$PREFIX \
     --enable-shared \
     --disable-install-doc \
     ac_cv_func_dl_iterate_phdr=no"
 
-CONFIGURE_OPTS_32=
+CONFIGURE_OPTS_64=
 
 # https://bugs.ruby-lang.org/issues/10460
 export CFLAGS="-O2"
@@ -62,7 +62,7 @@ patch_source
 prep_build
 #run_autoconf
 build
-#make_isa_stub
+# make_isa_stub
 make_package
 clean_up
 
