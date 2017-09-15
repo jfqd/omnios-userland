@@ -55,9 +55,9 @@ GEM_DEPENDS=""
 # export CPP=/opt/gcc-4.8.1/bin/cpp
 
 compile_apache22_module() {
-  logmsg "Compiling apache22 module"
+  logmsg "Compiling apache24 module"
   RUBY_HOME=${PREFIX}/ruby/${RUBY_VER}
-  ln -nfs ${PREFIX}/apache22/bin/i386/apxs /usr/local/bin/apxs
+  pfexec ln -nfs ${PREFIX}/apache24/bin/apxs /usr/local/bin/apxs
   export LANG=en_US.UTF-8
   # export VERBOSE=1
   logcmd ${DESTDIR}${RUBY_HOME}/bin/passenger-install-apache2-module -a --languages ruby
@@ -76,12 +76,12 @@ compile_apache22_module() {
   logcmd rm -rf ${GEM_HOME}/specifications/rack-*
   logcmd rm -rf ${GEM_HOME}/specifications/rake-*
   logmsg "Copy config files"
-  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/modules/i386
-  logcmd cp $SRCDIR/files/passenger.load $DESTDIR/usr/local/apache22/conf/modules/i386
-  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache22/conf/modules/i386/passenger.load
-  logcmd mkdir -p $DESTDIR/usr/local/apache22/conf/conf.d
-  logcmd cp $SRCDIR/files/passenger.conf $DESTDIR/usr/local/apache22/conf/conf.d
-  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache22/conf/conf.d/passenger.conf
+  logcmd mkdir -p $DESTDIR/usr/local/apache24/conf/modules/i386
+  logcmd cp $SRCDIR/files/passenger.load $DESTDIR/usr/local/apache24/conf/modules/i386
+  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache24/conf/modules/i386/passenger.load
+  logcmd mkdir -p $DESTDIR/usr/local/apache24/conf/conf.d
+  logcmd cp $SRCDIR/files/passenger.conf $DESTDIR/usr/local/apache24/conf/conf.d
+  logcmd sed -i -e "s#VERSION#${VER}#g" $DESTDIR/usr/local/apache24/conf/conf.d/passenger.conf
 }
 
 init
