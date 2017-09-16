@@ -37,7 +37,7 @@ PKG=runtime/ruby-2.2/passenger5
 SUMMARY="Gem install of the passenger gem"
 DESC="$SUMMARY"
 
-BUILD_DEPENDS_IPS="custom/server/apache22
+BUILD_DEPENDS_IPS="custom/server/apache24
              local/web/curl
              custom/library/apr
              runtime/ruby-2.2/rack
