@@ -39,6 +39,8 @@ DESC="$SUMMARY ($VER)"
 
 GEM_DEPENDS=""
 
+DEPENDS_IPS="runtime/ruby-2.2"
+
 init
 download_source
 patch_source

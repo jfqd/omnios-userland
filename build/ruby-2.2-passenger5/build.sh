@@ -38,6 +38,7 @@ SUMMARY="Gem install of the passenger gem"
 DESC="$SUMMARY"
 
 BUILD_DEPENDS_IPS="custom/server/apache24
+             runtime/ruby-2.2
              local/web/curl
              custom/library/apr
              runtime/ruby-2.2/rack

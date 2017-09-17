@@ -37,7 +37,8 @@ PKG=runtime/ruby-2.2/mysql2
 SUMMARY="Gem install of the mysql2 gem"
 DESC="$SUMMARY"
 
-DEPENDS_IPS="library/libmysqlclient18"
+DEPENDS_IPS="library/libmysqlclient18
+             runtime/ruby-2.2"
 
 GEM_DEPENDS=""
 
