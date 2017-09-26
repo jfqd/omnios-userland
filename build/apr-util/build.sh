@@ -4,7 +4,7 @@
 . ../../lib/functions.sh
 
 PROG=apr-util
-VER=1.5.4
+VER=1.6.0
 PKG=custom/library/apr-util
 SUMMARY="$PROG - Apache Portable Runtime Utility"
 DESC="$SUMMARY"
