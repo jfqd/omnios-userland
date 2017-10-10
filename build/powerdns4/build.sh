@@ -27,9 +27,9 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://downloads.powerdns.com/releases/pdns-4.0.1.tar.bz2
+# https://downloads.powerdns.com/releases/pdns-4.0.4.tar.bz2
 PROG=powerdns
-VER=4.0.1
+VER=4.0.4
 VERHUMAN=$VER
 PKG=service/network/dns/powerdns4
 SUMMARY="DNS Authoritative Server"
