@@ -1,0 +1,53 @@
+#!/usr/bin/ksh
+
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+. /lib/svc/share/smf_include.sh
+
+PID="/var/run/varnishd.pid"
+
+if [ -z $SMF_FMRI ]; then
+    echo "Error: SMF framework variables are not initialized"
+    exit $SMF_EXIT_ERR
+fi
+
+# change your requirements by setting MALLOC env for varnish
+# svccfg -s svc:/network/http:varnish setenv MALLOC 4G
+# svccfg -s svc:/network/http:varnish listprop
+if [ -z $MALLOC ]; then
+    # fallback to 3G
+    MALLOC="3G"
+fi
+
+case "$1" in
+start)
+    check_conf
+    /usr/local/sbin/amd64/varnishd -P /var/run/varnishd.pid -f /etc/varnish/varnish.vcl -s malloc,${MALLOC} -a 0.0.0.0:8080 -u varnish
+    ;;
+stop)
+    /usr/bin/kill `/usr/bin/cat $PID`
+    ;;
+*)
+    print "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
