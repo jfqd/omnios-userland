@@ -27,10 +27,11 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://pecl.php.net/package/geoip
 PROG=geoip
-VER=1.0.8
+VER=1.1.1
 VERHUMAN=$VER
-PKG=runtime/php57/php-geoip
+PKG=runtime/php7/php-geoip
 SUMMARY="This PHP extension allows you to find the location of an IP address"
 DESC="This PHP extension allows you to find the location of an IP address - City, State, Country, Longitude, Latitude, and other information as all, such as ISP and connection type. For more info, please visit Maxmind's website."
 
