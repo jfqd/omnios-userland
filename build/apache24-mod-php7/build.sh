@@ -57,7 +57,7 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/libtiff
     library/security/cyrus-sasl
     library/mhash
-    library/libmysqlclient18"
+    database/mysql-client"
 
 BUILDARCH=64
 PREFIX=$PREFIX/php7
