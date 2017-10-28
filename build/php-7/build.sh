@@ -57,7 +57,7 @@ BUILD_DEPENDS_IPS="compress/bzip2
     library/libtiff
     library/security/cyrus-sasl
     library/mhash
-    library/libmysqlclient18"
+    database/mysql-client"
 
 BUILDARCH=64
 PREFIX=$PREFIX/php7
@@ -101,9 +101,8 @@ CONFIGURE_OPTS="
         --enable-mbstring=shared
         --with-pear=$PREFIX/pear
         --with-pdo-sqlite=shared
-        --with-mysql=shared,mysqlnd
-        --with-mysqli=shared,mysqlnd
-        --with-pdo-mysql=shared,mysqlnd
+        --with-mysqli=shared,/usr/local/bin/amd64/mysql_config
+        --with-pdo-mysql=shared,/usr/local/bin/amd64/mysql_config
         --with-zlib=shared
         --with-zlib-dir=/usr/local
         --with-sqlite3=shared
