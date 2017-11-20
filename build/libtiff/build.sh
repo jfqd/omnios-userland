@@ -28,9 +28,10 @@
 . ../../lib/functions.sh
 
 # http://www.simplesystems.org/libtiff/
-# http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
+# http://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
+# SHA256=6e7bdeec2c310734e734d19aae3a71ebe37a4d842e0e23dbb1b8921c0026cfcd
 PROG=libtiff
-VER=4.0.8
+VER=4.0.9
 PKG=library/libtiff
 SUMMARY="$PROG - for reading and writing TIFF"
 DESC="$SUMMARY ($VER)"
