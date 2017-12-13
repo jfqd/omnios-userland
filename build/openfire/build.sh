@@ -27,8 +27,11 @@
 # Load support functions
 . ../../lib/functions.sh
 
+# https://github.com/igniterealtime/Openfire/releases/download/v4.1.6/openfire_4_1_6.tar.gz
+# sha1sum: 8af96d080b92a6575cd07dbbcd07a63371d577fe
+
 PROG=openfire
-VER=4.1.3
+VER=4.1.6
 VERHUMAN=$VER
 PKG=network/openfire
 SUMMARY="Openfire XMPP/Jabber Server"
