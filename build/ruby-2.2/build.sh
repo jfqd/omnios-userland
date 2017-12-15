@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.8.tar.bz2
+# https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.9.tar.bz2
+# SHA256: 5e3cfcc3b69638e165f72f67b1321fa05aff62b0f9e9b32042a5a79614e7c70a
 PROG=ruby
-VER=2.2.8
+VER=2.2.9
 MAIN_VER=2.2
 VERHUMAN=$VER
 PKG=runtime/ruby-2.2
