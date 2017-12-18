@@ -27,9 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://downloads.sourceforge.net/project/pcre/pcre/8.39/pcre-8.39.zip
+# https://downloads.sourceforge.net/project/pcre/pcre/8.41/pcre-8.41.tar.bz2
+# https://downloads.sourceforge.net/project/pcre/pcre/8.41/pcre-8.41.tar.bz2.sig
 PROG=pcre
-VER=8.39
+VER=8.41
 VERHUMAN=$VER
 PKG=custom/library/pcre
 SUMMARY="Perl Compatible Regular Expressions"
