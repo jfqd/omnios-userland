@@ -28,7 +28,7 @@
 . ../../lib/functions.sh
 
 PROG=php
-VER=7.0.26
+VER=7.0.27
 PKG=custom/server/apache24/mod-php7
 SUMMARY="PHP 7 - mod-php7 extension for Apache 2.4"
 DESC="PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML."
