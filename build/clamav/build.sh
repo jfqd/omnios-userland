@@ -27,10 +27,10 @@
 # Load support functions
 . ../../lib/functions.sh
 
-# http://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz
-# http://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz.sig
+# http://www.clamav.net/downloads/production/clamav-0.99.3.tar.gz
+# http://www.clamav.net/downloads/production/clamav-0.99.3.tar.gz.sig
 PROG=clamav
-VER=0.99.2
+VER=0.99.3
 VERHUMAN=$VER
 PKG=service/network/clamav
 SUMMARY="ClamAV is an open source antivirus engine"
